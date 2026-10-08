@@ -40,7 +40,7 @@ are not distribution artifacts.
    capacity. The Phase 8 two-minute soak is deliberately bounded.
 5. Evaluate stronger local models on newly defined cases before offering a
    quality-qualified local-only default. Claude/Grok canaries remain optional.
-6. Build a user-facing web interface only if requested; current remote demo
-   planning uses the CLI plus restricted Odoo/API access.
+6. Extend the delivered [browser workspace](WEB-UI.md) only after its cloud
+   access controls are verified. Natural-language assistance remains in the CLI.
 7. Measure human active time with a real study before claiming time savings
    or financial ROI. Preserve the existing synthetic-performance boundary.

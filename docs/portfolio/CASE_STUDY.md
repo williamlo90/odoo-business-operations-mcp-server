@@ -42,7 +42,8 @@ paths share typed schemas, source resolution and approval rules. The small local
 model remains experimental based on evaluation. Provider substitution does not
 change who may authorize a write.
 
-![System boundaries](../assets/architecture.png)
+See the [current system architecture](../../README.md#architecture-and-authority)
+for both browser and MCP paths through the shared domain service.
 
 ## What the evidence establishes
 

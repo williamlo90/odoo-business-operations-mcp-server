@@ -9,3 +9,26 @@ dist/
 local/
 *.log
 *.pyc
+
+# Personal portfolio preparation; retain locally, outside the published tree.
+/docs/portfolio/APPLICATION_PACK.md
+/notes/
+
+# Generated browser reports and development artifacts.
+playwright-report/
+test-results/
+blob-report/
+.coverage
+htmlcov/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+
+# Local orchestration state and private backup exports.
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+/backups/

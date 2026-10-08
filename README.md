@@ -12,7 +12,7 @@ bounded AI intent to authenticated business workflows.
 and inspect verified Odoo receipts. [Open locally](http://127.0.0.1:8020/) after
 starting the stack, or follow the [web UI guide](docs/WEB-UI.md).
 
-[Product walkthrough](docs/demo/README.md) · [Engineering case study](docs/portfolio/CASE_STUDY.md) · [Operator guide](docs/USER-GUIDE.md) · [Documentation](docs/README.md)
+[Web UI tour](docs/WEB-UI.md) · [Engineering case study](docs/portfolio/CASE_STUDY.md) · [Operator guide](docs/USER-GUIDE.md) · [Documentation](docs/README.md)
 
 ## Why this project
 
@@ -29,15 +29,16 @@ read the result back from Odoo before reporting success.
 | Result | What was verified | Evidence |
 | --- | --- | --- |
 | **4 skills · 10 MCP tools** | Shared research, quotation, CRM activity and reconciliation workflows | [Skills](skills/README.md), [MCP server](docs/PHASE-4.md) |
-| **153 checks passed** | 98 offline, 41 PostgreSQL/Odoo, 14 live checks in the local qualification | [Verification record](docs/evidence/phase8-controls.txt) |
+| **13 browser checks passed** | Quotation and CRM workflow, separate approval, lost-response recovery and company isolation | [Browser acceptance](docs/PHASE-9A.md) |
+| **153 Phase 8 checks passed** | 98 offline, 41 PostgreSQL/Odoo, 14 live checks at the reliability checkpoint | [Verification record](docs/evidence/phase8-controls.txt) |
 | **124 workload tasks** | 93 correct reads and 31 verified drafts; zero errors or dropped tasks | [Reliability results](docs/PHASE-8.md) |
 | **31 / 31 single effects** | Every load-run write had exactly one Odoo ledger entry and order, including replay | [Load evidence](docs/evidence/phase8-load.json) |
 | **30.11 s restore** | Isolated matching database/filestore restore with authenticated business read-back | [Recovery evidence](docs/evidence/phase8-recovery.json) |
 
-These are bounded synthetic local results from the Phase 8 checkpoint. The
-browser workspace adds its own [acceptance checks](docs/PHASE-9A.md); the
-nine-stage CLI delivery demo is a separate recorded run.
-[Versions and reproduction](docs/RELEASE.md).
+Results use synthetic local data. Browser acceptance belongs to Phase 9A; load
+and recovery measurements belong to Phase 8. The latest workspace also passes
+102 offline checks and a container suite with 132 passed / 20 optional skips.
+These suites overlap and are reported separately. [Reproduce the workspace checks](docs/PHASE-9A.md).
 
 ## A quotation, from request to receipt
 
@@ -47,25 +48,28 @@ nine-stage CLI delivery demo is a separate recorded run.
 4. **Execute** using the approved proposal and a stable idempotency key.
 5. **Verify** the actual Odoo record; reconcile uncertain outcomes before retrying.
 
-<table>
-<tr>
-<td width="50%"><a href="docs/demo/README.md#1-prepare-the-correct-record"><img src="docs/assets/proposal.png" alt="Recorded quotation preview: company A, exact customer, IDR 250000"></a><br><strong>Source-bound proposal</strong><br>Review customer, quantities and total before any draft is created.</td>
-<td width="50%"><a href="docs/demo/README.md#2-enforce-the-approval-boundary"><img src="docs/assets/approval.png" alt="Recorded operator approval denied with HTTP 403"></a><br><strong>Separate approval</strong><br>The operator cannot authorize their own proposal.</td>
-</tr>
-<tr>
-<td width="50%"><a href="docs/demo/README.md#3-verify-the-odoo-result"><img src="docs/assets/receipt.png" alt="Recorded Odoo draft S00132 verified against the proposal"></a><br><strong>Verified business result</strong><br>A receipt points to the actual Odoo draft and its checked total.</td>
-<td width="50%"><a href="docs/demo/README.md#4-resume-without-a-second-write"><img src="docs/assets/replay.png" alt="Recorded replay returns the same operation with one ledger entry and one order"></a><br><strong>Recover without duplication</strong><br>A fresh caller resumes from the saved operation ID.</td>
-</tr>
-</table>
+![Actual browser quotation review and verified Odoo receipt](docs/assets/web-receipt.png)
 
-The four visuals above summarize actual [CLI receipts](docs/demo/recording.json).
-The header image is an actual browser screenshot. See the [web UI tour](docs/WEB-UI.md)
-for current workspace screenshots and the [CLI walkthrough](docs/demo/README.md)
-for the recorded command-line workflow.
+The browser shows the exact proposal, independent approval and actual Odoo
+receipt. [Explore the workspace](docs/WEB-UI.md), including CRM follow-ups and
+recovery, or inspect the [recorded CLI workflow](docs/demo/README.md).
+Natural-language assistant requests currently use the CLI.
 
 ## Architecture and authority
 
-![Architecture: caller and model, MCP tools, domain controls, separate approval, Odoo and read-back](docs/assets/architecture.png)
+```mermaid
+flowchart LR
+    Browser[Browser workspace] -->|Authenticated HTTP| API[FastAPI domain service]
+    Approver[Separate approver] -->|Review and authorize| Browser
+    Assistant[CLI assistant and shared skills] --> MCP[Custom MCP server]
+    Worker[Persistent worker] --> MCP
+    MCP -->|Scoped HTTP| API
+    API --> DB[(Application PostgreSQL)]
+    API -->|Signed operation / read-back| Odoo[Odoo and operation ledger]
+```
+
+The browser and MCP clients share the same domain authorization and execution
+rules. Odoo remains the source of business records.
 
 | Layer | Responsibility |
 | --- | --- |
@@ -105,12 +109,11 @@ and inspect its verified receipt. The deterministic workflow needs no paid model
 ## Explore the engineering
 
 - [Case study](docs/portfolio/CASE_STUDY.md): architecture decisions, failure modes and measured outcomes.
-- [Portfolio summary](docs/portfolio/APPLICATION_PACK.md): concise project description and interview talking points.
 - [Reliability report](docs/PHASE-8.md): workload definitions, percentiles, resources and recovery.
 - [Local runbook](docs/LOCAL-RUNBOOK.md): uncertain writes, credentials, backup and rollback.
 - [Learning checkpoints](docs/LEARNING-PATH.md): one commit per completed phase, preserved tags.
 - [Azure proposal](docs/AZURE-PLAN.md): restricted demo design and cost assumptions; deployment pending.
 
-**Delivery status:** locally validated with a complete operator pack. Azure has
-not been provisioned. There is no hosted application URL or customer ROI claim.
+**Delivery status:** browser workspace and local workflows validated. Azure
+deployment is the next phase.
 All documentation is indexed in [docs/README.md](docs/README.md).

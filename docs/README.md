@@ -8,11 +8,10 @@ Choose a path through the project.
 | [Web UI acceptance](PHASE-9A.md) | Browser and API checks for the pre-cloud workspace checkpoint |
 | [Product walkthrough](demo/README.md) | Four visual scenes from the actual recorded quotation workflow |
 | [Engineering case study](portfolio/CASE_STUDY.md) | Problem, design decisions, recovery and measured results |
-| [Portfolio summary](portfolio/APPLICATION_PACK.md) | Concise project pitch and evidence-backed interview points |
 | [Operator guide](USER-GUIDE.md) | Installation, daily use, approval and outcome handling |
 | [Delivery acceptance](DELIVERY-ACCEPTANCE.md) | Expected and observed results for the recorded demo |
 | [Local runbook](LOCAL-RUNBOOK.md) | Credentials, unknown writes, monitoring, restore and rollback |
-| [Release specification](RELEASE.md) | Locked inputs, immutable migrations and release provenance |
+| [Phase 9 release specification](RELEASE.md) | Frozen CLI delivery inputs, migrations and provenance |
 | [Owner handover](HANDOVER.md) | Operating cadence, retention and improvement backlog |
 | [Azure proposal](AZURE-PLAN.md) | Proposed topology and cost assumptions; no deployment yet |
 
