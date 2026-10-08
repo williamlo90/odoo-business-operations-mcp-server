@@ -1,97 +1,84 @@
-# Phase 0 — Scope dan keputusan implementasi
+# Phase 0 — Scope and implementation decisions
 
-Tanggal: 2026-10-08 (Asia/Jakarta). Run: `phase0-20261008-01`.
-Status: inventaris dan scope selesai; implementasi dan connected validation belum dilakukan.
+Date: 2026-10-08 (Asia/Jakarta). Run: `phase0-20261008-01`.
+This is the initial planning checkpoint. See [the phase map](../PHASES.md)
+for current implementation status.
 
-## Tujuan dan ownership
+## Outcome and ownership
 
-Membantu sales operations menyiapkan transaksi Odoo yang benar, dengan preview,
-approval manusia, dan verifikasi hasil. William menjadi owner proyek/demo lokal
-berdasarkan README portfolio. Belum ada business owner pelanggan eksternal.
-William mengelola konfigurasi dan akses sandbox; role operator dan approver memakai
-akun uji terpisah meskipun demo dijalankan oleh satu orang.
+Help sales operations prepare correct Odoo transactions through previews, human
+approval and verified receipts. William owns the local project and sandbox.
+Operator and approver use separate test accounts, even in a single-person demo.
+No external customer business owner was assigned at this checkpoint.
 
-Alur pertama yang disetujui pengguna: cari pelanggan → proposal quotation →
-preview → approval → buat satu draft quotation → read-back dan receipt.
+The first agreed workflow was customer lookup → quotation proposal → preview →
+approval → one draft quotation → read-back and receipt.
 
-## Tiga perjalanan pengguna V1
+## V1 user journeys
 
-| Journey | Hasil benar | Batas |
+| Journey | Expected result | Boundary |
 | --- | --- | --- |
-| J1: riset pelanggan | Record ID, company, dan profil dari sumber Odoo; pelanggan ambigu meminta pilihan eksplisit | Read-only, company scope dari server |
-| J2: tinjau opportunity dan siapkan follow-up | Konteks opportunity bersumber; activity dengan penanggung jawab, tanggal, dan target benar | Membuat activity hanya setelah approval; sesudah alur quotation selesai |
-| J3: siapkan quotation | Proposal dengan customer, company, currency, items, harga, total, lalu tepat satu draft Odoo setelah approval | Tidak mengonfirmasi sales order atau mengirim quotation |
+| J1: customer research | Source-backed record ID, company and profile; explicit selection for ambiguous matches | Read-only; server-enforced company scope |
+| J2: opportunity review and follow-up | Opportunity context and an activity with the correct owner, date and target | Creation requires approval; implemented after the quotation flow |
+| J3: quotation preparation | Customer, company, currency, items, prices and total, followed by one approved Odoo draft | No order confirmation or outbound quotation email |
 
-Scope release tetap mencakup keempat skills pada REUSABLE-SKILLS.md. J3 merupakan
-alur pertama, bukan pengganti J1/J2 atau penghapusan gate fase berikutnya.
+All four [shared skills](../REUSABLE-SKILLS.md) remain in scope. Prioritizing J3
+does not remove J1, J2 or later acceptance gates.
 
-## Batas V1 dan aturan bisnis
+## Business rules
 
-- Data sintetis dan sandbox lokal. Company A dan B memakai isolasi eksplisit;
-  record pelanggan bersama lintas company tidak dipakai pada fixture awal.
-- Operator membaca dan membuat proposal; approver terpisah menyetujui dalam scope;
-  administrator mengelola konfigurasi tanpa otomatis memperoleh hak approval.
-- Harga dihitung deterministik dari katalog/pricelist dan policy, bukan dari LLM.
-  Fixture pertama memakai IDR, tanpa diskon/pajak, qty positif dan produk aktif.
-  Konfigurasi pajak/diskon/pricing yang belum didukung ditolak secara eksplisit.
-- Odoo adalah sumber record bisnis, katalog dan final quotation. Database aplikasi
-  menyimpan proposal, approval, operation, idempotency dan audit; tidak menulis
-  langsung ke database Odoo.
-- Approval mengikat actor, tenant/company, payload hash, versi sumber, expiry dan
-  policy. Perubahan customer, item, pricing atau record relevan membutuhkan preview
-  serta approval baru. Pengecekan perubahan harus menutup race saat write; desain
-  transaksi/addon Odoo diputuskan dan diuji di Phase 2 sebelum mengklaim jaminan ini.
-- Duplicate/concurrent request harus menghasilkan satu efek. Timeout setelah write
-  menjadi `unknown` sampai rekonsiliasi. Tidak melakukan create ulang secara buta.
-- Di luar V1: konfirmasi order, invoice, payment, stock movement, delete record,
-  outbound email, arbitrary SQL/model method/URL, dan deployment cloud sebelum Phase 9.
+- Use synthetic local data and explicitly isolated Companies A and B. Initial
+  fixtures exclude shared cross-company customer records.
+- Operators read and prepare proposals. Separate approvers authorize scoped
+  writes. Configuration administrators do not automatically receive approval rights.
+- Calculate prices deterministically from supported catalog and policy data.
+  Initial fixtures use IDR, positive quantities, active products and no tax or
+  discount. Reject unsupported pricing configurations explicitly.
+- Odoo owns business records and final quotations. The application database owns
+  proposals, approvals, operations, idempotency and audit records. Application
+  services do not write directly to Odoo's database.
+- Bind approval to the actor, tenant/company, payload hash, source version,
+  expiry and policy. Relevant changes require a new preview and approval.
+  Transaction-time race protection was a Phase 2 implementation and testing gate.
+- Duplicate or concurrent requests must produce one effect. Treat uncertain
+  post-write timeouts as unknown until reconciliation; never blindly recreate.
+- Exclude order confirmation, invoices, payments, stock movements, record
+  deletion, outbound email and arbitrary SQL, model methods or URLs from V1.
+  Cloud delivery follows local validation and release preparation.
 
-## Keputusan teknis
+## Initial technical decisions
 
-| Area | Keputusan |
+| Area | Decision at Phase 0 |
 | --- | --- |
-| Platform | Target Odoo Community 19.0 lokal dengan Contacts, CRM, Sales; JSON-2 menjadi API target. Model/method dan akses nyata wajib diverifikasi sebelum adapter di Phase 2 |
-| Runtime | Linux containers melalui Docker Compose; Windows/WSL2 sebagai development host |
-| Services | Python + FastAPI domain service, TypeScript MCP server dan reference client, PostgreSQL |
-| Versions | Odoo line 19.0 dipilih; patch/image digest, Python/container, PostgreSQL, SDK/protocol dan dependency lock ditetapkan melalui compatibility smoke pada Phase 1; belum ada executable untuk dipin |
-| MCP | Stdio untuk reference client lokal; HTTP remote menunggu Phase 9 |
-| Automation | Worker/scheduler Python memakai service/skills yang sama; n8n not selected |
-| AI | Satu orchestrator; OpenAI/Claude/Grok adapters serta Ollama sesuai Phase 3. Default model ditentukan setelah uji; model/license/revision belum dipilih |
-| Resource | Mulai concurrency inference 1; pemilihan model lokal mengikuti RAM/VRAM terukur, belum merupakan klaim model fit/performance |
+| Platform | Odoo Community 19.0 with Contacts, CRM and Sales; JSON-2 API, with actual methods and permissions to be verified |
+| Runtime | Linux containers through Docker Compose; Windows/WSL2 development host |
+| Services | Python/FastAPI domain service, TypeScript MCP server and reference client, PostgreSQL |
+| Dependencies | Pin runtime versions, images and dependencies during compatibility work |
+| MCP | Local stdio transport; remote transport deferred to deployment design |
+| Automation | Python worker using shared services and skills; n8n not selected |
+| AI | One orchestrator; hosted-provider adapters and optional Ollama; model choice requires evaluation |
+| Resources | Start inference concurrency at one; measure memory before qualifying a local model |
 
-Dokumentasi resmi menjelaskan JSON-2 pada Odoo 19 dan keamanan mengikuti Odoo.
-Akses API hosted memiliki batas plan; pilihan lokal ini tidak mengklaim akses
-gratis ke Odoo Online. Endpoint aktual tetap dependency verifikasi.
+References: [Odoo JSON-2 API](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html),
+[source installation](https://www.odoo.com/documentation/19.0/administration/on_premise/source.html)
+and [Community source license](https://github.com/odoo/odoo/blob/19.0/LICENSE).
+The local Community choice does not imply free hosted Odoo Online API access.
 
-Sumber: [JSON-2 API](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html),
-[source install](https://www.odoo.com/documentation/19.0/administration/on_premise/source.html),
-[lisensi source Community](https://github.com/odoo/odoo/blob/19.0/LICENSE).
-Lisensi source Odoo adalah LGPLv3; image/dependency notices dicatat saat provisioning.
+## Inventory and handoff
 
-## Inventaris dan strategi reuse
+The initial folder contained ten planning documents and no executable project
+source. Git, Python, Node, Docker and WSL CLIs were found; the Docker engine was
+not yet connected. The sandbox, API accounts, services, migrations, skills,
+worker and evaluation harness required implementation. No other project's
+working tree was imported or modified. Downstream consumer projects were not
+prerequisites for building this producer.
 
-| Kemampuan | Kategori | Keputusan |
-| --- | --- | --- |
-| Sepuluh dokumen rencana | existing / reuse | Pertahankan sebagai kontrak; hash awal ada pada evidence manifest |
-| Runtime Git/Python/Node/Docker/WSL | existing / needs-verification | CLI ditemukan; Docker engine belum terhubung |
-| Odoo sandbox, modul, API account | new / needs-verification | Provision sandbox terisolasi; tidak mengasumsikan instance lama bisa dipakai |
-| Backend, client, MCP, DB migrations | new | Dibangun Phase 1–4; belum ada source executable di folder |
-| Skills, worker, evaluasi, monitoring | new | Mengikuti fase dan acceptance proyek |
-| Kode proyek lain | not selected | Tidak mengimpor atau mengubah working tree proyek lain |
-| Kontrak consumer 04/05/08 | new | Proyek 02 menjadi producer; consumer bukan blocker pembangunan 02 |
+Planning evidence: [acceptance cases](ACCEPTANCE-CASES.md),
+[dependency register](DEPENDENCIES.md), [baseline manifest](evidence/phase0-baseline.json)
+and [original environment inspection](evidence/phase0-environment.md).
+The original tag preserves the exact initial document versions.
 
-Strategi: retain planning pack, bangun implementasi baru, tanpa replace/delete/import
-source. Tidak ada source revision atau dirty Git diff karena folder belum merupakan
-repository. Tidak ada klaim audit source di luar folder ini.
-
-## Gate dan handoff
-
-Artefak gate: inventaris di dokumen ini, scope V1/J1–J3, [acceptance cases](ACCEPTANCE-CASES.md),
-[dependency register](DEPENDENCIES.md), [baseline](evidence/phase0-baseline.json),
-dan [hasil pemeriksaan](evidence/phase0-environment.md).
-
-Phase 0 selesai sebagai inventaris, dengan dependency terbuka yang tercatat.
-Phase 1 dimulai dengan mengaktifkan Docker engine, membuat Git repository lokal,
-menetapkan runtime/dependency lock, lalu membangun auth dan satu alur lokal dengan
-PostgreSQL, seed sintetis, serta smoke test. Provider keys tidak memblokir fondasi
-deterministik. Tidak ada test aplikasi yang dinyatakan lulus pada Phase 0.
+Phase 0 completed scope and inventory with recorded dependencies. Phase 1 would
+establish Git, pinned dependencies, authentication, PostgreSQL, synthetic seeds
+and a local smoke test. Provider keys were not required for the deterministic
+foundation. No application tests were claimed at the Phase 0 checkpoint.

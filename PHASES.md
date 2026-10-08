@@ -1,149 +1,134 @@
-# Phase Plan & Definition of Done
+# Delivery roadmap and acceptance gates
 
-Proyek 02: **Odoo Business Operations MCP Server**
+**Phases 0–9 are complete for the selected local scope. Phase 10 cloud deployment
+is pending.** The sequence is 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10.
+Authorization and tests accompany each feature; Phase 8 consolidates reliability
+verification. Each implementation phase has a learning commit and fixed tag.
+Documentation-only portfolio updates do not rewrite those checkpoints.
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-9 selesai untuk scope lokal terpilih; deployment cloud Phase 10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
+## Phase 0 — Inventory and scope
 
-Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
+- [x] Identify reusable/new components, current source state and dependencies.
+- [x] Define the owner, three user journeys, V1 action boundaries and expected outcomes.
+- [x] Record sandbox, credential, hardware, license and API requirements.
+- [x] Select standalone MCP/Python automation; n8n is not required.
 
-Roadmap revisi: Phase 3–5 menyelesaikan implementasi dengan tes ringan; pengujian Docker, provider nyata dan model lokal dikumpulkan pada Phase 6. Satu phase implementasi = satu commit pembelajaran.
+Gate: scope, inventory, 20 acceptance cases and dependency register exist.
+[Scope](docs/PHASE-0.md) · [Acceptance](docs/ACCEPTANCE-CASES.md) · [Dependencies](docs/DEPENDENCIES.md).
+This checkpoint made no application-test or connected-validation claim.
 
-Pemakaian API model atau test tenant SaaS dari aplikasi lokal diperbolehkan pada fase integrasi. Itu berbeda dari deployment aplikasi kita ke cloud. Mode offline proyek 07 tetap tidak memakai API eksternal. Infrastructure-as-code boleh disiapkan sebelum fase 10 tanpa apply/provision.
+## Phase 1 — Local foundation
 
-## Phase 0 — Inventaris dan batas pekerjaan
+- [x] Git, FastAPI, TypeScript client, PostgreSQL migrations and Linux Docker Compose.
+- [x] Authentication, role/tenant context, validated configuration, private secrets,
+  health/readiness and sanitized logs.
+- [x] Synthetic seed, isolated test reset, installation and automated smoke tests.
 
-- [x] Terapkan keputusan automation pada [N8N-AUTOMATION.md](N8N-AUTOMATION.md); n8n bukan dependency atau gate default proyek ini.
+Gate: an authorized user completes a persisted local flow; unauthorized access
+is rejected. 17 PostgreSQL tests, fresh-volume install and outage recovery passed.
+[Phase 1](docs/PHASE-1.md).
 
-- [x] Baca baseline di README; periksa source, Git diff, dan evidence terbaru. Jangan mengubah atau menyalin working tree lama tanpa mencatat perubahan lokal.
-- [x] Tentukan owner bisnis, tiga perjalanan pengguna utama, batas tindakan, dan definisi hasil benar.
-- [x] Catat akses sandbox, credentials, model hardware/license, versi API, dan dependency proyek lain; dependency yang belum ada diberi status blocked yang spesifik.
-- [x] Tentukan strategi retain/replace/delete atau import kode; simpan source revision dan local changes yang diperlukan. Pilihan mengikuti bukti architecture comparison bila berlaku.
+## Phase 2 — Deterministic Odoo workflows
 
-**Gate:** daftar kemampuan existing/reuse/new/needs-verification; scope V1; acceptance cases; dependency register. Ini inventaris baru, bukan klaim seluruh baseline telah diaudit ulang.
+- [x] Fix the Odoo edition/API, source mapping and supported business policy.
+- [x] Separate read, prepare, approval, execute and read-back.
+- [x] Bind approval to identity, tenant, payload and source version.
+- [x] Handle pagination, stale records, timeouts, retries and idempotency at the
+  actual transaction boundary; publish versioned contracts and fixtures.
 
-Evidence Phase 0 (2026-10-08): [scope dan inventaris](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), [dependency register](docs/DEPENDENCIES.md), [environment checks](docs/evidence/phase0-environment.md), [baseline hashes](docs/evidence/phase0-baseline.json). Gate inventaris selesai; dependency runtime/API/model yang belum terverifikasi tetap terbuka. Tidak ada klaim implementasi atau connected validation.
+Gate: normal, negative and recovery paths have reference outcomes independent
+of model quality. 38 tests including nine actual Odoo cases passed.
+[Phase 2](docs/PHASE-2.md) · [Contract](docs/CONTRACT-V1.md).
 
-## Phase 1 — Fondasi aplikasi lokal
+## Phase 3 — Assistant and reusable skills
 
-- [x] Buat Git repository, backend Python, TypeScript client, PostgreSQL migrations, dan Docker Compose untuk Linux.
-- [x] Bangun auth, tenant/role context, konfigurasi tervalidasi, secret melalui environment, health/readiness, structured logs yang disanitasi.
-- [x] Sediakan seed data sintetis, local setup dari mesin bersih, reset test database terisolasi, dan automated smoke tests.
-- [x] Tetapkan struktur code: backend/, frontend/ atau client/, mcp-server/, skills/, tests/, docs/, deploy/. Ini rencana struktur implementasi; jangan membuat file kode kosong untuk memberi kesan selesai.
+- [x] Four executable skills, typed contracts, retrieval and output validation.
+- [x] OpenAI, Claude, Grok and Ollama adapters with refusal/timeout/local-only tests.
+- [x] TypeScript reference client, durable tasks, replay/version binding and traces.
 
-**Gate:** user berizin bisa login dan menjalankan satu alur lokal dengan database; user tanpa izin ditolak di server; install guide dapat diikuti ulang.
+Gate: production code paths pass offline transport tests; real model acceptance
+is deferred to Phase 6. 49 Python and two client tests passed at this checkpoint.
+[Phase 3](docs/PHASE-3.md).
 
-Evidence Phase 1 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-1.md), [panduan instalasi](docs/LOCAL-SETUP.md). 17 tests lulus pada PostgreSQL nyata, demo client lulus, instalasi volume kosong lulus, dan DB outage/recovery terverifikasi. MCP/skills executable tetap dijadwalkan pada fase berikutnya.
+## Phase 4 — Custom MCP server
 
-## Phase 2 — Alur bisnis deterministik dan reference outcomes
+- [x] Pin SDK/protocol and build scoped read, prepare, approved-execute and verify tools.
+- [x] Connect the client/assistant through actual stdio processes.
+- [x] Test identity, tenant, schema, cancellation, limits, replay and unknown results.
 
-- [x] Bangun reference assistant untuk mencari pelanggan, meninjau peluang sales, dan menyiapkan draft quotation atau activity.
-- [x] Tentukan versi/edition Odoo serta model/API yang benar-benar tersedia; dokumentasikan pilihan sebelum implementasi adapter.
-- [x] Pisahkan tool read, prepare, dan execute; tool tidak menyediakan arbitrary SQL, arbitrary model method, atau unrestricted URL.
-- [x] Approval terikat payload, actor, tenant, dan versi record. Perubahan payload atau record membatalkan approval lama.
-- [x] Tangani pagination, rate limit, timeout, partial failure, retry, dan read-back hasil. Jangan menganggap semua endpoint mendukung idempotency native.
-- [x] Sediakan contract versioning dan compatibility fixtures untuk consumer proyek lain.
+Gate: seven protocol scenarios pass with simulated downstream HTTP. Actual Odoo
+acceptance follows in Phase 6. [Phase 4](docs/PHASE-4.md).
 
-**Gate:** happy path, exception, approval, dan recovery bisa diuji dengan data referensi tanpa bergantung pada kualitas LLM. Expected outcomes ditulis dari aturan dan sumber, bukan disalin dari output model.
+## Phase 5 — Persistent automation
 
-Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md), [panduan Odoo](docs/ODOO-LOCAL.md), [kontrak v1](docs/CONTRACT-V1.md). 38 tests lulus, termasuk 9 connected cases Odoo nyata; fresh-volume install dan CLI quotation lulus. AI/MCP/worker tetap pada fase berikutnya.
+- [x] Shared worker/scheduler handlers with jobs, deduplication, leases and checkpoints.
+- [x] Bounded retries, review/dead states and interruption recovery.
+- [x] Separate automation from approval and document company-specific configuration.
 
-## Phase 3 — Implementasi assistant AI dan reusable skills
+Gate: 16 worker and eight MCP tests pass, including process restart and scoped
+reuse. SQLite is orchestration state, not business truth. [Phase 5](docs/PHASE-5.md).
 
-- [x] Lengkapi empat executable skills, typed contracts, source retrieval dan output validation.
-- [x] Implementasikan adapter OpenAI, Claude, Grok dan Ollama; uji format API, refusal, timeout dan local-only policy dengan HTTP simulasi.
-- [x] Hubungkan client TypeScript dengan assistant Python untuk task, preview, clarification dan recovery.
-- [x] Sediakan state task durable, replay yang aman, versi prompt/schema/skill, latency, token usage dan estimasi biaya berkonfigurasi.
-- [x] Jalankan tes ringan termasuk identity/tenant scope, unsupported claims, malformed output, cancellation dan reuse lintas caller.
+## Phase 6 — Connected integration
 
-**Gate implementasi:** client dan assistant memakai production code paths dengan transport simulasi; semua tes offline phase lulus. Tidak membutuhkan Docker atau model nyata. Canary provider, provisioning Ollama dan penerimaan bisnis nyata menjadi gate Phase 6.
+- [x] Run the project's bounded Docker stack without disrupting other projects.
+- [x] Connect Odoo/PostgreSQL, assistant, MCP and dedicated company A/B workers.
+- [x] Pin/provision local inference; run actual Ollama and OpenAI canaries.
+- [x] Verify approval, writes, read-back, stale sources, replay and reuse.
 
-Evidence: [Phase 3](docs/PHASE-3.md), 49 tes Python dan 2 tes client antarp proses lulus.
+Gate: selected real integrations pass. Claude/Grok are optional and not
+live-qualified. [Phase 6](docs/PHASE-6.md).
 
-## Phase 4 — Implementasi custom MCP server
+## Phase 7 — Quality evaluation
 
-- [x] Bangun tools TypeScript read → prepare → approved execute → verify dengan schemas dan SDK/protocol dipin.
-- [x] Hubungkan reference client dan assistant melalui MCP stdio yang benar-benar berjalan antarp proses.
-- [x] Tegakkan session identity, role, tenant scope, payload/approval constraints, limits, cancellation dan sanitized errors.
-- [x] Uji protocol, malicious input, expired session, stale approval, concurrent/replayed execution dan unknown outcomes dengan domain HTTP simulasi.
+- [x] Freeze datasets, labels, profiles, rubric and thresholds before scoring.
+- [x] Treat debugging cases as regression data rather than independent holdout.
+- [x] Compare typed reference and assisted outcomes on the same synthetic tasks.
+- [x] Record quality, latency, usage and critical failures without claiming human ROI.
 
-**Gate implementasi:** percakapan MCP nyata melalui stdio dan alur assistant-to-MCP lulus; platform downstream disimulasikan. Validasi Odoo/PostgreSQL nyata tetap Phase 6.
+Gate: selected hosted profile passed 18/18 frozen regression cases; typed
+reference passed 18/18. Local Qwen2.5 0.5B passed 7/18 and remains experimental.
+86 offline, 20 live and 38 PostgreSQL/Odoo checks passed at this checkpoint.
+[Phase 7](docs/PHASE-7.md). The score belongs to its exact source snapshot.
 
-Evidence: [Phase 4](docs/PHASE-4.md), 7 tes protocol antarp proses lulus.
+## Phase 8 — Local reliability and security
 
-## Phase 5 — Implementasi automation dan recovery
+- [x] Verify API/client/MCP/worker roles, tenant boundaries, bypass and injection cases.
+- [x] Test concurrency, worker interruption, lost response, late completion, retries,
+  unknown outcomes, backlog, database recovery and isolated backup/restore.
+- [x] Measure per-operation and total percentiles with sample counts, achieved
+  throughput, dropped work, resources and final effects.
+- [x] Separate queue, HTTP, inference and downstream timing; use fixed bounded
+  normal/peak/soak workloads and separate real-provider canaries.
+- [x] Prove local alert receipt, image rollback and recovery procedures.
 
-- [x] Tambahkan worker Python dan trigger terjadwal/event dengan handler skills yang sama.
-- [x] Persist jobs, deduplication keys, checkpoints, retry backoff, lease, review/dead-letter state dan outcome.
-- [x] Pisahkan approval manusia dari automation; jangan membuat approval atau blind retry write.
-- [x] Uji duplicate events, restart, concurrent claim, expired credentials, unknown results dan isolasi tenant dengan storage lokal terisolasi.
-- [x] Dokumentasikan ownership scheduler, state, recovery dan konfigurasi tenant kedua; n8n tetap bukan dependency.
+Gate: local release candidate passes the selected tests and workload. 98 offline,
+41 connected and 14 live checks; 124 load tasks; 31 verified single-effect writes.
+No browser UI or async callback endpoint exists. Cloud and human paging remain
+pending. [Phase 8](docs/PHASE-8.md) · [Runbook](docs/LOCAL-RUNBOOK.md).
 
-**Gate implementasi:** worker/scheduler nyata memakai persistent storage ringan, production handlers dan HTTP simulasi; tes restart/dedup/isolation lulus. Database aplikasi dan Odoo tetap sumber kebenaran transaksi bisnis, local job store hanya menyimpan orchestration.
+## Phase 9 — Delivery pack
 
-Evidence: [Phase 5](docs/PHASE-5.md), 16 tes worker dan 8 tes MCP termasuk worker CLI lintas proses lulus.
+- [x] English installation, daily use, approval, failure handling and support guides.
+- [x] Actual recorded CLI demo with normal, blocked and resumed outcomes.
+- [x] Frozen release inputs, dependency/migration/rollback/configuration inventory.
+- [x] Azure design, cost proposal, access, secrets, alerts, backups and teardown plan.
+- [x] Named owner, operating cadence and improvement backlog.
 
-## Phase 6 — Integrasi nyata dan validasi gabungan
+Gate: the local product can be understood and operated from the delivery pack;
+cloud prerequisites are explicit. No Azure provisioning was performed.
+[Phase 9](docs/PHASE-9.md) · [Delivery](PROJECT-DELIVERY.md) · [Azure design](docs/AZURE-PLAN.md).
 
-- [x] Jadwalkan resource proyek ini; jalankan stack Docker secara terkendali tanpa mengganggu proyek lain.
-- [x] Ulangi regresi PostgreSQL/Odoo Phase 1–2, lalu sambungkan assistant, MCP dan worker.
-- [x] Jalankan canary provider terpilih: OpenAI dan Ollama. Claude/Grok opsional; status live belum terverifikasi.
-- [x] Provision/pin Ollama dan model/license/artifacts; uji inference, local-only policy, resource usage dan recovery nyata.
-- [x] Buktikan workflow AI → MCP → proposal → approval manusia → Odoo write → read-back; periksa efek duplikat, stale sources, timeout dan recovery.
-- [x] Buktikan skill reuse dan tenant kedua pada stack nyata; benahi masalah integrasi sebelum evaluasi kualitas.
+## Phase 10 — Azure deployment and runtime acceptance
 
-**Gate integrasi:** hasil bisnis dan recovery benar-benar terverifikasi pada environment yang disebut. Simulasi tidak menggantikan bukti connected. Claude/Grok berada di luar gate terpilih dan tidak diberi label live-validated. Tahap ini dikerjakan sebelum evaluasi Phase 7.
+- [ ] Confirm subscription, budget, region, access method and alert recipient.
+- [ ] Validate IaC/what-if, provision isolated resources and deploy immutable images.
+- [ ] Apply migrations, secrets/network controls and distinct business credentials.
+- [ ] Repeat connected correctness, authorization and workload gates in Azure.
+- [ ] Prove delivered human alerts, off-host restore, rollback and safe teardown.
+- [ ] Record actual costs, retained resources, release provenance and cloud handover.
+- [ ] Establish ongoing incident response and pre-change quality review.
 
-Progress Phase 6: [integrasi Docker/Odoo](docs/PHASE-6.md) lulus 38 tes regresi dan 7 skenario MCP/assistant/worker serta 5 canary AI lokal nyata. Approval diuji melalui akun approver terpisah secara otomatis. Empat canary OpenAI dan client nyata lulus. Gate scope lokal selesai; Claude/Grok opsional dan belum live-validated.
-
-## Phase 7 - Evaluasi kualitas dan nilai pekerjaan
-
-- [x] Bekukan development/regression dan challenge set berdasarkan keluarga input; contoh satu template tidak dibagi acak. Kasus yang dipakai debugging dipromosikan menjadi regresi; hasil final tidak diklaim sebagai holdout independen.
-- [x] Tetapkan rubric, denominator, kategori risiko dan threshold sebelum run; laporkan jumlah, coverage dan ketidakpastian.
-- [x] Jalankan seluruh failure scenarios spesifik proyek pada SECURITY-TESTING-MONITORING.md melalui suite offline dan connected, dengan production code paths.
-- [x] Bandingkan typed reference dan assisted workflow pada tugas/correctness sama. Pengukuran waktu manusia dan ROI ditunda di luar scope klaim lokal; automation tidak menggantikan pengukuran human active time.
-- [x] Labelkan single-agent/synthetic/sandbox; tidak mengklaim customer ROI atau production traffic.
-- [x] Evaluasi profil model/prompt dan validasi jumlah barang, jalankan regresi, catat kegagalan local model. Holdout baru wajib sebelum klaim generalisasi untuk perubahan berikutnya.
-
-**Hasil scope terpilih:** OpenAI lulus 18/18 kasus final; Qwen2.5 0.5B lulus 7/18 dan hanya eksperimental. Reference typed lulus 18/18. Nol pelanggaran kritis pada run final yang dinyatakan. 86 tes offline, 20 tes live, dan 38 tes PostgreSQL/Odoo lulus. [Laporan, rubric dan reproduksi](docs/PHASE-7.md).
-
-**Metrik:** exact intent dan task correctness, sumber/record/proposal, kasus unauthorized/duplicate/false-success, latency dengan N, token usage. Biaya USD tetap unknown tanpa rate card; ROI manusia tidak diukur. Per-tool percentiles dan verified throughput dilanjutkan Phase 8.
-
-**Gate:** selesai untuk regresi kualitas lokal pada profil OpenAI yang dipin, dengan source/dataset/run ID reproducible. Model lokal tidak dipromosikan menjadi default berkualitas. Tidak ada klaim generalisasi independen dari set regresi ini.
-
-## Phase 8 — Reliability, security, dan performance lokal
-
-- [x] Jalankan API/client CLI/MCP/worker permission tests: beda role, beda tenant, direct API bypass, secret/PII leakage, serta prompt injection.
-- [x] Uji concurrency, interrupted worker, late completion/lost downstream response (tanpa endpoint callback), retry, unknown outcome, queue backlog, database recovery, dan backup/restore terisolasi.
-- [x] Ukur p50/p90/p95/p99 per operasi dan per alur end-to-end, dengan sample count, error rate, achieved throughput, dropped work, resources, dan correctness.
-- [x] Pisahkan waktu HTTP acknowledgement, queue wait, inference, downstream action, dan hasil terverifikasi. Fast failure/conflict tidak disamakan dengan pekerjaan selesai.
-- [x] Jalankan beban normal/peak/soak yang ditentukan dari workload V1 dan hardware tercatat; bounded real-provider canary terpisah dari beban synthetic/stub.
-- [x] Buktikan alert dipicu dan diterima pada test incident; uji release rollback serta runbook troubleshooting.
-
-**Gate:** local release candidate lulus quality/reliability gates. Tes cloud-only existing tidak dipaksa dijalankan lokal; validasi cloud tersebut menunggu fase 10. Laporan lokal tidak diberi label cloud/production traffic.
-
-Evidence: [Phase 8](docs/PHASE-8.md), [runbook lokal](docs/LOCAL-RUNBOOK.md), dan workload beku `reliability/workload.json`. Scope ini merupakan local release candidate; cloud dan paging manusia belum dikonfigurasi.
-
-## Phase 9 — Delivery pack dan release siap deploy
-
-- [x] Selesaikan panduan manusia di PROJECT-DELIVERY.md: install, daily use, approval, failure handling, backup, upgrade, dan support.
-- [x] Rekam transcript CLI aktual dengan kasus normal, blocked/ambiguous, dan recovery; simpan acceptance checklist dan bukti hasil platform.
-- [x] Bekukan release commit, dependency versions, migration plan, rollback, konfigurasi, model licenses, dan sanitized evidence manifest.
-- [x] Siapkan rencana cloud (IaC diterapkan pada Phase 10), least-privilege access, resource/cost limits, alerts, secret management, backup dan teardown; jangan provision dahulu.
-- [x] Tentukan owner operasional, jadwal review kualitas, incident response, dan backlog improvement. Dokumentasi untuk operator tersedia dalam English; developer notes boleh Indonesia.
-
-**Gate:** aplikasi dapat dipakai dan dipulihkan lokal mengikuti dokumen; semua prerequisite deployment tercatat; bukti release cocok dengan snapshot kode yang akan dideploy.
-
-Evidence: [paket Phase 9](docs/PHASE-9.md), [demo CLI](docs/demo/index.html), [rencana Azure](docs/AZURE-PLAN.md). Belum ada resource Azure yang diprovision; budget masih usulan.
-
-## Phase 10 — Deployment cloud TERAKHIR, validasi runtime, dan ongoing support
-
-Target: **Azure**. Proyek 07 tetap punya deliverable offline mandiri; deployment private-cloud hanya varian tambahan, bukan syarat agar mode offline bekerja.
-
-- [ ] Setelah fase 0–9 lulus, provision environment terisolasi, deploy immutable image, jalankan migrations, secret/network policies, dan health checks.
-- [ ] Ulangi connected end-to-end acceptance di runtime cloud, termasuk authorization dan hasil platform; jangan menyalin hasil lokal sebagai bukti cloud.
-- [ ] Jalankan workload cloud normal/peak/soak, failure recovery, queue/concurrency, delivered alerts, backup/restore terisolasi, dan rollback sesuai kontrak beban.
-- [ ] Verifikasi provenance release, data retention, resource/cost caps, serta teardown; dokumentasikan resource yang sengaja dipertahankan.
-- [ ] Perbarui operator handover dengan URL/environment/owner dan bukti runtime. Mulai cadence pemantauan, incident response, quality regression, serta evaluasi sebelum setiap perubahan.
-- [ ] Tandai completed hanya jika acceptance cloud yang dipilih terpenuhi; bila tidak dideploy, status jujur local-ready/cloud-pending atau offline-delivered untuk 07.
-
-**Gate akhir:** deployment dan hasil bisnis terverifikasi pada environment yang dinyatakan; rollback/recovery terbukti; owner support, monitoring, dan batas klaim jelas. Ongoing improvement berada dalam fase ini, bukan fase deployment lain di tengah rencana.
+Final gate: the chosen cloud deployment is verified in its own environment.
+Local evidence is not relabeled as cloud proof. Until then, status is
+local-ready/cloud-pending. Infrastructure planning and hosted model API calls
+from a local client do not count as cloud application deployment.

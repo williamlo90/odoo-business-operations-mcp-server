@@ -62,8 +62,10 @@ be reconciled against Odoo before any replay. See `LOCAL-RUNBOOK.md`.
 
 ## Verification and release boundaries
 
-Run `python deploy/check_release.py` from a Git checkout with dependencies
-installed. It checks committed/staged file hashes, unchanged application source,
+Run `python deploy/check_release.py` from the fixed `phase-9-delivery` checkout
+with dependencies installed. Later portfolio documentation updates are outside
+that frozen full-file manifest; do not regenerate it for a newer checkout.
+It checks committed/staged file hashes, unchanged application source,
 locked inputs and matching Phase 8 runtime evidence; it makes no network calls.
 The recorded CLI demonstration has nine checked stages and a direct Odoo
 ledger/order count of 1/1. Earlier release controls: 98 offline, 41 connected,

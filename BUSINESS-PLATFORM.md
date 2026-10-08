@@ -1,33 +1,35 @@
-# Business Platform & Workflow Integration
+# Odoo business integration
 
-Proyek 02: **Odoo Business Operations MCP Server**
+The target is local Odoo Community 19.0, with Contacts, CRM, Sales and the
+`ops_bridge` addon. JSON-2 exposes fixed business capabilities. Hosted Odoo
+account/plan access is not assumed. The complete connected workflow is locally
+validated; [Azure deployment](docs/AZURE-PLAN.md) is still a proposal.
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+## Authoritative records
 
-**Platform utama:** Odoo.
+Odoo owns customers, opportunities, products and resulting business records.
+The application database owns proposals, approvals, operation state and audit.
+The application never writes directly to Odoo tables. Synthetic company A/B
+fixtures exercise distinct references, same-name ambiguity and different prices.
 
-**Alur bisnis:** Permintaan operator → assistant memilih skill → tools membaca Odoo → proposal perubahan → preview → approval → eksekusi → read-back Odoo → receipt dan audit.
+Read and prepare happen before approval, write and verification. The supported
+quotation policy uses positive quantities, active products, list prices and no
+tax or discount. Unsupported pricing is rejected. Approval becomes invalid when
+relevant source data or payload changes. Signed envelopes, source locking and a
+unique Odoo operation ledger protect the write boundary.
 
-## Checklist implementasi
+## Failure handling and evidence
 
-- [ ] Tetapkan produk/edition/API version, permission scopes, batas sandbox, dan credential owner. Verifikasi endpoints dari dokumentasi resmi saat implementasi.
-- [ ] Dokumentasikan entity mapping, external IDs, sumber otoritatif tiap field, timestamp/timezone, freshness, dan aturan konflik.
-- [ ] Implementasikan read/sync terlebih dahulu, kemudian prepare/approve/write/verify. Webhooks perlu autentikasi/signature bila tersedia dan replay protection.
-- [ ] Gunakan test tenant atau instalasi lokal; data sintetis mengandung kasus valid, ambiguity, dan exception.
-- [ ] Tangani pagination, rate limit, retries dengan backoff, expired credentials, deleted records, event out-of-order, dan partial success.
-- [ ] Catat result verification yang spesifik terhadap operasi. HTTP 2xx/accepted tidak otomatis berarti hasil bisnis final.
-- [ ] Terapkan keputusan automation: Custom MCP server mandiri; n8n bukan dependency atau release gate. Rincian di [N8N-AUTOMATION.md](N8N-AUTOMATION.md); semua jalur memakai aturan akses dan verifikasi hasil yang konsisten.
-- [ ] Buktikan mapping/business configuration kedua, recovery unknown outcome, serta tidak adanya duplicate side effects dalam skenario yang diuji.
+Pagination/revision changes, rate limits, expired credentials, missing records,
+stale previews, timeouts and mismatched read-back are classified explicitly.
+Reads have bounded retries; uncertain writes are reconciled by operation ID
+before another action. There is no asynchronous webhook/callback endpoint in
+this release. Any future webhook must authenticate its source and reject replay.
 
-## Akses yang belum tersedia
+Evidence retains sanitized references, source versions, approval/operation IDs,
+expected/observed fields and final record counts. Concurrent/replayed execution
+and response loss after an actual write are covered by connected tests.
+Draft creation does not imply order confirmation, email, invoice or payment.
 
-Catat dependency nyata beserta status dan langkah memperoleh akses. ConnectWise/Microsoft 365/Odoo hosted mungkin membutuhkan tenant, scope, edition, atau lisensi yang sesuai. Jangan menganggap sandbox gratis tersedia. Sambil menunggu, lanjutkan contract fake dan lokal, tetapi connected acceptance tetap pending. Tidak ada permintaan agar orang lain mencoba demo sebagai prerequisite.
-
-## Bukti yang disimpan
-
-- Request/response disanitasi atau snapshot field penting; bukan credentials atau data pelanggan.
-- External record ID, approval ID, source versions, timestamp, expected outcome, observed outcome, dan read-back.
-- Hasil retry/concurrency dan bukti jumlah side effects di platform tujuan.
-- Batas integrasi yang masih draft-only, sandbox-only, atau belum diuji live ditulis jelas.
-
-**Selesai ketika:** business owner bisa mengikuti satu pekerjaan dari input sampai hasil platform, termasuk satu kegagalan dan pemulihannya.
+[Local setup and mapping](docs/ODOO-LOCAL.md) · [API contract](docs/CONTRACT-V1.md) ·
+[Acceptance cases](docs/ACCEPTANCE-CASES.md) · [Recorded walkthrough](docs/demo/README.md)

@@ -1,38 +1,43 @@
-# Local AI Deployment & Model Providers
+# Model providers and local inference
 
-Proyek 02: **Odoo Business Operations MCP Server**
+All adapters share typed application contracts and deterministic business
+controls. They use provider APIs, not consumer-chat UI automation. A request
+uses one selected provider; switching providers never grants different authority.
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
-
-## Profil yang wajib tersedia
-
-| Profil | Implementasi | Bukti selesai |
+| Profile | Implemented path | Verified scope |
 | --- | --- | --- |
-| OpenAI | API adapter dengan tool calling/structured output sesuai kemampuan model | contract test + bounded real canary pada data yang diizinkan |
-| Claude | API adapter dengan kontrak output aplikasi yang sama | contract test + bounded real canary pada data yang diizinkan |
-| Grok | API adapter dengan kontrak output aplikasi yang sama | contract test + bounded real canary pada data yang diizinkan |
-| Local | Ollama sebagai baseline; seluruh model artifact dicatat | inference nyata lokal + quality/performance report + failure recovery |
+| OpenAI | Structured intent through the Responses API | Real local-stack canaries; frozen Phase 7 synthetic regression |
+| Claude | Strict application output contract | Offline adapter tests; optional, not live-qualified |
+| Grok | Strict application output contract | Offline adapter tests; optional, not live-qualified |
+| Ollama | Native local inference and local-only checks | Pinned CPU runtime and real canaries; small model remains experimental |
 
-API integration memakai API resmi, bukan otomatisasi UI ChatGPT/Claude. Tidak wajib menggunakan tiga provider sekaligus dalam satu request. Pilih default berdasarkan hasil benchmark, dan catat capability gap tiap model secara eksplisit. Jika native structured output/tool calling tidak tersedia, validasi schema tetap wajib dan jalur yang belum memenuhi kontrak tidak dinyatakan setara.
+The selected hosted profile is `gpt-4.1-mini-2025-04-14` with `intent-v4-openai`.
+Phase 7 recorded 18/18 synthetic regression cases on its frozen contract 0.3.1
+snapshot. Phase 8 contract 0.3.2 adds numeric grounding regressions and a separate
+hosted canary. The optional Qwen2.5 0.5B profile scored 7/18 in Phase 7; it is not
+promoted as a quality-equivalent default.
 
-Local profile memakai Ollama dan model/embeddings lokal; hosted profile memakai provider yang dipilih. Mode local-only harus menolak fallback ke provider eksternal. Business platform SaaS dapat membutuhkan internet; kemampuan inference lokal tidak otomatis berarti seluruh sistem offline.
+## Local runtime
 
-## Checklist runtime lokal
+Ollama 0.40.1 runs as a portable CPU runtime with Qwen2.5 0.5B Q4_K_M. Model
+artifact digest, license hash, hardware and runtime settings are recorded in
+[Phase 6 evidence](docs/evidence/phase6-local-runtime.json). Initial provisioning
+requires downloads. Inference concurrency is bounded; hosted fallback is rejected
+in local-only mode. Local inference does not make an internet-connected business
+platform an offline application. This project has no embedding pipeline.
 
-- [ ] Catat CPU/GPU/RAM/VRAM, model/license/revision, quantization, context size, runtime version, dan batas concurrency.
-- [ ] Sediakan setup Linux/Docker, health/readiness, warm-up, cancellation, request size limits, dan timeout.
-- [ ] Model/embedding/tokenizer artifacts dipin dan diverifikasi; jelaskan provisioning awal yang memerlukan download.
-- [ ] Uji malformed output, hallucination, input panjang, OOM, unavailable runtime, dan safe degradation.
-- [ ] Bandingkan kualitas, end-to-end latency, resources, serta biaya asumsi hosted/local pada tugas yang sama.
-- [ ] Dokumentasikan upgrade, rollback, caching, data retention, dan mekanisme menghapus data/model jika diperlukan.
+Tests cover malformed output, long/oversized responses, refusal, cancellation,
+unavailable runtimes and unsafe provider routing. Host OOM injection was not
+performed. Alternate runtimes such as llama.cpp or vLLM are not dependencies.
 
-llama.cpp dan vLLM adalah alternatif runtime sesuai hardware, bukan kewajiban memasang tiga inference server pada semua proyek. Proyek 07 membandingkan llama.cpp dengan baseline dan menambahkan vLLM hanya jika hardware kompatibel tersedia; ketidaktersediaan GPU bukan bukti vLLM sudah diuji.
+## Measurement and operation
 
-## Evaluation yang adil
+Keep real-provider canaries, synthetic load and local-model evaluation separate.
+Report exact model/prompt/runtime, sample counts, correctness, latency and usage.
+Cost is unknown without a configured, versioned rate card; no savings claim is
+inferred from local inference. Persist uncertain business state before changing
+provider or retrying. Provider keys stay in private configuration.
 
-- Pisahkan mocked/stubbed load tests, real-provider canary, dan local-model evaluation.
-- Laporkan model/runtime/hardware, sample count, schema success, correctness, latency, token usage bila tersedia, dan biaya dengan sumber/asumsi harga saat run.
-- Jangan otomatis mengganti provider pada workflow side-effecting tanpa idempotency dan pemeriksaan hasil yang sudah terjadi.
-- Keys yang belum tersedia membuat provider live validation pending; pekerjaan lokal tetap bisa lanjut.
-
-**Selesai ketika:** seluruh adapter terimplementasi, integration status jujur per provider, dan satu local model benar-benar menjalankan workflow. Requirement pengalaman ketiga API baru penuh ketika masing-masing punya canary nyata yang lulus; khusus 07 canary hosted terisolasi dari mode privat.
+Use a new task ID after changing model, prompt or contract. Follow the
+[operator guide](docs/USER-GUIDE.md), [quality report](docs/PHASE-7.md) and
+[rollback runbook](docs/LOCAL-RUNBOOK.md). Claude/Grok live canaries remain optional.

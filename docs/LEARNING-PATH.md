@@ -1,80 +1,53 @@
-# Jalur pembelajaran per phase
+# Learning checkpoints
 
-Setiap tag menyimpan versi tetap untuk bahan modul. Branch `learning-phases` memuat rangkaian baru: satu commit untuk setiap Phase 3–5. Branch `main` mempertahankan riwayat sebelum rangkaian ini.
+Each fixed tag preserves a reproducible learning snapshot. The default branch,
+`learning-phases`, presents the current product and its phase-oriented development
+history. The older `main` branch is retained. Portfolio documentation updates do
+not rewrite earlier phase tags.
 
-| Tag | Fokus | Materi dan hasil |
+| Tag | Learning focus | Guide |
 | --- | --- | --- |
-| `phase-0` | Scope dan perencanaan | Batas V1, inventaris, dependency, 20 acceptance cases sebelum implementasi |
-| `phase-1` | Fondasi aplikasi lokal | FastAPI, PostgreSQL, autentikasi, role, isolasi tenant, Docker dan client TypeScript; 17 tes lulus |
-| `phase-2` | Integrasi bisnis Odoo | Proposal, approval, draft quotation/activity, idempotency dan read-back; 38 tes lulus |
+| `phase-0` | Scope, inventory, dependencies and reference acceptance | [Phase 0](PHASE-0.md) |
+| `phase-1` | FastAPI, PostgreSQL, authentication, roles and tenant scope | [Phase 1](PHASE-1.md) |
+| `phase-2` | Odoo preview, approval, draft creation and verification | [Phase 2](PHASE-2.md) |
+| `phase-3-code` | Assistant, providers, shared skills and task journal | [Phase 3](PHASE-3.md) |
+| `phase-4-code` | MCP stdio, strict schemas and scoped tools | [Phase 4](PHASE-4.md) |
+| `phase-5-code` | Persistent worker, scheduling, leases and recovery | [Phase 5](PHASE-5.md) |
+| `phase-6-integration` | Docker/Odoo, real MCP/worker and selected model canaries | [Phase 6](PHASE-6.md) |
+| `phase-7-quality` | Frozen synthetic evaluation and quantity grounding | [Phase 7](PHASE-7.md) |
+| `phase-8-reliability` | Telemetry, bounded load, security, restore and rollback | [Phase 8](PHASE-8.md) |
+| `phase-9-delivery` | Operator pack, recorded demo, release verification and Azure design | [Phase 9](PHASE-9.md) |
 
-## Membuka materi
+## Study one stage
 
 ```bash
 git clone https://github.com/williamlo90/odoo-business-operations-mcp-server.git
 cd odoo-business-operations-mcp-server
-git switch --detach phase-0
+git switch --detach phase-4-code
+git show phase-4-code
+git diff phase-3-code phase-4-code
 ```
 
-Ganti tag dengan `phase-1` atau `phase-2` untuk tahap berikutnya. Gunakan
-`git switch learning-phases` untuk kembali ke versi terbaru. Untuk mengerjakan latihan:
+Return with `git switch learning-phases`, or create an exercise branch from a checkpoint:
+`git switch -c exercise-phase-4 phase-4-code`. Use separate databases/volumes for
+old versions: changing Git source does not downgrade the database schema.
+Credentials are generated privately by setup, not included in the repository.
 
-```bash
-git switch -c latihan-phase-1 phase-1
-```
+Phase 0 is a planning snapshot assembled from retained artifacts. Phases 1–2
+reference verified implementation commits. Each subsequent completed phase has
+one learning commit. The roadmap moved resource-heavy connected work after the
+Phase 3–5 implementation checkpoints. Earlier commits and tags remain intact.
 
-Pada Phase 1, ikuti `docs/LOCAL-SETUP.md`. Pada Phase 2, lanjutkan dengan
-`docs/ODOO-LOCAL.md`. Gunakan database/volume terpisah saat menjalankan versi lama;
-checkout Git hanya mengganti source, bukan menurunkan versi schema database.
-Kredensial lokal dibuat melalui panduan setup dan tidak disertakan dalam repository.
+A module can introduce the goal, prerequisites, workflow, tagged implementation,
+verification and a follow-up exercise. This document is the module map, not a
+complete course. Start with `deploy/check_offline.py` in the prepared environment
+for the current offline checks; it starts no Docker or model inference.
 
-## Susunan modul
+## Reproduce frozen evidence
 
-Setiap modul dapat mengikuti urutan: tujuan belajar, prasyarat, pembahasan alur,
-praktik dari tag terkait, verifikasi hasil, lalu latihan mandiri. Materi di sini
-menjadi peta modul; belum merupakan modul pembelajaran lengkap.
-
-Tag Phase 0 merupakan snapshot perencanaan yang disusun dari artefak tersimpan,
-dengan commit tersendiri. Tag Phase 1 dan 2 menunjuk commit implementasi yang
-sudah diverifikasi. Riwayat commit implementasi tetap dipertahankan.
-
-Untuk phase berikutnya, selesaikan implementasi dan verifikasi gate phase,
-lalu buat tepat satu commit dan annotated tag pada commit penyelesaiannya. Tag yang sudah
-digunakan sebagai bahan modul tetap; koreksi berikutnya memakai tag versi baru.
-
-Roadmap revisi memakai Phase 0–10. Phase 3–5 merupakan checkpoint implementasi offline; validasi terhubung dikumpulkan pada Phase 6. Gunakan tag `phase-3-code` untuk checkpoint assistant.
-
-Tag `phase-4-code` menyimpan server MCP dan integrasi assistant melalui protokol stdio.
-
-| Checkpoint offline | Satu commit pembelajaran | Panduan |
-| --- | --- | --- |
-| `phase-3-code` | Assistant, providers, shared skills, durable task journal | `docs/PHASE-3.md` |
-| `phase-4-code` | MCP server, scoped tools, reference transport | `docs/PHASE-4.md` |
-| `phase-5-code` | Worker, persistent queue, scheduling and recovery | `docs/PHASE-5.md` |
-
-Gunakan `git show phase-4-code` untuk mempelajari perubahan satu phase,
-atau `git diff phase-3-code phase-4-code` untuk membandingkan checkpoint.
-`git switch --detach phase-5-code` membuka checkpoint terakhir sebelum Docker.
-Jalankan `python deploy/check_offline.py` dari virtual environment yang sudah
-memiliki dependencies. Runner membangun TypeScript dan menjalankan tes ringan
-secara berurutan tanpa Docker, provider nyata atau model lokal.
-
-## Connected and quality checkpoints
-
-| Tag | One phase, one commit | Guide |
-| --- | --- | --- |
-| `phase-6-integration` | Docker/Odoo, MCP/worker, OpenAI and local inference validation; Claude/Grok optional | `docs/PHASE-6.md` |
-| `phase-7-quality` | Frozen evaluation, quantity grounding, versioned intent prompt and quality evidence | `docs/PHASE-7.md` |
-
-Compare these stages with `git diff phase-6-integration phase-7-quality`.
-Phase 7 qualification is a synthetic regression result. The local 0.5B model
-remains experimental; the tested OpenAI profile is the qualified option.
-
-| Reliability checkpoint | One phase, one commit | Guide |
-| --- | --- | --- |
-| `phase-8-reliability` | Scoped metrics, numeric guard hardening, bounded load, recovery/alerts/rollback evidence | `docs/PHASE-8.md` |
-
-Use `git diff phase-7-quality phase-8-reliability` to study this phase. Phase 7's frozen evaluation remains reproducible at its own tag; Phase 8 uses assistant
-contract `0.3.2` and its separately recorded control/canary evidence.
-
-Phase 9 memakai satu commit/tag `phase-9-delivery`: panduan penggunaan, recorded CLI demo, verifikasi manifest, handover dan rencana Azure. Gunakan `git diff phase-8-reliability phase-9-delivery` untuk mempelajari delivery tanpa perubahan perilaku aplikasi.
+Phase 7's quality evaluator is tied to `phase-7-quality` and its contract 0.3.1.
+Phase 8 changes numeric grounding to 0.3.2 and records separate controls/canaries.
+Run the Phase 9 full-file verifier at `phase-9-delivery`, where its manifest was
+frozen. Current documentation can differ without changing the qualified
+application. Do not regenerate old evaluation or release manifests merely to
+make them accept a newer checkout.

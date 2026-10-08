@@ -1,45 +1,39 @@
-# Custom MCP Server, APIs & Database
+# Custom MCP, API and database boundaries
 
-Proyek 02: **Odoo Business Operations MCP Server**
+Reference caller → TypeScript MCP server → Python domain API → PostgreSQL and
+Odoo adapter. MCP does not bypass domain validation or expose arbitrary SQL,
+model methods or caller-chosen URLs. Current transport is authenticated local
+stdio; no remote MCP HTTP endpoint is claimed.
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+## Tool surface
 
-## Arsitektur keputusan
+| Tool | Capability |
+| --- | --- |
+| `odoo.identity` | Authenticate the current caller |
+| `odoo.customer_search` | Search scoped customer records |
+| `odoo.catalog` | Read the permitted catalog |
+| `odoo.opportunity_list` | List scoped opportunities |
+| `odoo.opportunity_get` | Read one opportunity |
+| `odoo.quote_prepare` | Build a validated quotation proposal |
+| `odoo.activity_prepare` | Build a CRM activity proposal |
+| `odoo.proposal_get` | Read an existing proposal |
+| `odoo.execute_approved` | Execute with proposal, approval and idempotency key |
+| `odoo.operation_status` | Reconcile/read a recorded operation |
 
-Assistant/client → **custom MCP server TypeScript** → domain API **Python** → **PostgreSQL** dan adapter **Odoo**. MCP server tidak melewati business validation dengan menulis tabel langsung. AI memperoleh data SQL melalui query service yang terotorisasi dan terparameterisasi.
+The model and worker cannot create approval through this surface. The separate
+approver uses the domain workflow. All routes enforce authenticated role,
+company/record scope and applicable payload/version checks.
 
-MCP server proyek ini punya capability spesifik, bukan server generik yang mengekspos semua API. Jika memakai konektor 02/03, import atau panggil kontraknya; jangan menyalin codebase konektor.
+Strict schemas, bounded output, stable error codes and correlation IDs are
+part of the contract. SDK/protocol versions are pinned in the implementation.
+Real stdio tests exercise schema rejection, expired sessions, tool injection,
+cancellation, concurrency, replay and unknown outcomes. Connected acceptance
+also verifies the downstream Odoo effects, not only tool responses.
 
-## Tools rencana
+PostgreSQL stores tenants, actors, proposals, approvals, operations and audit.
+Constraints and transaction locks enforce identity and idempotency boundaries.
+Odoo retains its own database and operation ledger. Cross-project consumers
+should reuse the contract rather than copy the connector implementation.
 
-| Tool | Jenis | Kontrak ringkas |
-| --- | --- | --- |
-| `odoo.customer_search` | read | query + authenticated scope → record terbatas |
-| `odoo.opportunity_get` | read | opportunity ID → konteks |
-| `odoo.quote_prepare` | prepare | items + customer → validated proposal |
-| `odoo.activity_prepare` | prepare | opportunity + due date → proposal |
-| `odoo.execute_approved` | write | proposal + approval + idempotency → external reference |
-| `odoo.operation_status` | read | operation ID → read-back outcome |
-
-## Syarat kontrak
-
-- [x] Pin MCP SDK dan protocol version yang didukung client; gunakan stdio untuk client lokal bila sesuai, authenticated HTTP untuk remote hanya saat deployment terakhir.
-- [x] Setiap tool memiliki description, strict input/output schema, source references, stable error codes, pagination bila perlu, dan output limits.
-- [x] Server memverifikasi identity, tenant/record scope, role, approval payload/version, serta idempotency key; input model bukan otorisasi.
-- [x] Write tools membutuhkan proposal dan approval sesuai risiko. Approval tidak boleh dibuat oleh agent yang hendak melakukan action tersebut.
-- [x] Uji protocol dari client, schema rejection, credentials expiry, injection, cancellation, error propagation, concurrency, dan retry.
-- [x] Simpan correlation ID dari assistant → MCP → Python → platform; logs cukup untuk diagnosis tanpa body sensitif secara default.
-
-## Model data awal
-
-tenant, actor, platform_connection, tool_contract_version, operation, proposal, approval, external_record_map, idempotency_record, audit_event.
-
-Tambahkan tenant foreign keys, unique constraints untuk external references/idempotency, optimistic versioning atau locking sesuai transaksi, migrations, retention, dan audit. SQL read-only query untuk reporting tidak menerima arbitrary SQL dari model.
-
-**Selesai ketika:** satu alur melalui MCP mengubah atau membaca platform sesuai scope, database mencatat provenance, dan hasil benar dibuktikan lewat read-back/expected state. Unit tests langsung ke fungsi belum cukup untuk protocol acceptance.
-
-## Hubungan dengan automation engine
-
-MCP server custom tetap bisa dipanggil client tanpa n8n. n8n consumer hanya contoh opsional; server tidak menggantungkan startup/health pada engine tersebut.
-
-Evidence implementasi: [Phase 4](docs/PHASE-4.md). Scope saat ini protokol nyata dengan downstream simulasi; connected acceptance dan cloud transport tetap gate berikutnya.
+[Protocol implementation](docs/PHASE-4.md) · [Domain contract](docs/CONTRACT-V1.md) ·
+[Connected verification](docs/PHASE-8.md) · [Automation ownership](N8N-AUTOMATION.md)

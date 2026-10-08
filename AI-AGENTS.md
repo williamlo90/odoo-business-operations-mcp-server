@@ -1,48 +1,37 @@
-# AI Agents, Assistants & Bots
+# Assistant design
 
-Proyek 02: **Odoo Business Operations MCP Server**
+The reference assistant helps sales operations research Odoo records and prepare
+business changes through bounded skills. The local implementation and connected
+workflow are complete; cloud deployment remains pending.
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+## Behavior contract
 
-## Tugas assistant
+The caller supplies a task ID and authenticates. The server determines role,
+tenant and permitted scope; prompt text cannot expand them. One bounded model
+decision selects a typed skill or asks for clarification. Deterministic handlers
+retrieve source records and return facts, missing information, proposals or
+operation outcomes. Model confidence does not authorize execution.
 
-Memberi assistant akses yang terbatas dan dapat diaudit untuk membaca data Odoo serta menyiapkan perubahan bisnis tanpa akses database bebas.
+- Read, prepare, approval and execution are distinct capabilities.
+- Business rules, arithmetic, permissions and state transitions live in Python
+  services and the Odoo transaction boundary.
+- Approval binds actor, company, payload hash, source version and expiry.
+- Requests have step/call limits, timeouts, cancellation and terminal states.
+- Credentials are excluded from prompts; retrieved text cannot become instructions.
+- Success requires the target record to match the intended outcome. Uncertain
+  writes remain unknown until reconciliation.
+- One orchestrator and shared deterministic skills are the implemented design;
+  no multi-agent performance claim is made.
 
-Pengguna: Sales operations dan administrator Odoo.
+## Delivered components
 
-Alur: Permintaan operator → assistant memilih skill → tools membaca Odoo → proposal perubahan → preview → approval → eksekusi → read-back Odoo → receipt dan audit.
+Typed contracts, a durable task journal, hosted/local adapters, a TypeScript
+reference client, four executable skills and sanitized traces are implemented.
+Tests cover ambiguity, refusal, malformed output, injection, cancellation,
+source changes and tool failures. Traces retain version, identity, correlation,
+latency and usage metadata; monetary cost stays unknown without a rate card.
 
-## Kemampuan yang dibangun
-
-- Bangun reference assistant untuk mencari pelanggan, meninjau peluang sales, dan menyiapkan draft quotation atau activity.
-- Tentukan versi/edition Odoo serta model/API yang benar-benar tersedia; dokumentasikan pilihan sebelum implementasi adapter.
-- Pisahkan tool read, prepare, dan execute; tool tidak menyediakan arbitrary SQL, arbitrary model method, atau unrestricted URL.
-- Approval terikat payload, actor, tenant, dan versi record. Perubahan payload atau record membatalkan approval lama.
-- Tangani pagination, rate limit, timeout, partial failure, retry, dan read-back hasil. Jangan menganggap semua endpoint mendukung idempotency native.
-- Sediakan contract versioning dan compatibility fixtures untuk consumer proyek lain.
-
-## Kontrak perilaku
-
-- Input membawa task ID, authenticated actor, tenant, permitted scope, dan referensi data. Scope berasal dari server, bukan dipercaya dari prompt.
-- Output minimal: status, facts dengan source references, missing information, proposed actions, reason, dan confidence jika memiliki makna terkalibrasi. Confidence sendiri tidak memberi izin eksekusi.
-- Tools dan jumlah langkah dibatasi; ada timeout/cancellation dan terminal state. Tugas di luar kemampuan menghasilkan klarifikasi atau eskalasi.
-- Business rules, arithmetic, permissions, approval dan state transitions ditegakkan domain service Python.
-- Prompt tidak memuat credentials. Evidence dari dokumen/pesan dianggap input tidak tepercaya, bukan instruksi untuk memperluas akses.
-- Bedakan recommendation, approved, dispatched, accepted, verified, failed, dan unknown sesuai kebutuhan proyek. Jangan mengklaim action berhasil hanya dari teks model.
-- Mulai satu orchestrator dan skills deterministik. Multi-agent hanya jika pemisahan tanggung jawab memberi manfaat terukur.
-
-## Artefak implementasi yang harus ada
-
-- [x] Workflow dengan typed contracts, durable state dan recovery path; orchestration mengikuti keputusan proyek (Python atau n8n), bukan wajib dua engine.
-- [x] Assistant UI/reference client TypeScript dengan preview bukti, proposal, approval dan status.
-- [x] Prompt/schema/version registry serta adapters hosted/local.
-- [x] Scenario tests untuk happy path, ambiguous input, refusal/abstention, injection, dan tool failure.
-- [x] Run trace yang menghubungkan input, model/skill/tool versions, approval, hasil tujuan, latency, dan biaya tanpa membocorkan secrets.
-
-**Selesai ketika:** operator dapat menjalankan demo pada PROJECT-DELIVERY.md; hasil diperiksa terhadap reference outcome; kegagalan tidak ditampilkan sebagai sukses.
-
-## Pemilik orchestration
-
-Custom MCP server mandiri; n8n bukan dependency atau release gate. TypeScript MCP server + Python services + Odoo API. Reference assistant menjalankan tools langsung melalui protocol. Consumer n8n dapat ditambahkan sebagai contoh, bukan kewajiban. Konektor dinilai dari kontrak tools, record mapping, authorization, idempotency dan verified writes. Automation lintas aplikasi ditempatkan di 04/08. Lihat [N8N-AUTOMATION.md](N8N-AUTOMATION.md).
-
-Scope bukti saat ini: gate implementasi offline Phase 3. Kualitas model dan workflow Odoo nyata diverifikasi pada Phase 6; MCP pada Phase 4.
+The custom MCP server works independently of n8n. Interactive callers and the
+worker reuse the same handlers. See [skills](REUSABLE-SKILLS.md),
+[MCP](MCP-INTEGRATIONS.md), [quality](docs/PHASE-7.md),
+[reliability](docs/PHASE-8.md) and the [operator guide](docs/USER-GUIDE.md).

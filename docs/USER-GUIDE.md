@@ -80,7 +80,7 @@ $env:ASSISTANT_ENV_FILE='.env'
 $env:ASSISTANT_PROVIDER='openai'
 $env:ASSISTANT_MODEL='gpt-4.1-mini-2025-04-14'
 $env:ASSISTANT_LOCAL_ONLY='0'
-node client/dist/index.js assistant "Siapkan quotation untuk OPS-A-001: 2 unit OPS-A-P1 dan 1 unit OPS-A-P2."
+node client/dist/index.js assistant "Prepare a quotation for OPS-A-001: 2 units of OPS-A-P1 and 1 unit of OPS-A-P2."
 ```
 
 This makes a paid provider request. Review the returned `result.proposal` using
