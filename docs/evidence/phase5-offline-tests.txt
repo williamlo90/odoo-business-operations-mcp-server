@@ -1,0 +1,16 @@
+Phase 5 offline verification — 2026-10-08
+Command: .venv/Scripts/python.exe deploy/check_offline.py
+Result: exit 0; all sequential gates passed.
+
+Assistant pytest: 49 passed in 1.49s.
+Worker pytest: 16 passed in 1.48s.
+TypeScript client build: passed.
+Client subprocess tests: 2 passed, 0 failed.
+TypeScript MCP build: passed.
+MCP subprocess scenarios: 8 passed, 0 failed.
+Total: 75 tests, no skipped tests.
+
+Scope: synthetic domain HTTP, temporary SQLite, real local CLI/MCP subprocesses.
+Includes one-proposal durable worker replay and real abrupt child-process exit.
+Docker, live PostgreSQL/Odoo, hosted AI and local inference were not run.
+This file summarizes the observed runner output; it is not live integration evidence.

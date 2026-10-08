@@ -70,6 +70,8 @@ class McpGateway(DomainGateway):
                     raise AssistantError('proposal_outcome_unknown')
                 if code in {'access_denied','invalid_session','role_not_permitted','authentication_required'}:
                     raise AssistantError('domain_access_denied')
+                if code in {'domain_unavailable','request_limit'}:
+                    raise AssistantError('mcp_unavailable')
                 raise AssistantError('domain_request_rejected')
             wrapped = result.get('structuredContent')
             if wrapped is None:

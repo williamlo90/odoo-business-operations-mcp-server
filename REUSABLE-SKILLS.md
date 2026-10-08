@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–4 implementasi offline selesai; Phase 5–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 Skills di sini adalah paket kemampuan aplikasi yang dipakai assistant dan automation worker. Saat implementasi, setiap skill memiliki `skills/<name>/SKILL.md` beserta schema, implementation binding (Python handler atau n8n sub-workflow sesuai keputusan), dan tests; ini bukan sekadar kumpulan prompt atau asumsi bahwa sebuah Codex skill sudah terpasang.
 
@@ -30,3 +30,5 @@ Skills di sini adalah paket kemampuan aplikasi yang dipakai assistant dan automa
 - Skill gagal dengan status yang jelas jika data atau izin kurang; worker retry tidak menggandakan side effect.
 
 **Selesai ketika:** semua skill tabel punya implementasi executable, kontrak, dokumentasi, dan tes; satu penggunaan ulang lintas caller dibuktikan dalam evidence.
+
+Bukti reuse offline: assistant dan worker memanggil `execute_skill` yang sama; tes worker mencakup company kedua, duplicate event dan unknown outcome. Lihat [Phase 5](docs/PHASE-5.md). Validasi lintas provider nyata tetap Phase 6.

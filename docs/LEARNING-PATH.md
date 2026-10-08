@@ -38,10 +38,23 @@ Tag Phase 0 merupakan snapshot perencanaan yang disusun dari artefak tersimpan,
 dengan commit tersendiri. Tag Phase 1 dan 2 menunjuk commit implementasi yang
 sudah diverifikasi. Riwayat commit implementasi tetap dipertahankan.
 
-Untuk phase berikutnya, buat commit selama pengerjaan, verifikasi gate phase,
-lalu buat annotated tag `phase-N` pada commit penyelesaiannya. Tag yang sudah
+Untuk phase berikutnya, selesaikan implementasi dan verifikasi gate phase,
+lalu buat tepat satu commit dan annotated tag pada commit penyelesaiannya. Tag yang sudah
 digunakan sebagai bahan modul tetap; koreksi berikutnya memakai tag versi baru.
 
 Roadmap revisi memakai Phase 0–10. Phase 3–5 merupakan checkpoint implementasi offline; validasi terhubung dikumpulkan pada Phase 6. Gunakan tag `phase-3-code` untuk checkpoint assistant.
 
 Tag `phase-4-code` menyimpan server MCP dan integrasi assistant melalui protokol stdio.
+
+| Checkpoint offline | Satu commit pembelajaran | Panduan |
+| --- | --- | --- |
+| `phase-3-code` | Assistant, providers, shared skills, durable task journal | `docs/PHASE-3.md` |
+| `phase-4-code` | MCP server, scoped tools, reference transport | `docs/PHASE-4.md` |
+| `phase-5-code` | Worker, persistent queue, scheduling and recovery | `docs/PHASE-5.md` |
+
+Gunakan `git show phase-4-code` untuk mempelajari perubahan satu phase,
+atau `git diff phase-3-code phase-4-code` untuk membandingkan checkpoint.
+`git switch --detach phase-5-code` membuka checkpoint terakhir sebelum Docker.
+Jalankan `python deploy/check_offline.py` dari virtual environment yang sudah
+memiliki dependencies. Runner membangun TypeScript dan menjalankan tes ringan
+secara berurutan tanpa Docker, provider nyata atau model lokal.

@@ -1,0 +1,14 @@
+{
+  "checkpoint": "phase-5-code",
+  "base_revision": "e885a90ece7deb38924d2b27f25354a88803070e",
+  "files": {
+    "backend/assistant/mcp_gateway.py": "640023a996241311d463d4fa6754374d9ede39b5614a48616651f37a4492f106",
+    "backend/worker/__init__.py": "1dd9a647a0008ee5396a5aa771099d9dae636a6bde77e8bb0f78cd379b58819a",
+    "backend/worker/__main__.py": "beb2d1c2e2017d15830f111c704ef03877172b8c980ef8834e7754837aefb4e1",
+    "backend/worker/engine.py": "527d36a8508e81b65e190df530bb8f1b3d72fb31581208e839a7a897bcd154ae",
+    "backend/worker/queue.py": "6a4be7ff92c907ea419db65fea0c72574e08ac1c8b4a7bb536686aec19874be6",
+    "deploy/check_offline.py": "4f8e0eb78b0201448c2c1bdb7d157c248715a184e5ffb23297146c4a751d38b5",
+    "mcp-server/tests/protocol.test.mjs": "51687a1b4eaa116a2db58dd5c2a10155243fe9371de73f51fd7c7d3db1c9c4bd",
+    "tests/worker/test_worker.py": "03ee6bb093aac4e8698d2c02309ee718e5285f01fc8269ef42568e25500ad0ef"
+  }
+}

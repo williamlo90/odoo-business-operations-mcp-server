@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–4 implementasi offline selesai; Phase 5–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 **Pengguna:** Sales operations dan administrator Odoo.
 
@@ -38,7 +38,7 @@ tool task success; correct record selection; unauthorized-write rejection; dupli
 
 ## Cara mulai
 
-1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; ikuti [panduan Odoo](docs/ODOO-LOCAL.md) untuk alur bisnis; pekerjaan berikutnya adalah Phase 5 pada PHASES.md.
+1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; ikuti [panduan Odoo](docs/ODOO-LOCAL.md) untuk alur bisnis; pekerjaan berikutnya adalah Phase 6 pada PHASES.md.
 2. Catat apa yang existing, perlu verifikasi, dan baru. Semua checklist folder ini dimulai belum selesai.
 3. Buat satu alur lengkap, uji hasilnya, baru tambah variasi; ikuti urutan fase dan dependency.
 4. Catat evidence path/run ID saat menutup fase. Cloud hanya pada Phase 10.
@@ -56,3 +56,5 @@ client TypeScript dan durable task journal; 49 tes Python + 2 tes client lulus.
 Pengujian AI nyata/Odoo baru menjadi gate Phase 6. Lihat [Phase 3](docs/PHASE-3.md).
 
 Phase 4 implementasi MCP offline selesai: 10 tools, protokol stdio nyata, dan 7 scenario tests. Lihat [Phase 4](docs/PHASE-4.md).
+
+Phase 5 implementasi worker offline selesai: antrean SQLite persisten, dedup event, scheduler, lease dan recovery; 16 tes worker serta 8 tes MCP lulus. Lihat [Phase 5](docs/PHASE-5.md). Jalankan seluruh pemeriksaan ringan dengan `.venv/Scripts/python.exe deploy/check_offline.py`. Docker dan inference nyata belum dijalankan untuk Phase 3–5.

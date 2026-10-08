@@ -1,7 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
-import { readFile, mkdtemp, rm } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep, basename } from 'node:path';
 import { connectMcp } from '../dist/connection.js';
@@ -147,6 +150,32 @@ test('TypeScript assistant -> Python skills -> TypeScript MCP -> domain fixture'
     for(const key of Object.keys(process.env))if(!(key in before))delete process.env[key];
     Object.assign(process.env,before);await f.close();
     assert.ok(resolve(directory).startsWith(resolve(tmpdir())+sep) && basename(directory).startsWith('odoo-mcp-'));
+    await rm(directory,{recursive:true,force:true});
+  }
+});
+
+test('separate worker CLI processes persist one proposal job through MCP and replay',async()=>{
+  const f=await fixture();const directory=await mkdtemp(join(tmpdir(),'odoo-worker-'));
+  const root=fileURLToPath(new URL('../../',import.meta.url));
+  const python=join(root,'.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+  const queue=join(directory,'jobs.sqlite3');const requestFile=join(directory,'request.json');
+  await writeFile(requestFile,JSON.stringify({request:{skill:'prepare_quote',customer_reference:'OPS-A-001',
+    items:[{product_code:'OPS-A-P1',quantity:2},{product_code:'OPS-A-P2',quantity:1}]}}));
+  const env={...process.env,API_URL:f.base,WORKER_USERNAME:'operator.a',WORKER_PASSWORD:'synthetic-worker-password',
+    WORKER_TENANT_ID:proposal.tenant_id,WORKER_TRANSPORT:'mcp'};
+  const command=async args=>JSON.parse((await promisify(execFile)(python,['-m','backend.worker','--queue',queue,...args],
+    {cwd:root,env,windowsHide:true,timeout:15000,maxBuffer:262144})).stdout);
+  try{
+    const {job_id}=await command(['enqueue','worker-event',requestFile]);
+    assert.equal((await command(['enqueue','worker-event',requestFile])).job_id,job_id);
+    assert.equal((await command(['run-once'])).state,'awaiting_approval');
+    assert.equal((await command(['inspect',job_id])).result.proposal.id,proposal.id);
+    assert.equal((await command(['run-once'])).state,'idle');
+    assert.equal(f.state.calls.filter(path=>path==='/v1/quotes/prepare').length,1);
+    assert.equal(f.state.effects,0);
+  }finally{
+    await f.close();
+    assert.ok(resolve(directory).startsWith(resolve(tmpdir())+sep) && basename(directory).startsWith('odoo-worker-'));
     await rm(directory,{recursive:true,force:true});
   }
 });

@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–4 implementasi offline selesai; Phase 5–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
 
@@ -72,13 +72,15 @@ Evidence: [Phase 4](docs/PHASE-4.md), 7 tes protocol antarp proses lulus.
 
 ## Phase 5 — Implementasi automation dan recovery
 
-- [ ] Tambahkan worker Python dan trigger terjadwal/event dengan handler skills yang sama.
-- [ ] Persist jobs, deduplication keys, checkpoints, retry backoff, lease, review/dead-letter state dan outcome.
-- [ ] Pisahkan approval manusia dari automation; jangan membuat approval atau blind retry write.
-- [ ] Uji duplicate events, restart, concurrent claim, expired credentials, unknown results dan isolasi tenant dengan storage lokal terisolasi.
-- [ ] Dokumentasikan ownership scheduler, state, recovery dan konfigurasi tenant kedua; n8n tetap bukan dependency.
+- [x] Tambahkan worker Python dan trigger terjadwal/event dengan handler skills yang sama.
+- [x] Persist jobs, deduplication keys, checkpoints, retry backoff, lease, review/dead-letter state dan outcome.
+- [x] Pisahkan approval manusia dari automation; jangan membuat approval atau blind retry write.
+- [x] Uji duplicate events, restart, concurrent claim, expired credentials, unknown results dan isolasi tenant dengan storage lokal terisolasi.
+- [x] Dokumentasikan ownership scheduler, state, recovery dan konfigurasi tenant kedua; n8n tetap bukan dependency.
 
 **Gate implementasi:** worker/scheduler nyata memakai persistent storage ringan, production handlers dan HTTP simulasi; tes restart/dedup/isolation lulus. Database aplikasi dan Odoo tetap sumber kebenaran transaksi bisnis, local job store hanya menyimpan orchestration.
+
+Evidence: [Phase 5](docs/PHASE-5.md), 16 tes worker dan 8 tes MCP termasuk worker CLI lintas proses lulus.
 
 ## Phase 6 — Integrasi nyata dan validasi gabungan
 

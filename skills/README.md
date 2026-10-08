@@ -9,8 +9,8 @@ Four executable packages share `backend.assistant.skills.execute_skill`:
 
 Each package includes versioned input/output schemas and a binding manifest.
 These are application capabilities, not installed Codex skills. The assistant and
-direct skill caller use the same handler and authenticated Phase 2 HTTP gateway.
-Automation worker integration remains Phase 5 work. Current validation uses
-simulated HTTP transports; live Phase 3 validation remains pending.
+worker call the same handler through authenticated HTTP or MCP gateways.
+Phase 5 validates reuse, persistent jobs and tenant isolation with simulated domain
+HTTP; live Odoo/provider acceptance is Phase 6.
 
-See [Phase 3 progress and setup](../docs/PHASE-3.md).
+See [assistant setup](../docs/PHASE-3.md) and [worker setup](../docs/PHASE-5.md).

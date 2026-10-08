@@ -1,6 +1,6 @@
 # Automation Decision — 02 - Odoo Business Operations MCP Server
 
-Status: **rencana; belum menjadi hasil benchmark atau implementasi baru**.
+Status: **Python worker dan scheduler tersedia serta diuji offline pada Phase 5; integrasi nyata menjadi Phase 6**.
 
 **Keputusan:** Custom MCP server mandiri; n8n bukan dependency atau release gate.
 
@@ -26,8 +26,10 @@ Dokumen ini menggantikan kewajiban lama memasang n8n di semua proyek. Lihat [kep
 ## Acceptance produk utama
 
 - [ ] Instalasi, workflow utama, protocol/API tests, monitoring, delivery dan deployment lulus tanpa n8n terpasang.
-- [ ] Dokumentasikan engine/scheduler yang benar-benar dipilih serta source of truth, retries dan recovery.
-- [ ] Tidak ada checklist export workflow atau deployment n8n wajib pada release utama.
+- [x] Dokumentasikan engine/scheduler yang benar-benar dipilih serta source of truth, retries dan recovery.
+- [x] Tidak ada checklist export workflow atau deployment n8n wajib pada release utama.
 - [ ] Jika extension automation dipilih kemudian, catat kebutuhan operator, manfaat, ownership, biaya operasi dan acceptance terpisah sebelum menjadikannya dependency.
 
 Contoh extension di atas tidak boleh mengubah status release utama menjadi belum selesai. n8n yang tidak dipilih dilaporkan not selected, bukan implementation failure.
+
+Implementasi utama memakai `backend.worker` dan local SQLite orchestration store. Backend/PostgreSQL/Odoo tetap sumber transaksi bisnis. Lihat [ownership, konfigurasi dan recovery](docs/PHASE-5.md).
