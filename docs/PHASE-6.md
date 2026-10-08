@@ -1,4 +1,4 @@
-# Phase 6 â€” Connected integration
+# Phase 6 - Connected integration
 
 Status: **Complete for the selected local scope: Docker/Odoo, OpenAI and Ollama.**
 Claude/Grok are optional adapters with offline contract coverage only; live
@@ -184,3 +184,5 @@ Evidence: [OpenAI canaries](evidence/phase6-openai-tests.txt),
 References: [model documentation](https://developers.openai.com/api/docs/models/gpt-4.1-mini),
 [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses).
 These cases establish integration behavior only; broader quality evaluation is Phase 7.
+
+The Phase 6 tag preserves its original prompt profile. For current quality qualification and profile versions, see [Phase 7](PHASE-7.md).

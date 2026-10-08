@@ -1,0 +1,30 @@
+{
+  "version": "development-v2",
+  "families": [
+    "direct_customer_command",
+    "direct_two_product_order",
+    "unsupported_email",
+    "entire_item_list_missing",
+    "direct_activity_command",
+    "absent_source",
+    "ambiguous_name",
+    "explicit_exclusion",
+    "foreign_scope",
+    "incomplete_slot",
+    "receipt_handoff",
+    "relative_date_and_missing_owner",
+    "self_correction",
+    "structured_handoff",
+    "tabular_order",
+    "tool_injection",
+    "unsupported_destructive"
+  ],
+  "sources": [
+    "tests/live/test_local_ai.py",
+    "tests/live/test_openai.py",
+    "tests/live/test_stack.py",
+    "evaluation/regression-v1.json",
+    "tests/live/test_quality_regression.py"
+  ],
+  "policy": "Entire families retained in regression. No sample randomly split into holdout."
+}

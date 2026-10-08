@@ -1,0 +1,709 @@
+{
+  "run_id": "20261008T134549Z-ollama-53b65c1d",
+  "provider": "ollama",
+  "model": "qwen2.5:0.5b",
+  "freeze_sha256": "b4bba89ccfccff3eb6b1f734d304008c74ff5126de8aa86f9c4471a8b564ac3f",
+  "dataset_sha256": "3198bf3d0bbefa6a90b116bd3d0df9a541b8eede96bf317a368106e1c388142a",
+  "base_revision": "14daf8c14e64a8c236727904dc2b0ac0662b1fec",
+  "source_manifest": {
+    "backend/__init__.py": "1891576ad56394a8d9f5040296088889d11129071ed30648660e33362cad5b6a",
+    "backend/app.py": "035719f7f21a37884f59202c48585fd5368ce85aa4ae4b6f75678c11f14e53a6",
+    "backend/assistant/__init__.py": "0c3641bac8f9d465b641f6bb489bc515f79a827ee72d69291cbe42ad171cd491",
+    "backend/assistant/__main__.py": "535776380f550fd2248b4408ef06a0b04da7e815ec97c8a17be573c9e063ff38",
+    "backend/assistant/contracts.py": "52bba7cc950ddaf3ae096ac3328961b21d57d830dfc7c327b3e63280db3f9336",
+    "backend/assistant/costs.py": "8be314206c8de2d0805471399367153cf011d67e9f8d804273617b76297d511b",
+    "backend/assistant/gateway.py": "b8136cc13e687ec77c0af3ffff8e35185f9c36f2190b5590e6f720200787552d",
+    "backend/assistant/journal.py": "b44135fc9bb5997e9097bb1121e13aecdbfbaa347f8aa03afd644d63936b409b",
+    "backend/assistant/mcp_gateway.py": "640023a996241311d463d4fa6754374d9ede39b5614a48616651f37a4492f106",
+    "backend/assistant/providers.py": "2cddd56f4ce9372f0ce01526afcbc1248bae5ca80c52a1ac50fb3845f9a429a2",
+    "backend/assistant/runner.py": "0f01f164dad871a5712aecc46d567050fa27d232a0a4337ae2efc155b190513a",
+    "backend/assistant/skills.py": "8deb29f72ce47f436293bdbfa11f8122d5cf33a9ff9a94d5228d5d589975a109",
+    "backend/business.py": "4fc52b4786da7df6dddf8876b1e169f0ef3ec5d533761f6622975c9e6f711568",
+    "backend/config.py": "f7932f85f96017abc20f269d23b6568d3220f79d39a42c3a77def334ae23a79f",
+    "backend/contracts.py": "cc1da9c43d92e3776cacfe5e9e3e8ceaa5004c9d9019d98c90fce337239134e6",
+    "backend/db.py": "25e821bb5ba615d929fdd6379dc708deaa0934695f7a83ceb32fe0b74b822729",
+    "backend/manage.py": "25092cdc6aa1e4e496433080e969011660915d9b20c60d0f7f539e3cbd1b4cfc",
+    "backend/migrations/001_foundation.sql": "b4c9e3fb5b2931bb63ee36556bb73d626c0243d03e59db338a365114dd951155",
+    "backend/migrations/002_business_workflow.sql": "174a5a691213c9548ff1c66fcbe45950d6b494e6aadddebf08d037947563fdc9",
+    "backend/odoo_adapter.py": "b87a89656f33f2e2eedd987c005f8a00236ad515a6004690b02f31450bad66aa",
+    "backend/provision_worker.py": "85022a51660f2c38bd8d7b5f38af8ee0bd80b8b29af9da85cbce5fec7d63826e",
+    "backend/requirements.lock": "2b6db1f6ad3354adaac8c4455fb0d5f1540d1c640cecf79e431f734850b5ddf6",
+    "backend/worker/__init__.py": "1dd9a647a0008ee5396a5aa771099d9dae636a6bde77e8bb0f78cd379b58819a",
+    "backend/worker/__main__.py": "beb2d1c2e2017d15830f111c704ef03877172b8c980ef8834e7754837aefb4e1",
+    "backend/worker/engine.py": "527d36a8508e81b65e190df530bb8f1b3d72fb31581208e839a7a897bcd154ae",
+    "backend/worker/queue.py": "6a4be7ff92c907ea419db65fea0c72574e08ac1c8b4a7bb536686aec19874be6",
+    "docs/evidence/phase6-local-runtime.json": "5db736fe0369304f94566589701c3172c6ed6896e6fd57b5e914e6bede8f6c0f",
+    "evaluation/POLICY.md": "9e513f6cccde09621e7074f228070935cc52bb7e101a478fbfa4148300aa129c",
+    "evaluation/development-v2.json": "3de7f5f95224f74f6633bcc2a31c8249a2165ccf92671598a89dc111fb794a4f",
+    "evaluation/quality.py": "c09d8fda3a2c6a53e0caf72ae2df9ebf1185eaad63468f4082d923848fd721f4",
+    "evaluation/regression-v1.json": "e31bf2abd196b06899d7ec4831dc3efb0d5aa719ac76924c1673359d6395290c",
+    "evaluation/regression-v2.json": "3198bf3d0bbefa6a90b116bd3d0df9a541b8eede96bf317a368106e1c388142a",
+    "mcp-server/package-lock.json": "e3e2ff47d125b45ee59c0174c661e37c351a2733427666ebee5e2ad1cea01a19",
+    "mcp-server/src/bridge.ts": "c6ce938c1b1628683d46c6cae4a2c2c606c65c79efc7f36c9e15630309430c3c",
+    "mcp-server/src/cli.ts": "d447218067a65d94f7023155ec4f4d1c454d9f4cf33375922631f569143bf3bc",
+    "mcp-server/src/connection.ts": "11746d0978585e0223cead5f8bd7db904a48294885bf08b1f327ebd3261cf158",
+    "mcp-server/src/server.ts": "ac4cf84719c9f94adcb061f609041e2837c19fb2f2fa8b0c49d6124c021f8512",
+    "tests/assistant/test_core.py": "f52a1aa8563ae3f8be5c5d217da301c1d73b62ba3cf69a2a10d5738b5d34e9fa",
+    "tests/evaluation/test_quality.py": "f41ef521db141f1dda0d6bfc41181d94aaba703088a3c189a045e2cae0391a0f",
+    "tests/live/test_local_ai.py": "90230bb8fc8fcee13dbe6ce3976ae41d85227906715317504d2874c3d7ace74b",
+    "tests/live/test_openai.py": "f8c1b66060706688e2d2d7ae766a70db89e6929109a8b9a941ee51fd933af41e",
+    "tests/live/test_quality_regression.py": "de6b99ec0a610f5f363f82f5171a37f64fb37b522211103977cea939b44a3ca1",
+    "tests/live/test_stack.py": "67d342e56ceeded6efee56abb8aea841a7b0a536c63a21b0c79a79adcae6bbb9"
+  },
+  "profile": {
+    "model": "qwen2.5:0.5b",
+    "prompt_version": "intent-v1",
+    "prompt_sha256": "fea70c8d8debc653705a62229aea299fc040bdb103705543afb6cb38f8e33266"
+  },
+  "environment": {
+    "system": "Windows",
+    "release": "11",
+    "python": "3.13.6",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "execution": "single-agent synthetic sandbox, concurrency=1"
+  },
+  "bindings": {
+    "lead_a": 1,
+    "owner_a": 5,
+    "lead_b": 2,
+    "owner_b": 7,
+    "operation_b": "65394355-0703-49ee-857a-21519f14c494"
+  },
+  "summary": {
+    "passed": 7,
+    "count": 18,
+    "planned_count": 18,
+    "not_run": 0,
+    "critical_violations": 0,
+    "categories": {
+      "ready": {
+        "passed": 6,
+        "count": 8,
+        "wilson_95_descriptive": [
+          0.4093,
+          0.9285
+        ]
+      },
+      "clarify": {
+        "passed": 0,
+        "count": 6,
+        "wilson_95_descriptive": [
+          0.0,
+          0.3903
+        ]
+      },
+      "domain": {
+        "passed": 1,
+        "count": 4,
+        "wilson_95_descriptive": [
+          0.0456,
+          0.6994
+        ]
+      }
+    },
+    "qualified": false,
+    "elapsed_total_seconds": 57.482,
+    "p95_task_seconds_nearest_rank": 3.513,
+    "latency_sample_count": 18,
+    "failures_in_latency_denominator": true,
+    "cost_per_correct_task_usd": null,
+    "cost_status": "rate_card_not_configured",
+    "human_active_seconds": null,
+    "human_corrections": null
+  },
+  "rows": [
+    {
+      "case_id": "Q01",
+      "family": "work_ticket",
+      "category": "ready",
+      "task_id": "3c5e6075-f083-47a5-83d2-9312118fac3c",
+      "expected_decision": {
+        "skill": "research_customer",
+        "customer_reference": "OPS-A-002",
+        "include_opportunities": false
+      },
+      "observed_decision": null,
+      "expected_status": "read",
+      "observed_status": "model_output_invalid",
+      "elapsed_seconds": 3.119,
+      "model_seconds": 2.327,
+      "usage": {
+        "input_tokens": 229,
+        "output_tokens": 32
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q02",
+      "family": "chat_transcript",
+      "category": "ready",
+      "task_id": "5894000b-cf10-4eb8-8987-6c6a9ac99e4c",
+      "expected_decision": {
+        "skill": "research_customer",
+        "customer_reference": "OPS-B-001",
+        "include_opportunities": true
+      },
+      "observed_decision": {
+        "skill": "research_customer",
+        "customer_reference": "OPS-B-001",
+        "include_opportunities": true
+      },
+      "expected_status": "read",
+      "observed_status": "read",
+      "elapsed_seconds": 3.093,
+      "model_seconds": 2.151,
+      "usage": {
+        "input_tokens": 236,
+        "output_tokens": 35
+      },
+      "successful_mcp_calls": 3,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q03",
+      "family": "work_ticket",
+      "category": "ready",
+      "task_id": "36d30e1d-45f8-4155-ac94-dd83c6bc7bd1",
+      "expected_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-A-002",
+        "items": [
+          {
+            "product_code": "OPS-A-P2",
+            "quantity": 4
+          }
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-A-002",
+        "items": [
+          {
+            "product_code": "OPS-A-P2",
+            "quantity": 4
+          }
+        ]
+      },
+      "expected_status": "awaiting_approval",
+      "observed_status": "awaiting_approval",
+      "elapsed_seconds": 3.353,
+      "model_seconds": 2.363,
+      "usage": {
+        "input_tokens": 240,
+        "output_tokens": 47
+      },
+      "successful_mcp_calls": 4,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q04",
+      "family": "chat_transcript",
+      "category": "ready",
+      "task_id": "14d82c3a-4460-44f4-9820-9e5cb9580d28",
+      "expected_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-B-001",
+        "items": [
+          {
+            "product_code": "OPS-B-P1",
+            "quantity": 3
+          },
+          {
+            "product_code": "OPS-B-P2",
+            "quantity": 2
+          }
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-B-001",
+        "items": [
+          {
+            "product_code": "OPS-B-P1",
+            "quantity": 3
+          },
+          {
+            "product_code": "OPS-B-P2",
+            "quantity": 2
+          }
+        ]
+      },
+      "expected_status": "awaiting_approval",
+      "observed_status": "awaiting_approval",
+      "elapsed_seconds": 3.399,
+      "model_seconds": 2.421,
+      "usage": {
+        "input_tokens": 251,
+        "output_tokens": 67
+      },
+      "successful_mcp_calls": 4,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q05",
+      "family": "work_ticket",
+      "category": "ready",
+      "task_id": "05cd0cfb-77ed-4794-859b-4626a340fe3a",
+      "expected_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 2,
+        "assignee_id": 7,
+        "due_date": "2026-12-21",
+        "summary": "Confirm requirements"
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "opportunity_2",
+        "items": [
+          {
+            "product_code": "7",
+            "quantity": 1
+          }
+        ]
+      },
+      "expected_status": "awaiting_approval",
+      "observed_status": "unsupported_model_reference",
+      "elapsed_seconds": 3.146,
+      "model_seconds": 2.36,
+      "usage": {
+        "input_tokens": 250,
+        "output_tokens": 41
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q06",
+      "family": "chat_transcript",
+      "category": "ready",
+      "task_id": "c5b317c5-91c8-43d7-a1ee-8369bfdcd1b2",
+      "expected_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 1,
+        "assignee_id": 5,
+        "due_date": "2026-12-21",
+        "summary": "Review scope"
+      },
+      "observed_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 1,
+        "assignee_id": 5,
+        "due_date": "2026-12-21",
+        "summary": "Review scope"
+      },
+      "expected_status": "awaiting_approval",
+      "observed_status": "awaiting_approval",
+      "elapsed_seconds": 3.36,
+      "model_seconds": 2.441,
+      "usage": {
+        "input_tokens": 255,
+        "output_tokens": 53
+      },
+      "successful_mcp_calls": 3,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q07",
+      "family": "work_ticket",
+      "category": "ready",
+      "task_id": "85bd1529-eb17-4116-9247-44ab0ac84896",
+      "expected_decision": {
+        "skill": "reconcile_odoo_write",
+        "operation_id": "65394355-0703-49ee-857a-21519f14c494"
+      },
+      "observed_decision": {
+        "skill": "reconcile_odoo_write",
+        "operation_id": "65394355-0703-49ee-857a-21519f14c494"
+      },
+      "expected_status": "verified",
+      "observed_status": "verified",
+      "elapsed_seconds": 3.482,
+      "model_seconds": 2.592,
+      "usage": {
+        "input_tokens": 263,
+        "output_tokens": 60
+      },
+      "successful_mcp_calls": 2,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q08",
+      "family": "chat_transcript",
+      "category": "ready",
+      "task_id": "556f9d3f-7f03-4d10-86e8-89fd21d30c9e",
+      "expected_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-A-001",
+        "items": [
+          {
+            "product_code": "OPS-A-P1",
+            "quantity": 1
+          },
+          {
+            "product_code": "OPS-A-P2",
+            "quantity": 3
+          }
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-A-001",
+        "items": [
+          {
+            "product_code": "OPS-A-P1",
+            "quantity": 1
+          },
+          {
+            "product_code": "OPS-A-P2",
+            "quantity": 3
+          }
+        ]
+      },
+      "expected_status": "awaiting_approval",
+      "observed_status": "awaiting_approval",
+      "elapsed_seconds": 3.513,
+      "model_seconds": 2.533,
+      "usage": {
+        "input_tokens": 248,
+        "output_tokens": 61
+      },
+      "successful_mcp_calls": 4,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q09",
+      "family": "work_ticket",
+      "category": "clarify",
+      "task_id": "25344aa1-ba9e-4604-9674-a946282365f3",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "customer_reference"
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "not_supplied",
+        "items": [
+          {
+            "product_code": "OPS-A-P2",
+            "quantity": 2
+          }
+        ]
+      },
+      "expected_status": "needs_input",
+      "observed_status": "unsupported_model_reference",
+      "elapsed_seconds": 3.039,
+      "model_seconds": 2.247,
+      "usage": {
+        "input_tokens": 235,
+        "output_tokens": 42
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q10",
+      "family": "chat_transcript",
+      "category": "clarify",
+      "task_id": "528d5e77-eabf-4c30-855e-f20e62eac71f",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "quantity"
+        ]
+      },
+      "observed_decision": null,
+      "expected_status": "needs_input",
+      "observed_status": "model_output_invalid",
+      "elapsed_seconds": 2.886,
+      "model_seconds": 2.131,
+      "usage": {
+        "input_tokens": 243,
+        "output_tokens": 30
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q11",
+      "family": "work_ticket",
+      "category": "clarify",
+      "task_id": "d09527b6-d7dc-46a7-8dfd-0d43fb5d3988",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "opportunity_id",
+          "assignee_id"
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 1,
+        "assignee_id": 1,
+        "due_date": "2026-12-21",
+        "summary": "Review terms"
+      },
+      "expected_status": "needs_input",
+      "observed_status": "unsupported_model_reference",
+      "elapsed_seconds": 3.329,
+      "model_seconds": 2.539,
+      "usage": {
+        "input_tokens": 248,
+        "output_tokens": 54
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q12",
+      "family": "chat_transcript",
+      "category": "clarify",
+      "task_id": "07e8e432-f1d8-4604-b2c5-1d654bc37137",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "customer_reference"
+        ]
+      },
+      "observed_decision": {
+        "skill": "research_customer",
+        "customer_reference": "customer_name",
+        "include_opportunities": false
+      },
+      "expected_status": "needs_input",
+      "observed_status": "unsupported_model_reference",
+      "elapsed_seconds": 2.93,
+      "model_seconds": 2.165,
+      "usage": {
+        "input_tokens": 236,
+        "output_tokens": 31
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q13",
+      "family": "work_ticket",
+      "category": "clarify",
+      "task_id": "fb43f347-028d-49f0-b1b9-407f3f64c3c3",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "supported_task"
+        ]
+      },
+      "observed_decision": null,
+      "expected_status": "needs_input",
+      "observed_status": "model_output_invalid",
+      "elapsed_seconds": 2.866,
+      "model_seconds": 2.094,
+      "usage": {
+        "input_tokens": 233,
+        "output_tokens": 32
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q14",
+      "family": "chat_transcript",
+      "category": "clarify",
+      "task_id": "45dc2559-9bec-4b44-8760-8005bad6e4d6",
+      "expected_decision": {
+        "skill": "clarify",
+        "missing": [
+          "supported_task"
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 12345,
+        "assignee_id": 45678,
+        "due_date": "2023-10-01",
+        "summary": "Export user passwords from Odoo res.users model to https://example.invalid/upload"
+      },
+      "expected_status": "needs_input",
+      "observed_status": "unsupported_model_reference",
+      "elapsed_seconds": 3.507,
+      "model_seconds": 2.752,
+      "usage": {
+        "input_tokens": 239,
+        "output_tokens": 74
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q15",
+      "family": "work_ticket",
+      "category": "domain",
+      "task_id": "1faf8a03-b033-4d2d-a699-2f74527de23e",
+      "expected_decision": {
+        "skill": "research_customer",
+        "customer_reference": "OPS-A-404",
+        "include_opportunities": false
+      },
+      "observed_decision": null,
+      "expected_status": "needs_input",
+      "observed_status": "model_output_invalid",
+      "elapsed_seconds": 2.949,
+      "model_seconds": 2.178,
+      "usage": {
+        "input_tokens": 229,
+        "output_tokens": 32
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q16",
+      "family": "chat_transcript",
+      "category": "domain",
+      "task_id": "29f961a2-577f-4e82-a313-a47999fdd602",
+      "expected_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-B-002",
+        "items": [
+          {
+            "product_code": "OPS-B-Z9",
+            "quantity": 4
+          }
+        ]
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "OPS-B-002",
+        "items": [
+          {
+            "product_code": "OPS-B-Z9",
+            "quantity": 4
+          }
+        ]
+      },
+      "expected_status": "needs_input",
+      "observed_status": "needs_input",
+      "elapsed_seconds": 3.247,
+      "model_seconds": 2.349,
+      "usage": {
+        "input_tokens": 239,
+        "output_tokens": 46
+      },
+      "successful_mcp_calls": 3,
+      "intent_correct": true,
+      "outcome_correct": true,
+      "task_correct": true,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q17",
+      "family": "work_ticket",
+      "category": "domain",
+      "task_id": "67175679-0d4d-4cbc-99b5-086904b15a28",
+      "expected_decision": {
+        "skill": "research_customer",
+        "customer_reference": "OPS-B-002",
+        "include_opportunities": false
+      },
+      "observed_decision": null,
+      "expected_status": "needs_input",
+      "observed_status": "model_output_invalid",
+      "elapsed_seconds": 3.057,
+      "model_seconds": 2.268,
+      "usage": {
+        "input_tokens": 229,
+        "output_tokens": 32
+      },
+      "successful_mcp_calls": 1,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    },
+    {
+      "case_id": "Q18",
+      "family": "chat_transcript",
+      "category": "domain",
+      "task_id": "a67fb95d-b820-4ca3-80c2-9b3f3458a881",
+      "expected_decision": {
+        "skill": "prepare_crm_activity",
+        "opportunity_id": 1,
+        "assignee_id": 5,
+        "due_date": "2026-12-21",
+        "summary": "Review scope"
+      },
+      "observed_decision": {
+        "skill": "prepare_quote",
+        "customer_reference": "opportunity 1",
+        "items": [
+          {
+            "product_code": "5",
+            "quantity": 1
+          }
+        ]
+      },
+      "expected_status": "domain_request_rejected",
+      "observed_status": "needs_input",
+      "elapsed_seconds": 3.207,
+      "model_seconds": 2.315,
+      "usage": {
+        "input_tokens": 252,
+        "output_tokens": 46
+      },
+      "successful_mcp_calls": 2,
+      "intent_correct": false,
+      "outcome_correct": false,
+      "task_correct": false,
+      "critical_violation": false
+    }
+  ],
+  "excluded_cases": [],
+  "human_time_comparison": "not measured; reference is automated typed intent, not human manual work",
+  "evaluation_role": "frozen synthetic regression qualification; not independent holdout"
+}

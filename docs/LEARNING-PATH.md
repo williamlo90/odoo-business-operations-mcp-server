@@ -58,3 +58,14 @@ atau `git diff phase-3-code phase-4-code` untuk membandingkan checkpoint.
 Jalankan `python deploy/check_offline.py` dari virtual environment yang sudah
 memiliki dependencies. Runner membangun TypeScript dan menjalankan tes ringan
 secara berurutan tanpa Docker, provider nyata atau model lokal.
+
+## Connected and quality checkpoints
+
+| Tag | One phase, one commit | Guide |
+| --- | --- | --- |
+| `phase-6-integration` | Docker/Odoo, MCP/worker, OpenAI and local inference validation; Claude/Grok optional | `docs/PHASE-6.md` |
+| `phase-7-quality` | Frozen evaluation, quantity grounding, versioned intent prompt and quality evidence | `docs/PHASE-7.md` |
+
+Compare these stages with `git diff phase-6-integration phase-7-quality`.
+Phase 7 qualification is a synthetic regression result. The local 0.5B model
+remains experimental; the tested OpenAI profile is the qualified option.

@@ -2,13 +2,13 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0â€“2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3â€“5 implementasi offline selesai; Phase 6â€“10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-7 selesai untuk scope lokal terpilih; Phase 8-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 **Pengguna:** Sales operations dan administrator Odoo.
 
 **Hasil bisnis:** Memberi assistant akses yang terbatas dan dapat diaudit untuk membaca data Odoo serta menyiapkan perubahan bisnis tanpa akses database bebas.
 
-**Alur:** Permintaan operator â†’ assistant memilih skill â†’ tools membaca Odoo â†’ proposal perubahan â†’ preview â†’ approval â†’ eksekusi â†’ read-back Odoo â†’ receipt dan audit.
+**Alur:** Permintaan operator → assistant memilih skill → tools membaca Odoo → proposal perubahan → preview → approval → eksekusi → read-back Odoo → receipt dan audit.
 
 **Stack keputusan:** TypeScript custom MCP server; Python + FastAPI untuk workflow, validasi, dan automation; assistant client TypeScript; PostgreSQL; Odoo API sesuai versi yang dipilih; Docker Compose di Linux; OpenAI, Claude, Grok; Ollama.
 
@@ -38,7 +38,7 @@ tool task success; correct record selection; unauthorized-write rejection; dupli
 
 ## Cara mulai
 
-1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; ikuti [panduan Odoo](docs/ODOO-LOCAL.md) untuk alur bisnis; pekerjaan berikutnya adalah Phase 7 pada PHASES.md.
+1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; ikuti [panduan Odoo](docs/ODOO-LOCAL.md) untuk alur bisnis; pekerjaan berikutnya adalah Phase 8 pada PHASES.md.
 2. Catat apa yang existing, perlu verifikasi, dan baru. Semua checklist folder ini dimulai belum selesai.
 3. Buat satu alur lengkap, uji hasilnya, baru tambah variasi; ikuti urutan fase dan dependency.
 4. Catat evidence path/run ID saat menutup fase. Cloud hanya pada Phase 10.
@@ -47,7 +47,7 @@ Fondasi aplikasi lokal tersedia di backend/ dan client/, dengan PostgreSQL migra
 
 ## Progress implementasi
 
-Phase 0 selesai pada 2026-10-08 untuk inventaris dan scope. Lihat [Phase 0](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), dan [dependencies](docs/DEPENDENCIES.md). Phase 1 selesai; lihat [hasil dan evidence](docs/PHASE-1.md). Alur pertama: customer search â†’ quotation preview â†’ approval â†’ create draft â†’ read-back. Target sandbox: Odoo Community 19.0 lokal; JSON-2 dan alur quotation/activity telah diuji pada Phase 2. Docker engine telah dipulihkan dan digunakan untuk verifikasi Phase 1.
+Phase 0 selesai pada 2026-10-08 untuk inventaris dan scope. Lihat [Phase 0](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), dan [dependencies](docs/DEPENDENCIES.md). Phase 1 selesai; lihat [hasil dan evidence](docs/PHASE-1.md). Alur pertama: customer search → quotation preview → approval → create draft → read-back. Target sandbox: Odoo Community 19.0 lokal; JSON-2 dan alur quotation/activity telah diuji pada Phase 2. Docker engine telah dipulihkan dan digunakan untuk verifikasi Phase 1.
 
 Phase 2 selesai: customer/opportunity reads, quotation/activity proposal, approval, execute dan read-back terverifikasi. Lihat [hasil Phase 2](docs/PHASE-2.md). API lokal: http://127.0.0.1:8020/docs; Odoo sandbox: http://127.0.0.1:8069.
 
@@ -57,6 +57,8 @@ Pengujian AI nyata/Odoo baru menjadi gate Phase 6. Lihat [Phase 3](docs/PHASE-3.
 
 Phase 4 implementasi MCP offline selesai: 10 tools, protokol stdio nyata, dan 7 scenario tests. Lihat [Phase 4](docs/PHASE-4.md).
 
-Phase 5 implementasi worker offline selesai: antrean SQLite persisten, dedup event, scheduler, lease dan recovery; 16 tes worker serta 8 tes MCP lulus. Lihat [Phase 5](docs/PHASE-5.md). Jalankan seluruh pemeriksaan ringan dengan `.venv/Scripts/python.exe deploy/check_offline.py`. Docker dan inference nyata belum dijalankan untuk Phase 3â€“5.
+Phase 5 implementasi worker offline selesai: antrean SQLite persisten, dedup event, scheduler, lease dan recovery; 16 tes worker serta 8 tes MCP lulus. Lihat [Phase 5](docs/PHASE-5.md). Jalankan seluruh pemeriksaan ringan dengan `.venv/Scripts/python.exe deploy/check_offline.py`. Docker dan inference nyata belum dijalankan untuk Phase 3–5.
 
 Phase 6 selesai untuk scope lokal terpilih: integrasi Docker/Odoo lulus 38 tes regresi dan 7 skenario assistant/MCP/worker terhubung dan 5 canary AI lokal nyata (Ollama CPU). Empat canary OpenAI dan client nyata juga lulus; Claude/Grok opsional dan belum live-validated. Lihat [status dan reproduksi Phase 6](docs/PHASE-6.md).
+
+Phase 7 selesai: profil OpenAI `gpt-4.1-mini-2025-04-14` / `intent-v4-openai` lulus **18/18** kasus regresi sintetis melalui assistant/MCP/Odoo. Qwen2.5 0.5B lokal mendapat **7/18** dan tetap eksperimental. Tersedia guard jumlah barang, dataset/rubric beku, serta laporan hasil dan batas klaim pada [Phase 7](docs/PHASE-7.md).

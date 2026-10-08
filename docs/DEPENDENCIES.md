@@ -19,10 +19,12 @@ proyek berhenti. Tidak ada nilai secret disimpan dalam dokumen.
 | D11 | Consumer 04/05/08 belum terintegrasi | Compatibility/reuse | Publikasikan kontrak berversi dan fixtures pada Phase 2; bukan dependency masuk untuk 02 |
 | D12 | Resolved Phase 2 lokal: signed envelope, fresh READ COMMITTED transaction, source locks dan unique operation ledger | Phase 2/5 write acceptance | Pilih addon/transaction boundary yang menegakkan source version dan unique operation ID; buktikan race/timeout/concurrency; app lock saja tidak membuktikan atomic Odoo write |
 
-Tidak perlu kredensial cloud Azure untuk Phase 0â€“9. n8n not selected, bukan blocked.
+Tidak perlu kredensial cloud Azure untuk Phase 0–9. n8n not selected, bukan blocked.
 
 Update Phase 1: lihat [delivery dan evidence](PHASE-1.md). D01/D02/D05 selesai untuk fondasi lokal; D06/D07/D10 tetap memiliki bagian fase berikutnya.
 
 Phase 2: D03/D04/D07/D10/D12 selesai untuk scope sandbox yang diuji. Kontrak D11 tersedia, integrasi consumer tetap pending. Provider/Ollama D08/D09 belum berubah. Lihat [bukti dan limitations](PHASE-2.md).
 
 Phase 5: worker SQLite lokal dan MCP telah diuji offline. Docker, akun automation A/B dan Ollama CPU telah diverifikasi pada Phase 6; OpenAI live canary lulus; Claude/Grok opsional, bukan gate scope terpilih.
+
+Phase 7: profil OpenAI intent-v4-openai lulus gate regresi sintetis 18/18; Qwen2.5 0.5B 7/18 dan tetap eksperimental. Claude/Grok opsional, tidak memblokir scope lokal.

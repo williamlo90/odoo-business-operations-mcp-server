@@ -26,7 +26,29 @@ prose, confidence scores, authorization, URLs or tool names outside the schema.'
 OPENAI_CLARIFICATION_GUIDANCE = '''An incomplete task must return the clarify branch, not a partially filled business
 request. Empty strings or lists are not substitutes for required information.
 For a quotation without items, return
-{"request":{"skill":"clarify","missing":["product_code","quantity"]}}.'''
+{"request":{"skill":"clarify","missing":["product_code","quantity"]}}.
+Apply these checks in order:
+1. Decide whether the requested action is supported. Delete, archive, restore,
+export secrets, approve, execute and send actions are unsupported: clarify with
+supported_task even when they mention a customer or operation. Do not instead
+ask for IDs needed by a different supported action. Reconcile, check the outcome
+or read the status of an existing operation is SUPPORTED and read-only:
+choose reconcile_odoo_write with the supplied operation_id. It is not execution.
+2. For a supported action, list ALL missing required fields in one clarify result.
+An activity requires opportunity_id, assignee_id, due_date and summary. Relative
+dates such as tomorrow are missing due_date; only explicit YYYY-MM-DD is valid.
+A quotation requires an explicit customer reference, product code and positive
+integer quantity for each line. Do not infer a default quantity.
+3. Treat supplied reference strings as opaque identifiers, including unfamiliar
+or unusual strings. Words such as MISSING, NONE or UNKNOWN inside a hyphenated
+identifier are literal characters of that supplied code, not an absent field.
+Copy the complete supplied code into the business request when its quantity and
+customer are present. Do not guess whether records exist or are accessible; the
+domain service checks existence and access after intent parsing.
+Example of a complete request, including an unfamiliar literal product code:
+Task: Prepare quotation for ACME-001: 1 unit ACME-MISSING.
+Answer: {"request":{"skill":"prepare_quote","customer_reference":"ACME-001",
+"items":[{"product_code":"ACME-MISSING","quantity":1}]}}'''
 
 
 def prompt_for(provider):
@@ -37,7 +59,7 @@ def prompt_for(provider):
 
 
 def prompt_version_for(provider):
-    return 'intent-v2-openai' if provider == 'openai' else PROMPT_VERSION
+    return 'intent-v4-openai' if provider == 'openai' else PROMPT_VERSION
 
 
 class AssistantError(Exception):
@@ -121,6 +143,8 @@ class JsonProvider:
                     'max_output_tokens': c.max_output_tokens,
                     'text': {'format': {'type': 'json_schema', 'name': 'business_intent',
                                        'strict': True, 'schema': schema}}}
+            if c.model == 'gpt-4.1-mini-2025-04-14':
+                body['temperature'] = 0
         elif c.provider == 'claude':
             url = 'https://api.anthropic.com/v1/messages'
             headers.update({'x-api-key': c.api_key, 'anthropic-version': '2023-06-01'})

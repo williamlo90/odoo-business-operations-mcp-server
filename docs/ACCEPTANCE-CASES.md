@@ -1,7 +1,7 @@
 # V1 acceptance cases
 
 Specification v0.1, 2026-10-08. Expected outcomes ditetapkan sebelum implementasi. Status dan batas coverage terbaru
-tercantum pada [Phase 2](PHASE-2.md); ini bukan dataset final Phase 6.
+tercantum pada [Phase 2](PHASE-2.md); ini bukan dataset evaluasi kualitas Phase 7.
 
 Fixture awal: company A/B; operator, approver, admin dan auditor terpisah;
 dua customer bernama sama dengan ID berbeda; opportunity per company;
@@ -39,4 +39,4 @@ untuk connected acceptance; fake hanya untuk failure injection.
 
 Gate kritis: seluruh kasus izin, stale approval, duplicate effect dan false-success
 yang tercantum harus lulus. Target kualitas AI, workload dan held-out evaluation
-ditetapkan terpisah sebelum final run Phase 6.
+ditetapkan terpisah sebelum final run Phase 7.

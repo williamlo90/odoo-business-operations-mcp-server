@@ -48,6 +48,14 @@ def check_grounding(request, task):
     for reference in references:
         if not re.search(r'(?<![\w-])' + re.escape(reference) + r'(?![\w-])', task, re.IGNORECASE):
             raise AssistantError('unsupported_model_reference')
+    if isinstance(request, Quote):
+        # Numeric quantities are required in the natural-language interface.
+        # Digits embedded in a customer/product code are not quantities.
+        # This checks presence, not semantic association; approval still reviews
+        # which quantity belongs to each product.
+        for line in request.items:
+            if not re.search(r'(?<![\w.\-])' + str(line.quantity) + r'(?![\w\-]|\.\d|,\d)', task):
+                raise AssistantError('unsupported_model_quantity')
 
 
 class Trace:

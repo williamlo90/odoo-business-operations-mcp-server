@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0â€“2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3â€“5 implementasi offline selesai; Phase 6â€“10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-7 selesai untuk scope lokal terpilih; Phase 8-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 ## Access control sejak awal
 
@@ -18,13 +18,15 @@ Pisahkan tenant dan object-level authorization pada API, MCP, workers, retrieval
 
 ## Kasus wajib spesifik proyek
 
-- [ ] Dua customer bernama sama
-- [ ] Record antar-company tidak boleh tercampur
-- [ ] Approval dipakai ulang dengan payload berbeda
-- [ ] Record Odoo berubah setelah preview
-- [ ] Timeout setelah draft berhasil dibuat
-- [ ] Pagination menghasilkan record yang hilang/berulang
-- [ ] Tool injection meminta akses model atau field terlarang
+- [x] Dua customer bernama sama
+- [x] Record antar-company tidak boleh tercampur
+- [x] Approval dipakai ulang dengan payload berbeda
+- [x] Record Odoo berubah setelah preview
+- [x] Timeout setelah draft berhasil dibuat
+- [x] Pagination menghasilkan record yang hilang/berulang
+- [x] Tool injection meminta akses model atau field terlarang
+
+Bukti Phase 7: 38 tes domain/PostgreSQL/Odoo, 20 tes live, dan 86 tes offline lulus. Mapping kasus ke test ada pada [laporan Phase 7](docs/PHASE-7.md). Fault injection dan hasil model dinilai terpisah; reliability/load menyeluruh tetap Phase 8.
 
 ## Lapisan testing
 

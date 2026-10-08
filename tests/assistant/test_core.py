@@ -117,7 +117,7 @@ def test_wire_contract_and_grounded_quote(name, tmp_path):
     actual_prompt = body['input'][0]['content'] if name == 'openai' else body['system'] if name == 'claude' else body['messages'][0]['content']
     trace = json.loads((tmp_path / (value['task_id'] + '.jsonl')).read_text(encoding='utf-8').splitlines()[0])
     assert trace['prompt_sha256'] == hashlib.sha256(actual_prompt.encode()).hexdigest()
-    assert trace['prompt_version'] == ('intent-v2-openai' if name == 'openai' else 'intent-v1')
+    assert trace['prompt_version'] == ('intent-v4-openai' if name == 'openai' else 'intent-v1')
     if name == 'openai':
         assert calls[0].url == 'https://api.openai.com/v1/responses'
         assert body['text']['format']['schema'] == provider_schema() and body['store'] is False
@@ -160,6 +160,28 @@ def test_ambiguous_customer_requires_exact_reference(tmp_path):
     assert value['result']['status'] == 'needs_input'
     assert len(value['result']['facts']) == 2
     assert not any(method == 'POST' for method, _ in sandbox.calls)
+
+
+@pytest.mark.parametrize('task', [
+    'Prepare OPS-A-001 with OPS-A-P1; quantity undecided.',
+    'Prepare OPS-A-001 with OPS-A-P1, quantity 1.5.',
+    'Prepare OPS-A-001 with OPS-A-P1, quantity 1,5.',
+    'Prepare OPS-A-001 with OPS-A-P1, quantity -1.',
+])
+def test_invented_integer_quantity_never_prepares(task, tmp_path):
+    sandbox = Sandbox()
+    request = {**QUOTE, 'items':[{'product_code':'OPS-A-P1','quantity':1}]}
+    with pytest.raises(AssistantError, match='unsupported_model_quantity'):
+        asyncio.run(run(sandbox.gateway(), task=task, provider=provider(request=request), trace_dir=tmp_path))
+    assert sandbox.calls == [('GET', '/me')]
+
+
+def test_explicit_quantity_before_sentence_punctuation_is_valid(tmp_path):
+    sandbox = Sandbox()
+    value = asyncio.run(run(sandbox.gateway(),
+        task='Prepare OPS-A-001: OPS-A-P1 quantity 2, OPS-A-P2 quantity 1.',
+        provider=provider(), trace_dir=tmp_path))
+    assert value['result']['status'] == 'awaiting_approval'
 
 
 def test_research_reuse_and_source_injection_not_sent_to_model(tmp_path):

@@ -1,0 +1,31 @@
+Phase 7 final verification, 2026-10-08
+Scope: synthetic local Odoo sandbox; one agent; no real customer data.
+
+python deploy/check_offline.py
+6 evaluator tests passed (0.26s).
+54 assistant tests passed (1.77s).
+16 worker tests passed (1.44s).
+2 TypeScript client tests passed.
+8 MCP protocol/worker integration tests passed (12.552s).
+Client and MCP TypeScript builds passed.
+Total offline: 86 passed, no failed or skipped tests.
+
+pytest -q --confcutdir=tests/live tests/live
+20 passed in 78.79s; no failures or skips.
+7 stack cases, 5 local AI canaries, 4 OpenAI canaries,
+3 OpenAI quality regressions, 1 local missing-quantity guard regression.
+OpenAI profile: intent-v4-openai, gpt-4.1-mini-2025-04-14, temperature 0.
+Local: Ollama 0.40.1 CPU, pinned qwen2.5:0.5b, intent-v1.
+
+Freshly built tests image, isolated odoo-ops-test database:
+pytest -q tests/test_foundation.py tests/test_business.py tests/test_contracts.py tests/test_connected.py
+38 passed, 1 existing Starlette/httpx deprecation warning in 10.28s.
+9 cases use the actual synthetic Odoo service, including source-update race,
+concurrency/replay, same-name pagination, forged signature denial and lost response
+reconciliation. Fault injection is explicitly used for response loss.
+Test container/network removed with the scoped Compose down command.
+Normal Odoo/application database volumes and audit records retained.
+
+Frozen quality runs are recorded separately in phase7-openai.json,
+phase7-ollama.json and phase7-reference.json. They are regression qualification,
+not independent held-out generalization or human ROI.

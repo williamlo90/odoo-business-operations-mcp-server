@@ -1,1 +1,4 @@
 * text=auto eol=lf
+# Preserve byte-exact evaluation snapshots and their source hashes on every platform.
+evaluation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/evaluation/test_quality.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
