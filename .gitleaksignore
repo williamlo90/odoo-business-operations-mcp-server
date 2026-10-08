@@ -1,0 +1,8 @@
+# Reviewed non-credential findings. Exact commit/path/rule/line only.
+# Demo idempotency UUIDs are request identities, not authentication secrets.
+# Manifest OpenAPI values are SHA-256 file checksums.
+b36377b1722dcc1e66c887dffcbb371035ad73dc:docs/demo/recording.json:generic-api-key:141
+b36377b1722dcc1e66c887dffcbb371035ad73dc:docs/demo/recording.json:generic-api-key:188
+b36377b1722dcc1e66c887dffcbb371035ad73dc:docs/demo/recording.json:generic-api-key:235
+b36377b1722dcc1e66c887dffcbb371035ad73dc:docs/evidence/phase9-manifest.json:generic-api-key:76
+e42441aee2b06483e7158f8ccc4ecc0e632a6041:docs/evidence/phase8-manifest.json:generic-api-key:126
