@@ -1,0 +1,18 @@
+{
+  "checkpoint": "phase-4-code",
+  "base_revision": "eec0371e9085ae28f82533081fa9bba4acc587d6",
+  "files": {
+    "backend/assistant/__main__.py": "535776380f550fd2248b4408ef06a0b04da7e815ec97c8a17be573c9e063ff38",
+    "backend/assistant/mcp_gateway.py": "472c69f47b6f51bb3ebd0680b43c4e883f6adf3e73e64439cc573721771af6e6",
+    "backend/assistant/runner.py": "e9d91c8946aa8d88bebd6018896d218c91afded0294b63e52d4b55799ee2231d",
+    "client/tests/assistant.test.mjs": "009dafe5e343b432accce54225f633f08b17803d968409d2bc8df2e1329551d7",
+    "mcp-server/package-lock.json": "e3e2ff47d125b45ee59c0174c661e37c351a2733427666ebee5e2ad1cea01a19",
+    "mcp-server/package.json": "80fa1b4fe5840fa5af49b93dcd7bdf6badcd2cdf5ac3cf023a679473e3bf4ae3",
+    "mcp-server/src/bridge.ts": "c6ce938c1b1628683d46c6cae4a2c2c606c65c79efc7f36c9e15630309430c3c",
+    "mcp-server/src/cli.ts": "d447218067a65d94f7023155ec4f4d1c454d9f4cf33375922631f569143bf3bc",
+    "mcp-server/src/connection.ts": "11746d0978585e0223cead5f8bd7db904a48294885bf08b1f327ebd3261cf158",
+    "mcp-server/src/server.ts": "ac4cf84719c9f94adcb061f609041e2837c19fb2f2fa8b0c49d6124c021f8512",
+    "mcp-server/tests/protocol.test.mjs": "b7e07baf3ad8b62ea2a698b9cc160b1f5adb06d651e0784117cfedcca5facfd5",
+    "mcp-server/tsconfig.json": "c13db8b0399c67364149383f361c7f3653cb5de79a8b1422170e12fb25e3d612"
+  }
+}

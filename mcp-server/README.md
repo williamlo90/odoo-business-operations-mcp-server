@@ -1,9 +1,8 @@
-# MCP server boundary
+# Odoo Business Operations MCP server
 
-Implementation is scheduled for Phase 4. The TypeScript reference client currently
-uses the local HTTP domain API. This directory defines the boundary; it is not an
-executable MCP server. Read/prepare/execute/status contracts remain specified in
-[MCP-INTEGRATIONS.md](../MCP-INTEGRATIONS.md).
+Executable TypeScript stdio server and reference client, using official SDK 2.3.1
+and pinned protocol 2026-07-28. Ten scoped tools call the Python domain API;
+none grant approval or bypass domain authorization.
 
-MCP will call the Python domain service with authenticated actor/tenant context;
-it must not bypass service authorization or write to the database directly.
+See [Phase 4 setup, tests and recovery](../docs/PHASE-4.md). Offline implementation
+is complete; downstream connected validation belongs to Phase 6.

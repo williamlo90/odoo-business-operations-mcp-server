@@ -14,6 +14,7 @@ from pydantic import Field, ValidationError, model_validator
 from backend.assistant.contracts import Decision, Strict
 from backend.assistant.costs import RateCard
 from backend.assistant.gateway import DomainGateway
+from backend.assistant.mcp_gateway import McpGateway
 from backend.assistant.providers import AssistantError, JsonProvider, ProviderConfig
 from backend.assistant.runner import parse_decision, run
 
@@ -67,9 +68,17 @@ async def main(args):
                 raise AssistantError('login_failed')
             token = response.json()['access_token']
             try:
-                value = await run(DomainGateway(base, token), task=args.task, provider=provider,
-                                  decision=decision, task_id=args.task_id, rate=rate,
-                                  trace_dir=os.environ.get('ASSISTANT_STATE_DIR', 'local/assistant-runs'))
+                options = dict(task=args.task, provider=provider, decision=decision,
+                               task_id=args.task_id, rate=rate,
+                               trace_dir=os.environ.get('ASSISTANT_STATE_DIR', 'local/assistant-runs'))
+                transport = os.environ.get('ASSISTANT_TRANSPORT', 'mcp')
+                if transport == 'mcp':
+                    async with McpGateway(base, token) as gateway:
+                        value = await run(gateway, **options)
+                elif transport == 'http':
+                    value = await run(DomainGateway(base, token), **options)
+                else:
+                    raise AssistantError('invalid_assistant_transport')
                 print(json.dumps(value, ensure_ascii=True, indent=2))
             finally:
                 logout = await client.post('/auth/logout', headers={'Authorization': 'Bearer ' + token})

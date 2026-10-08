@@ -126,6 +126,7 @@ async def run(gateway, *, task=None, provider=None, decision=None,
             journal.checkpoint(task_id, owner, 'completed', result=output)
             stage = 'completed'
             trace.write('completed', status=result.status,
+                        transport_correlations=getattr(gateway, 'correlations', []),
                         proposal_id=result.proposal['id'] if result.proposal else None,
                         operation_id=result.operation['id'] if result.operation else None,
                         latency_ms=round((time.monotonic()-started)*1000, 2), **usage)

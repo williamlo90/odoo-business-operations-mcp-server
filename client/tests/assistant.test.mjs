@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve, sep, basename } from 'node:path';
 import { runAssistant } from '../dist/assistant.js';
 
 test('TypeScript -> Python stdio -> authenticated HTTP -> sourced result and replay', async () => {
@@ -29,6 +29,7 @@ test('TypeScript -> Python stdio -> authenticated HTTP -> sourced result and rep
   process.env.API_URL = `http://127.0.0.1:${server.address().port}`;
   process.env.DEMO_PASSWORD = 'synthetic-password-for-test';
   process.env.ASSISTANT_STATE_DIR = folder;
+  process.env.ASSISTANT_TRANSPORT = 'http';
   delete process.env.ASSISTANT_ENV_FILE;
   delete process.env.ASSISTANT_RATE_FILE;
   const packet = {task_id:'00000000-0000-0000-0000-000000000012', request:{request:{
@@ -45,6 +46,7 @@ test('TypeScript -> Python stdio -> authenticated HTTP -> sourced result and rep
     for (const key of Object.keys(process.env)) if (!(key in before)) delete process.env[key];
     Object.assign(process.env, before);
     await new Promise(resolve => server.close(resolve));
+    assert.ok(resolve(folder).startsWith(resolve(tmpdir())+sep) && basename(folder).startsWith('odoo-assistant-'));
     await rm(folder, {recursive:true, force:true});
   }
 });

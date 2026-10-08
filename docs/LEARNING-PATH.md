@@ -43,3 +43,5 @@ lalu buat annotated tag `phase-N` pada commit penyelesaiannya. Tag yang sudah
 digunakan sebagai bahan modul tetap; koreksi berikutnya memakai tag versi baru.
 
 Roadmap revisi memakai Phase 0–10. Phase 3–5 merupakan checkpoint implementasi offline; validasi terhubung dikumpulkan pada Phase 6. Gunakan tag `phase-3-code` untuk checkpoint assistant.
+
+Tag `phase-4-code` menyimpan server MCP dan integrasi assistant melalui protokol stdio.

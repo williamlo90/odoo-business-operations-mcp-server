@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3 implementasi offline selesai; Phase 4–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–4 implementasi offline selesai; Phase 5–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
 
@@ -61,12 +61,14 @@ Evidence: [Phase 3](docs/PHASE-3.md), 49 tes Python dan 2 tes client antarp pros
 
 ## Phase 4 — Implementasi custom MCP server
 
-- [ ] Bangun tools TypeScript read → prepare → approved execute → verify dengan schemas dan SDK/protocol dipin.
-- [ ] Hubungkan reference client dan assistant melalui MCP stdio yang benar-benar berjalan antarp proses.
-- [ ] Tegakkan session identity, role, tenant scope, payload/approval constraints, limits, cancellation dan sanitized errors.
-- [ ] Uji protocol, malicious input, expired session, stale approval, concurrent/replayed execution dan unknown outcomes dengan domain HTTP simulasi.
+- [x] Bangun tools TypeScript read → prepare → approved execute → verify dengan schemas dan SDK/protocol dipin.
+- [x] Hubungkan reference client dan assistant melalui MCP stdio yang benar-benar berjalan antarp proses.
+- [x] Tegakkan session identity, role, tenant scope, payload/approval constraints, limits, cancellation dan sanitized errors.
+- [x] Uji protocol, malicious input, expired session, stale approval, concurrent/replayed execution dan unknown outcomes dengan domain HTTP simulasi.
 
 **Gate implementasi:** percakapan MCP nyata melalui stdio dan alur assistant-to-MCP lulus; platform downstream disimulasikan. Validasi Odoo/PostgreSQL nyata tetap Phase 6.
+
+Evidence: [Phase 4](docs/PHASE-4.md), 7 tes protocol antarp proses lulus.
 
 ## Phase 5 — Implementasi automation dan recovery
 
