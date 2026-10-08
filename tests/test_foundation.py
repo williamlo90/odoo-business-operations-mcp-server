@@ -109,7 +109,13 @@ def test_logs_and_errors_do_not_echo_secrets(api, login, server):
     for value in (marker, os.environ["DEMO_PASSWORD"], os.environ["APP_DB_PASSWORD"], headers["Authorization"].split()[1]):
         assert value not in logs
     events = [json.loads(line) for line in logs.splitlines() if line.startswith('{')]
-    assert events and all(set(event) == {"event", "correlation_id", "route", "method", "status", "duration_ms"} for event in events)
+    # Connected tests may log downstream Odoo calls before this test runs.
+    # Check both explicit schemas while scanning the entire log for secrets.
+    schemas = {
+        'http_request': {'event', 'correlation_id', 'route', 'method', 'status', 'duration_ms'},
+        'odoo_call': {'event', 'correlation_id', 'method', 'status', 'duration_ms'},
+    }
+    assert events and all(set(event) == schemas.get(event['event']) for event in events)
 
 
 def test_database_constraints_and_runtime_privilege(api):

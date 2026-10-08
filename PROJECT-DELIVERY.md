@@ -1,6 +1,6 @@
 # Odoo Business Operations — delivery pack
 
-Status: **Phases 0–9 complete for the selected local scope. Azure deployment remains Phase 10.**
+Status: **Phases 0–9 and the Phase 9A browser workspace complete for the selected local scope. Azure deployment remains Phase 10.**
 
 ## Business brief
 
@@ -11,8 +11,9 @@ an immutable preview, requires a separate approver and verifies the final Odoo
 record. The model cannot approve its own proposal or issue arbitrary database
 commands. William owns this synthetic local demonstration and its operation.
 
-The delivered interface is a reference CLI with reusable Python skills and a
-persistent worker. There is no browser chat UI. The current pricing workflow
+The delivered interfaces are a [browser workspace](docs/WEB-UI.md) and reference
+CLI, with reusable Python skills and a persistent worker. Natural-language
+assistant requests use the CLI. The current pricing workflow
 supports its explicit list-price/no-tax policy; unsupported pricing stops for
 review. Company and role are loaded from authenticated identity, not model text.
 

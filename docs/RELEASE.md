@@ -1,5 +1,9 @@
 # Release specification — Phase 9
 
+This specification describes the immutable CLI delivery checkpoint. The current
+browser workspace is a subsequent application revision documented in
+[Phase 9A](PHASE-9A.md); its evidence is separate from this frozen manifest.
+
 Release checkpoint: `phase-9-delivery` on `learning-phases`. Resolve the exact
 commit with `git rev-parse phase-9-delivery^{commit}`. The accompanying manifest
 hashes the release's files; a file cannot embed its own final Git commit hash.

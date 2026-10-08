@@ -10,6 +10,7 @@ node = shutil.which('node')
 if not npm or not node:
     raise SystemExit('Node.js and npm are required; install dependencies before running.')
 commands = [
+    [node, '--test', 'tests/web/state.test.mjs'],
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/evaluation', 'tests/evaluation'],
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/assistant', 'tests/assistant'],
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/worker', 'tests/worker'],

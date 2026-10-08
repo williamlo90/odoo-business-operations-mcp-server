@@ -17,6 +17,7 @@ not rewrite earlier phase tags.
 | `phase-7-quality` | Frozen synthetic evaluation and quantity grounding | [Phase 7](PHASE-7.md) |
 | `phase-8-reliability` | Telemetry, bounded load, security, restore and rollback | [Phase 8](PHASE-8.md) |
 | `phase-9-delivery` | Operator pack, recorded demo, release verification and Azure design | [Phase 9](PHASE-9.md) |
+| `phase-9a-web-ui` | Browser workspace, scoped read models, role separation and browser recovery acceptance | [Phase 9A](PHASE-9A.md) |
 
 ## Study one stage
 

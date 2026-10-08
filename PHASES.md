@@ -103,7 +103,7 @@ reference passed 18/18. Local Qwen2.5 0.5B passed 7/18 and remains experimental.
 
 Gate: local release candidate passes the selected tests and workload. 98 offline,
 41 connected and 14 live checks; 124 load tasks; 31 verified single-effect writes.
-No browser UI or async callback endpoint exists. Cloud and human paging remain
+At this checkpoint there was no browser UI or async callback endpoint. Cloud and human paging remain
 pending. [Phase 8](docs/PHASE-8.md) · [Runbook](docs/LOCAL-RUNBOOK.md).
 
 ## Phase 9 — Delivery pack
@@ -117,6 +117,18 @@ pending. [Phase 8](docs/PHASE-8.md) · [Runbook](docs/LOCAL-RUNBOOK.md).
 Gate: the local product can be understood and operated from the delivery pack;
 cloud prerequisites are explicit. No Azure provisioning was performed.
 [Phase 9](docs/PHASE-9.md) · [Delivery](PROJECT-DELIVERY.md) · [Azure design](docs/AZURE-PLAN.md).
+
+## Phase 9A — Browser workspace before cloud
+
+- [x] English responsive workspace with role-aware login and company scope.
+- [x] Source-backed customer/product selection, quotation and CRM preparation.
+- [x] Independent approval, original-operator execution and verified Odoo receipt.
+- [x] Saved proposal queue, pagination, reload recovery and lost-response handling.
+- [x] Browser acceptance, API isolation tests, screenshots and operator guide.
+
+One implementation commit and the `phase-9a-web-ui` tag preserve this added
+learning checkpoint. See [Phase 9A](docs/PHASE-9A.md) and [web UI guide](docs/WEB-UI.md).
+The existing Phase 0–9 tags remain unchanged.
 
 ## Phase 10 — Azure deployment and runtime acceptance
 

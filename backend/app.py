@@ -3,6 +3,7 @@ import json
 import logging
 import secrets
 import time
+from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from typing import Annotated, Literal
 from uuid import UUID, uuid4
@@ -11,6 +12,8 @@ import psycopg
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field
 from pwdlib import PasswordHash
@@ -73,6 +76,10 @@ async def request_log(request: Request, call_next):
     response.headers["X-Downstream-Duration-Ms"] = str(round(timing.downstream_ms, 2))
     response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
+    if request.url.path == '/' or request.url.path.startswith('/workspace/'):
+        response.headers['Content-Security-Policy'] = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+        response.headers['Referrer-Policy'] = 'no-referrer'
+        response.headers['X-Frame-Options'] = 'DENY'
     return response
 
 
@@ -233,3 +240,13 @@ def get_work(work_id: UUID, current=Depends(reader)):
 
 
 app.include_router(build_router(actor, reader, operator))
+
+WEB_ROOT = Path(__file__).resolve().parent / 'web'
+
+
+@app.get('/', include_in_schema=False)
+def workspace():
+    return FileResponse(WEB_ROOT / 'index.html')
+
+
+app.mount('/workspace', StaticFiles(directory=WEB_ROOT), name='workspace')

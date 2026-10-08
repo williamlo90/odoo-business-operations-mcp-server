@@ -27,7 +27,7 @@ separate approval, idempotent execution and verified business outcomes.
 | Why does a timeout not immediately trigger another create? | The remote write may already have committed; reconcile the operation first |
 | How are model failures contained? | Typed intent, grounded identifiers/quantities, deterministic preview and separate approval |
 | What was actually measured? | Named local test suites, workload sample counts, final effects and isolated recovery |
-| What remains? | Cloud provisioning/acceptance, longer soak and any future browser interface |
+| What remains? | Cloud provisioning/acceptance, longer soak and optional browser-based natural-language assistance |
 
 The project has a tested local release and an Azure design. It should not be
 represented as an already deployed Azure service, a customer ROI study or a

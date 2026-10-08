@@ -2,12 +2,14 @@
 
 This application helps sales operations research customers and prepare quotations
 or CRM activities. The assistant proposes; a separate approver authorizes; Odoo
-read-back establishes the outcome. The interface is a reference command-line
-client. This release has no chat website or browser dashboard.
+read-back establishes the outcome. Use the [browser workspace](WEB-UI.md) for
+the guided operational workflow, or the reference CLI below. Natural-language
+assistant requests currently use the CLI.
 
 ## Install and resume
 
-Use the `phase-9-delivery` Git tag. Install Docker Desktop with Linux containers,
+Use the `phase-9a-web-ui` Git tag for the browser workspace, or `phase-9-delivery`
+for the original CLI delivery checkpoint. Install Docker Desktop with Linux containers,
 Python 3.13 and Node.js 22 or newer. Keep ports 8020 and 8069 free. From the project
 root, create a Python environment and install the locked dependencies:
 
@@ -34,6 +36,10 @@ Open `http://127.0.0.1:8020/health/ready` and check `ready`. Odoo's local interf
 is `http://127.0.0.1:8069`; its administrator password is `ODOO_ADMIN_PASSWORD`
 in your private `.env`. Business accounts use the separate `DEMO_PASSWORD`.
 Read [ODOO-LOCAL](ODOO-LOCAL.md) for connector rotation and pricing restrictions.
+
+For browser operation, open `http://127.0.0.1:8020/`. Sign in as `operator.a`
+using `DEMO_PASSWORD` from your private `.env`. A separate `approver.a` session
+reviews the proposal. Follow the [web UI guide](WEB-UI.md) for the full workflow.
 
 ## A daily quotation
 

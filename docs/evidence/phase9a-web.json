@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-08T15:19:30.173Z",
+  "checks": [
+    "authenticated queue",
+    "operator cannot approve in UI",
+    "source-backed quotation preview",
+    "separate approver",
+    "lost execution response recovered from saved server operation",
+    "real Odoo quotation verified",
+    "reload and reauthentication preserve operation",
+    "status reconciliation retains original operation",
+    "cross-company proposal denied",
+    "real CRM activity prepared, approved and verified",
+    "390px responsive layout",
+    "logout clears private workspace",
+    "no browser JavaScript errors"
+  ],
+  "quote_proposal": "c23dd54f-c4fd-4442-88a0-4cb3d1c699eb",
+  "quote_operation": "fc3bb724-f065-44cf-b96d-a9f7b386e6eb",
+  "quote_record": "S00143",
+  "activity_proposal": "7514cc19-5e5e-47c5-8d1c-a969edb686d3",
+  "activity_operation": "19d3badc-865b-4e1f-9f22-0382be65ef34",
+  "checkpoint": "phase-9a-web-ui",
+  "parent_commit": "862effaa6e785f916aac62e2efa0b27857b1c9a6",
+  "runtime_image": "sha256:47cf79071ddb608b736339c8be0afe37651c3db82cc59433ca260e88dae35f09",
+  "offline": {
+    "passed": 102,
+    "command": "python deploy/check_offline.py"
+  },
+  "container_suite": {
+    "passed": 132,
+    "skipped": 20,
+    "command": "docker compose -f compose.test.yaml -f compose.connected.yaml up --build --abort-on-container-exit --exit-code-from tests"
+  },
+  "scope": "Synthetic local Odoo; no cloud or model calls. Suite counts overlap.",
+  "sha256": {
+    "backend/app.py": "dc4042ce865bd4ef615c9a1ba23151d9c5798e57674ec4b640ed291232d00eeb",
+    "backend/business.py": "5e1322b3222c99b37496ba8e363e68416a9e2a65e1ce9cd25785972fd4f69866",
+    "backend/web/app.js": "65a462229f6245f6696070e34d6b7bbcae2a061daee7f24fda277bf7830a05cd",
+    "backend/web/index.html": "d8dc9e7d6aef101647e73746d5c45870a465ed9f5aff8e5944da8107668dc139",
+    "backend/web/state.mjs": "50b4931ed6b3a3ea80b0d95b8a9d2bc7cbfca230bd1280e77e6d16d8d06030d0",
+    "backend/web/style.css": "2d4f74237a82fc6ea60fb73f37c91ecbaad8a0d774ce95dd02648aac97e716b6",
+    "deploy/check_offline.py": "33757c4e3ee012413da2f67f3d5c1758210ffd5a050bd9781185109a86570c16",
+    "docs/assets/web-login.png": "9a0ea4ab58235863c0cf56d1612bbdfe3236fe9d947d83c50817fb5e2453d1cd",
+    "docs/assets/web-mobile.png": "c0a7efc0bed55d7370e80a977316a6f535a1d7d8ddb21cff2dc0dbddf810e84b",
+    "docs/assets/web-queue.png": "dad64f242fe6187583466193cc7ebfb69f90b539bebef176589f0aeda6bb8bc5",
+    "docs/assets/web-receipt.png": "00b221b8b48979eb8132f507f5043b7a1cd68b0bfb45c68a331526f53b35a6a4",
+    "tests/test_foundation.py": "eede3a1dab196bb30fd46c19ae5f49a5627ae4882a482a67181dfd6b7f501c45",
+    "tests/test_workspace.py": "bb874b03f06bf4a5a5d7429a15fac8416084d9c06cfd07d735331d945ce1316e",
+    "tests/web/package-lock.json": "b0bb4c7feb8bfdffd86e69453013b0cc67e14417c5e5d7b67b0450e02a83a2c2",
+    "tests/web/package.json": "411959e6eecb62f45e56e85ef0e5ba67b114873eafba008b6043df14c9275d68",
+    "tests/web/smoke.cjs": "2ebbb5bb5623f9bcbc7c4398d820ba31f6dcffae9ae9792f91e5435893edd76b",
+    "tests/web/state.test.mjs": "4013504d6d3007e96b11d8594bddfcddd672c4daae4d9d1edff7c62be0cd9241"
+  },
+  "hash_basis": "SHA-256 of Git index blob bytes; Git normalizes text line endings. Runtime image identifies the tested container."
+}

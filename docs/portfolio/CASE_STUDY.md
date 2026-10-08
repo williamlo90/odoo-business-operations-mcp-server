@@ -64,7 +64,10 @@ not unrestricted production or cloud-performance claims.
 
 The release includes locked dependencies, versioned contracts, an operator
 guide, a recovery runbook, a reproducible recording and tagged learning
-checkpoints. The current interface is a CLI and Odoo's local UI.
+checkpoints. A responsive browser workspace now supports quotation/CRM
+preparation, independent review, execution and saved receipts through the same
+domain API. The CLI retains the natural-language assistant and automation entry
+points. See [browser acceptance](../PHASE-9A.md).
 
 Azure is a prepared deployment design. Its next gate includes infrastructure
 as code, distinct credentials, restricted HTTPS access, private backups,

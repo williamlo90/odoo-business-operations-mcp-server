@@ -223,6 +223,32 @@ def build_router(actor, reader, operator):
         with connection() as conn:
             return proposal(conn, proposal_id, current)
 
+    @router.get('/workspace/proposals')
+    def workspace_proposals(current=Depends(reader), offset: int = Query(default=0, ge=0),
+                            limit: int = Query(default=25, ge=1, le=50)):
+        # This is a scoped read model. Existing approval/execution endpoints remain
+        # the only write authority; never expose signed dispatch envelopes.
+        with connection() as conn:
+            rows = conn.execute('''SELECT p.id,p.kind,p.actor_id,p.preview,p.created_at,p.expires_at,
+                a.id AS approval_id,o.id AS operation_id,o.status AS operation_status
+                FROM proposals p LEFT JOIN approvals a ON a.proposal_id=p.id AND a.tenant_id=p.tenant_id
+                LEFT JOIN operations o ON o.proposal_id=p.id AND o.tenant_id=p.tenant_id
+                WHERE p.tenant_id=%s ORDER BY p.created_at DESC,p.id DESC LIMIT %s OFFSET %s''',
+                (current['tenant_id'], limit + 1, offset)).fetchall()
+        return {'items': rows[:limit], 'next_offset': offset + limit if len(rows) > limit else None}
+
+    @router.get('/workspace/proposals/{proposal_id}')
+    def workspace_proposal(proposal_id: UUID, current=Depends(reader)):
+        with connection() as conn:
+            p = proposal(conn, proposal_id, current)
+            a = conn.execute('SELECT * FROM approvals WHERE proposal_id=%s AND tenant_id=%s',
+                             (proposal_id, current['tenant_id'])).fetchone()
+            o = conn.execute('SELECT * FROM operations WHERE proposal_id=%s AND tenant_id=%s',
+                             (proposal_id, current['tenant_id'])).fetchone()
+        return {'proposal': ProposalOut.model_validate(p),
+                'approval': ApprovalOut.model_validate(a) if a else None,
+                'operation': OperationOut.model_validate(public_operation(o)) if o else None}
+
     @router.post('/proposals/{proposal_id}/approve', status_code=201, response_model=ApprovalOut)
     def approve(proposal_id: UUID, data: ApproveInput, current=Depends(approver)):
         with connection() as conn:

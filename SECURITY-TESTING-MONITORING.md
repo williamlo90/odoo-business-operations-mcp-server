@@ -23,8 +23,10 @@ identifies individual cases; [Phase 8](docs/PHASE-8.md) consolidates reliability
 
 Verification layers include rules/schema unit tests, provider/MCP contracts,
 real PostgreSQL/Odoo integration, reference-client workflows, bounded model
-regression, worker process interruption and load/recovery tests. The application
-has no browser UI. Request/output/queue limits and memory caps are tested without
+regression, worker process interruption and load/recovery tests. The browser
+workspace adds role/tenant isolation, reload recovery, lost-response and
+responsive-layout acceptance in [Phase 9A](docs/PHASE-9A.md).
+Request/output/queue limits and memory caps are tested without
 forcing whole-host OOM. Lost response and late completion cover the applicable
 recovery paths; there is no callback endpoint.
 

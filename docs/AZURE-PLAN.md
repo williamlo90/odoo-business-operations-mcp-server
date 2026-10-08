@@ -20,16 +20,17 @@ Ollama/GPU hosting is excluded from the initial design and estimate.
 
 | Boundary | Proposed access |
 | --- | --- |
-| Browser to Odoo | HTTPS 443 through a reverse proxy, named accounts, owner-approved domain and source-IP restrictions |
+| Browser workspace and Odoo | HTTPS 443 through a reverse proxy, separate hostnames, named accounts, owner-approved domain and source-IP restrictions |
 | Administration | SSH keys from the owner's CIDR only; no unrestricted port 22 |
 | API | Loopback 8020; VM-local client or an approved SSH tunnel; no public 8020 |
 | Odoo | Loopback 8069 behind HTTPS; no public 8069 |
 | PostgreSQL | Private Docker networks; no published database ports |
 | MCP | Authenticated stdio processes; no public MCP listener |
 
-There is no browser chat UI in this release. The URL will expose restricted
-Odoo access and resulting records; assistant operation remains through the CLI.
-A web assistant is a separate feature. Before remote exposure, replace shared
+The Phase 9A browser workspace is served by the API container at its root.
+Proxy a restricted HTTPS workspace hostname to loopback 8020 and a separate
+Odoo hostname to loopback 8069. Natural-language assistant operation remains
+through the CLI. Before remote exposure, replace shared
 demo-account passwords with distinct credentials and repeat role tests. Initialize
 fresh synthetic cloud records rather than copying local secrets or databases.
 

@@ -4,6 +4,8 @@ Choose a path through the project.
 
 | Start with | What you will find |
 | --- | --- |
+| [Browser workspace](WEB-UI.md) | Login, quotation/CRM preparation, approval and verified receipts in the web UI |
+| [Web UI acceptance](PHASE-9A.md) | Browser and API checks for the pre-cloud workspace checkpoint |
 | [Product walkthrough](demo/README.md) | Four visual scenes from the actual recorded quotation workflow |
 | [Engineering case study](portfolio/CASE_STUDY.md) | Problem, design decisions, recovery and measured results |
 | [Portfolio summary](portfolio/APPLICATION_PACK.md) | Concise project pitch and evidence-backed interview points |

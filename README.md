@@ -6,7 +6,11 @@ Research customer records, prepare quotations and CRM activities, review the exa
 proposal, and verify what Odoo actually created. A custom MCP server connects
 bounded AI intent to authenticated business workflows.
 
-![Odoo operations: source records, separate approval, verified outcome](docs/assets/overview.png)
+![Odoo Operations browser workspace showing the company work queue](docs/assets/web-queue.png)
+
+**Browser workspace:** prepare quotations and CRM follow-ups, review approvals,
+and inspect verified Odoo receipts. [Open locally](http://127.0.0.1:8020/) after
+starting the stack, or follow the [web UI guide](docs/WEB-UI.md).
 
 [Product walkthrough](docs/demo/README.md) · [Engineering case study](docs/portfolio/CASE_STUDY.md) · [Operator guide](docs/USER-GUIDE.md) · [Documentation](docs/README.md)
 
@@ -30,8 +34,9 @@ read the result back from Odoo before reporting success.
 | **31 / 31 single effects** | Every load-run write had exactly one Odoo ledger entry and order, including replay | [Load evidence](docs/evidence/phase8-load.json) |
 | **30.11 s restore** | Isolated matching database/filestore restore with authenticated business read-back | [Recovery evidence](docs/evidence/phase8-recovery.json) |
 
-These are bounded synthetic local results. The application code remains the
-qualified release; the nine-stage delivery demo is a separate recorded run.
+These are bounded synthetic local results from the Phase 8 checkpoint. The
+browser workspace adds its own [acceptance checks](docs/PHASE-9A.md); the
+nine-stage CLI delivery demo is a separate recorded run.
 [Versions and reproduction](docs/RELEASE.md).
 
 ## A quotation, from request to receipt
@@ -53,9 +58,10 @@ qualified release; the nine-stage delivery demo is a separate recorded run.
 </tr>
 </table>
 
-The visuals summarize actual [CLI receipts](docs/demo/recording.json); they are
-not screenshots of a web application. The reference interface is a CLI, with
-Odoo's own interface available locally. [Full recorded walkthrough](docs/demo/README.md).
+The four visuals above summarize actual [CLI receipts](docs/demo/recording.json).
+The header image is an actual browser screenshot. See the [web UI tour](docs/WEB-UI.md)
+for current workspace screenshots and the [CLI walkthrough](docs/demo/README.md)
+for the recorded command-line workflow.
 
 ## Architecture and authority
 
@@ -63,6 +69,7 @@ Odoo's own interface available locally. [Full recorded walkthrough](docs/demo/RE
 
 | Layer | Responsibility |
 | --- | --- |
+| Browser workspace | Prepare, review and execute through the same authenticated domain API |
 | AI assistant | Produce one bounded typed intent or request clarification |
 | Custom MCP server | Expose allowlisted tools through authenticated stdio calls |
 | FastAPI domain service | Enforce tenant/role scope, proposal freshness, approval and execution rules |
