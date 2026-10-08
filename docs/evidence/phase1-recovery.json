@@ -1,0 +1,9 @@
+{
+  "before": 200,
+  "outage": {
+    "live": 200,
+    "ready": 503,
+    "body": "{\"error\":\"database_unavailable\"}"
+  },
+  "recovered": 200
+}

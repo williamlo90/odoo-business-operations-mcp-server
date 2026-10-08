@@ -1,0 +1,76 @@
+name: odoo-ops-local
+services:
+  db:
+    image: postgres:17-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+    command: [postgres, -c, log_error_verbosity=terse, -c, log_min_error_statement=panic, -c, log_parameter_max_length_on_error=0]
+    environment:
+      POSTGRES_DB: odoo_ops_local
+      POSTGRES_USER: odoo_ops_owner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate .env first}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U odoo_ops_owner -d odoo_ops_local]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  migrate:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: base
+    command: [python, -m, backend.manage, migrate]
+    environment: &management
+      APP_ENV: local
+      MIGRATION_DATABASE_URL: postgresql://odoo_ops_owner:${POSTGRES_PASSWORD:?}@db:5432/odoo_ops_local
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?}
+    depends_on:
+      db:
+        condition: service_healthy
+  seed:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: base
+    command: [python, -m, backend.manage, seed]
+    environment: *management
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+  api:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: base
+    environment:
+      APP_ENV: local
+      DATABASE_URL: postgresql://odoo_ops_app:${APP_DB_PASSWORD:?}@db:5432/odoo_ops_local
+    ports:
+      - "127.0.0.1:${API_PORT:-8020}:8000"
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready',timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  client:
+    profiles: [client]
+    build:
+      context: client
+      dockerfile: Dockerfile
+    environment:
+      API_URL: http://api:8000
+      DEMO_USERNAME: operator.a
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?}
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  pgdata:

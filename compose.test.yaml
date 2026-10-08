@@ -1,0 +1,31 @@
+name: odoo-ops-test
+services:
+  db:
+    image: postgres:17-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+    command: [postgres, -c, log_error_verbosity=terse, -c, log_min_error_statement=panic, -c, log_parameter_max_length_on_error=0]
+    environment:
+      POSTGRES_DB: odoo_ops_test
+      POSTGRES_USER: odoo_ops_owner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate .env first}
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U odoo_ops_owner -d odoo_ops_test]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  tests:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: tests
+    environment:
+      APP_ENV: test
+      ALLOW_TEST_RESET: "yes"
+      MIGRATION_DATABASE_URL: postgresql://odoo_ops_owner:${POSTGRES_PASSWORD:?}@db:5432/odoo_ops_test
+      DATABASE_URL: postgresql://odoo_ops_app:${APP_DB_PASSWORD:?}@db:5432/odoo_ops_test
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?}
+      LOGIN_LIMIT: "100"
+    depends_on:
+      db:
+        condition: service_healthy
