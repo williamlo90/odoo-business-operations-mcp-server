@@ -47,6 +47,9 @@ Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md),
 
 ## Phase 3 — AI assistant dan reusable skills
 
+Progres awal: [core assistant, skills, adapter dan 44 tes offline](docs/PHASE-3.md)
+tersedia. Live inference dan connected gate belum dijalankan; checklist fase tetap terbuka.
+
 - [ ] Implementasikan assistant dan kontrak skills di AI-AGENTS.md serta REUSABLE-SKILLS.md, dengan structured outputs dan tool allowlist.
 - [ ] Implementasikan provider interface OpenAI, Claude, Grok; contract test semuanya dan jalankan canary nyata terpisah dengan data yang diizinkan bila credentials tersedia.
 - [ ] Tambahkan local inference Ollama dan evaluasi jalur lokal; aturan offline/private mengikuti LOCAL-AI-AND-PROVIDERS.md.

@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "Line": {
+      "additionalProperties": false,
+      "properties": {
+        "product_code": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Product Code",
+          "type": "string"
+        },
+        "quantity": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Quantity",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "product_code",
+        "quantity"
+      ],
+      "title": "Line",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "const": "prepare_quote",
+      "title": "Skill",
+      "type": "string"
+    },
+    "customer_reference": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Customer Reference",
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/Line"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Items",
+      "type": "array"
+    }
+  },
+  "required": [
+    "skill",
+    "customer_reference",
+    "items"
+  ],
+  "title": "Quote",
+  "type": "object"
+}

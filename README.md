@@ -43,10 +43,14 @@ tool task success; correct record selection; unauthorized-write rejection; dupli
 3. Buat satu alur lengkap, uji hasilnya, baru tambah variasi; ikuti urutan fase dan dependency.
 4. Catat evidence path/run ID saat menutup fase. Cloud hanya pada Phase 9.
 
-Fondasi aplikasi lokal tersedia di backend/ dan client/, dengan PostgreSQL migrations, Docker Compose, serta automated tests. MCP server dan business skills executable menunggu Phase 3–4. Lihat [local setup](docs/LOCAL-SETUP.md).
+Fondasi aplikasi lokal tersedia di backend/ dan client/, dengan PostgreSQL migrations, Docker Compose, serta automated tests. Core business skills tersedia sebagai progres Phase 3; custom MCP server menunggu Phase 4. Lihat [local setup](docs/LOCAL-SETUP.md).
 
 ## Progress implementasi
 
 Phase 0 selesai pada 2026-10-08 untuk inventaris dan scope. Lihat [Phase 0](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), dan [dependencies](docs/DEPENDENCIES.md). Phase 1 selesai; lihat [hasil dan evidence](docs/PHASE-1.md). Alur pertama: customer search → quotation preview → approval → create draft → read-back. Target sandbox: Odoo Community 19.0 lokal; JSON-2 dan alur quotation/activity telah diuji pada Phase 2. Docker engine telah dipulihkan dan digunakan untuk verifikasi Phase 1.
 
 Phase 2 selesai: customer/opportunity reads, quotation/activity proposal, approval, execute dan read-back terverifikasi. Lihat [hasil Phase 2](docs/PHASE-2.md). API lokal: http://127.0.0.1:8020/docs; Odoo sandbox: http://127.0.0.1:8069.
+
+Phase 3 sedang dikerjakan: core assistant, empat reusable skills dan adapter provider
+tersedia dengan 44 tes offline. Pengujian AI nyata dan workflow terhubung masih
+pending. Lihat [progres dan cara menjalankan Phase 3](docs/PHASE-3.md).

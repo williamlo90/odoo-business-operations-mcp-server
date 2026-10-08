@@ -1,0 +1,6 @@
+Phase 3 lightweight checkpoint - 2026-10-08
+Scope: simulated HTTP transports; no Docker, real providers, Odoo or local model inference.
+Command: python -m pytest -q --confcutdir=tests/assistant tests/assistant
+
+............................................                             [100%]
+44 passed in 0.84s

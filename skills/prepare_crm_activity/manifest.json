@@ -1,0 +1,19 @@
+{
+  "name": "prepare_crm_activity",
+  "version": "0.3.0",
+  "owner": "Odoo Business Operations project",
+  "binding": "backend.assistant.skills:execute_skill",
+  "input_schema": "input.schema.json",
+  "output_schema": "output.schema.json",
+  "role": [
+    "operator"
+  ],
+  "effect": "application_proposal_only",
+  "odoo_write": false,
+  "human_approval_before_odoo_write": true,
+  "request_timeout_seconds": 10,
+  "task_timeout_seconds": 60,
+  "max_domain_calls": 16,
+  "automatic_write_retries": 0,
+  "compatibility": "Phase 2 HTTP contract 1.0; assistant contract 0.3.0"
+}

@@ -1,0 +1,212 @@
+{
+  "$defs": {
+    "Activity": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "prepare_crm_activity",
+          "title": "Skill",
+          "type": "string"
+        },
+        "opportunity_id": {
+          "exclusiveMinimum": 0,
+          "title": "Opportunity Id",
+          "type": "integer"
+        },
+        "assignee_id": {
+          "exclusiveMinimum": 0,
+          "title": "Assignee Id",
+          "type": "integer"
+        },
+        "due_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due Date",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 120,
+          "minLength": 1,
+          "pattern": "^[^<>]+$",
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill",
+        "opportunity_id",
+        "assignee_id",
+        "due_date",
+        "summary"
+      ],
+      "title": "Activity",
+      "type": "object"
+    },
+    "Clarify": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "clarify",
+          "title": "Skill",
+          "type": "string"
+        },
+        "missing": {
+          "items": {
+            "enum": [
+              "customer_reference",
+              "product_code",
+              "quantity",
+              "opportunity_id",
+              "assignee_id",
+              "due_date",
+              "summary",
+              "operation_id",
+              "supported_task"
+            ],
+            "type": "string"
+          },
+          "maxItems": 9,
+          "minItems": 1,
+          "title": "Missing",
+          "type": "array"
+        }
+      },
+      "required": [
+        "skill",
+        "missing"
+      ],
+      "title": "Clarify",
+      "type": "object"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "properties": {
+        "product_code": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Product Code",
+          "type": "string"
+        },
+        "quantity": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Quantity",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "product_code",
+        "quantity"
+      ],
+      "title": "Line",
+      "type": "object"
+    },
+    "Quote": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "prepare_quote",
+          "title": "Skill",
+          "type": "string"
+        },
+        "customer_reference": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Customer Reference",
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Line"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "skill",
+        "customer_reference",
+        "items"
+      ],
+      "title": "Quote",
+      "type": "object"
+    },
+    "Reconcile": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "reconcile_odoo_write",
+          "title": "Skill",
+          "type": "string"
+        },
+        "operation_id": {
+          "pattern": "^[0-9a-fA-F-]{36}$",
+          "title": "Operation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill",
+        "operation_id"
+      ],
+      "title": "Reconcile",
+      "type": "object"
+    },
+    "Research": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "const": "research_customer",
+          "title": "Skill",
+          "type": "string"
+        },
+        "customer_reference": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Customer Reference",
+          "type": "string"
+        },
+        "include_opportunities": {
+          "title": "Include Opportunities",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "skill",
+        "customer_reference",
+        "include_opportunities"
+      ],
+      "title": "Research",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Research"
+        },
+        {
+          "$ref": "#/$defs/Quote"
+        },
+        {
+          "$ref": "#/$defs/Activity"
+        },
+        {
+          "$ref": "#/$defs/Reconcile"
+        },
+        {
+          "$ref": "#/$defs/Clarify"
+        }
+      ],
+      "title": "Request"
+    }
+  },
+  "required": [
+    "request"
+  ],
+  "title": "Decision",
+  "type": "object"
+}

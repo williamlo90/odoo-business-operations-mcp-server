@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "const": "research_customer",
+      "title": "Skill",
+      "type": "string"
+    },
+    "customer_reference": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Customer Reference",
+      "type": "string"
+    },
+    "include_opportunities": {
+      "title": "Include Opportunities",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "skill",
+    "customer_reference",
+    "include_opportunities"
+  ],
+  "title": "Research",
+  "type": "object"
+}

@@ -1,0 +1,78 @@
+"""Host-side reference CLI. Does not start Docker, download models or load .env implicitly."""
+import argparse
+import asyncio
+import json
+import os
+from pathlib import Path
+
+import httpx
+from dotenv import load_dotenv
+
+from backend.assistant.gateway import DomainGateway
+from backend.assistant.providers import AssistantError, JsonProvider, ProviderConfig
+from backend.assistant.runner import parse_decision, run
+
+
+async def main(args):
+    if args.env_file:
+        load_dotenv(args.env_file, override=False)
+    provider = None
+    if args.task:
+        names = {'openai': 'OPENAI_API_KEY', 'claude': 'ANTHROPIC_API_KEY', 'grok': 'XAI_API_KEY'}
+        provider = JsonProvider(ProviderConfig(provider=args.provider, model=args.model or '',
+            api_key=os.environ.get(names.get(args.provider, 'UNUSED_LOCAL_PROVIDER_KEY')),
+            local_only=args.local_only))
+    decision = None
+    if args.request_file:
+        path = Path(args.request_file)
+        if path.stat().st_size > 16384:
+            raise AssistantError('model_output_invalid')
+        decision = parse_decision(path.read_text(encoding='utf-8'))
+    base = os.environ.get('API_URL', 'http://127.0.0.1:8020').rstrip('/')
+    DomainGateway(base, 'validate-url-before-login')
+    password = os.environ.get('DEMO_PASSWORD')
+    if not password:
+        raise AssistantError('demo_password_required')
+    async with httpx.AsyncClient(base_url=base, trust_env=False, follow_redirects=False, timeout=10) as client:
+        try:
+            response = await client.post('/auth/login', json={
+                'username': os.environ.get('DEMO_USERNAME', 'operator.a'), 'password': password})
+            if response.status_code != 200:
+                raise AssistantError('login_failed')
+            token = response.json()['access_token']
+            try:
+                value = await run(DomainGateway(base, token), task=args.task, provider=provider,
+                                  decision=decision)
+                print(json.dumps(value, ensure_ascii=True, indent=2))
+            finally:
+                logout = await client.post('/auth/logout', headers={'Authorization': 'Bearer ' + token})
+                if logout.status_code != 204:
+                    raise AssistantError('logout_failed')
+        except httpx.HTTPError:
+            raise AssistantError('domain_unavailable') from None
+        except (ValueError, KeyError, TypeError):
+            raise AssistantError('domain_response_malformed') from None
+
+
+def cli():
+    parser = argparse.ArgumentParser(description='Phase 3 assistant: read or prepare, then review using the existing client.')
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument('--task', help='Natural-language request; explicit --provider and --model required')
+    inputs.add_argument('--request-file', help='JSON Decision contract for deterministic skill invocation')
+    parser.add_argument('--provider', choices=['openai', 'claude', 'grok', 'ollama'], default='ollama')
+    parser.add_argument('--model', help='Explicit model identifier; no unverified model default')
+    parser.add_argument('--local-only', action='store_true')
+    parser.add_argument('--env-file', help='Explicit local dotenv path; values are never printed')
+    args = parser.parse_args()
+    try:
+        asyncio.run(main(args))
+    except AssistantError as exc:
+        parser.exit(1, str(exc) + '\n')
+    except OSError:
+        parser.exit(1, 'local_file_unavailable\n')
+    except KeyboardInterrupt:
+        parser.exit(130, 'cancelled\n')
+
+
+if __name__ == '__main__':
+    cli()
