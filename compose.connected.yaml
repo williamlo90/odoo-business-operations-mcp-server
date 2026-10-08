@@ -1,0 +1,21 @@
+# Overlay for the isolated application test DB, connected to the local synthetic Odoo.
+services:
+  db:
+    networks:
+      default:
+        aliases: [phase2-test-db]
+  tests:
+    environment:
+      MIGRATION_DATABASE_URL: postgresql://odoo_ops_owner:${POSTGRES_PASSWORD:?}@phase2-test-db:5432/odoo_ops_test
+      DATABASE_URL: postgresql://odoo_ops_app:${APP_DB_PASSWORD:?}@phase2-test-db:5432/odoo_ops_test
+      ODOO_CONFIG_PATH: /run/ops-config/connections.json
+      OPS_SIGNING_KEY: ${OPS_SIGNING_KEY:?}
+      CONNECTED_TESTS: "yes"
+      ODOO_TEST_DATABASE_URL: postgresql://odoo:${ODOO_DB_PASSWORD:?}@odoo-db:5432/odoo_ops_sandbox
+    volumes:
+      - ./local/odoo-config:/run/ops-config:ro
+    networks: [default, sandbox]
+networks:
+  sandbox:
+    external: true
+    name: odoo-ops-local_default

@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–1 selesai; fondasi lokal terimplementasi dan diuji. Phase 2–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9**. Access control dan test dimulai saat feature dibuat; fase 7 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 9.
 
@@ -34,14 +34,16 @@ Evidence Phase 1 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-1.md),
 
 ## Phase 2 — Alur bisnis deterministik dan reference outcomes
 
-- [ ] Bangun reference assistant untuk mencari pelanggan, meninjau peluang sales, dan menyiapkan draft quotation atau activity.
-- [ ] Tentukan versi/edition Odoo serta model/API yang benar-benar tersedia; dokumentasikan pilihan sebelum implementasi adapter.
-- [ ] Pisahkan tool read, prepare, dan execute; tool tidak menyediakan arbitrary SQL, arbitrary model method, atau unrestricted URL.
-- [ ] Approval terikat payload, actor, tenant, dan versi record. Perubahan payload atau record membatalkan approval lama.
-- [ ] Tangani pagination, rate limit, timeout, partial failure, retry, dan read-back hasil. Jangan menganggap semua endpoint mendukung idempotency native.
-- [ ] Sediakan contract versioning dan compatibility fixtures untuk consumer proyek lain.
+- [x] Bangun reference assistant untuk mencari pelanggan, meninjau peluang sales, dan menyiapkan draft quotation atau activity.
+- [x] Tentukan versi/edition Odoo serta model/API yang benar-benar tersedia; dokumentasikan pilihan sebelum implementasi adapter.
+- [x] Pisahkan tool read, prepare, dan execute; tool tidak menyediakan arbitrary SQL, arbitrary model method, atau unrestricted URL.
+- [x] Approval terikat payload, actor, tenant, dan versi record. Perubahan payload atau record membatalkan approval lama.
+- [x] Tangani pagination, rate limit, timeout, partial failure, retry, dan read-back hasil. Jangan menganggap semua endpoint mendukung idempotency native.
+- [x] Sediakan contract versioning dan compatibility fixtures untuk consumer proyek lain.
 
 **Gate:** happy path, exception, approval, dan recovery bisa diuji dengan data referensi tanpa bergantung pada kualitas LLM. Expected outcomes ditulis dari aturan dan sumber, bukan disalin dari output model.
+
+Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md), [panduan Odoo](docs/ODOO-LOCAL.md), [kontrak v1](docs/CONTRACT-V1.md). 38 tests lulus, termasuk 9 connected cases Odoo nyata; fresh-volume install dan CLI quotation lulus. AI/MCP/worker tetap pada fase berikutnya.
 
 ## Phase 3 — AI assistant dan reusable skills
 

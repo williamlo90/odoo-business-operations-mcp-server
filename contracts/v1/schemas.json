@@ -1,0 +1,681 @@
+{
+  "contract_version": "1.0",
+  "schemas": {
+    "QuoteInput": {
+      "$defs": {
+        "Item": {
+          "additionalProperties": false,
+          "properties": {
+            "product_id": {
+              "exclusiveMinimum": 0,
+              "title": "Product Id",
+              "type": "integer"
+            },
+            "quantity": {
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Quantity",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "product_id",
+            "quantity"
+          ],
+          "title": "Item",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "customer_id": {
+          "exclusiveMinimum": 0,
+          "title": "Customer Id",
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Item"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "customer_id",
+        "items"
+      ],
+      "title": "QuoteInput",
+      "type": "object"
+    },
+    "ActivityInput": {
+      "additionalProperties": false,
+      "properties": {
+        "opportunity_id": {
+          "exclusiveMinimum": 0,
+          "title": "Opportunity Id",
+          "type": "integer"
+        },
+        "assignee_id": {
+          "exclusiveMinimum": 0,
+          "title": "Assignee Id",
+          "type": "integer"
+        },
+        "due_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Due Date",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 120,
+          "minLength": 1,
+          "pattern": "^[^<>]+$",
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "opportunity_id",
+        "assignee_id",
+        "due_date",
+        "summary"
+      ],
+      "title": "ActivityInput",
+      "type": "object"
+    },
+    "ApproveInput": {
+      "additionalProperties": false,
+      "properties": {
+        "payload_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Payload Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "payload_hash"
+      ],
+      "title": "ApproveInput",
+      "type": "object"
+    },
+    "ExecuteInput": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "format": "uuid",
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "format": "uuid",
+          "title": "Idempotency Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "approval_id",
+        "idempotency_key"
+      ],
+      "title": "ExecuteInput",
+      "type": "object"
+    },
+    "ProposalOut": {
+      "$defs": {
+        "ActivityPreview": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "activity",
+              "title": "Kind",
+              "type": "string"
+            },
+            "company_id": {
+              "title": "Company Id",
+              "type": "integer"
+            },
+            "opportunity_id": {
+              "title": "Opportunity Id",
+              "type": "integer"
+            },
+            "assignee_id": {
+              "title": "Assignee Id",
+              "type": "integer"
+            },
+            "due_date": {
+              "title": "Due Date",
+              "type": "string"
+            },
+            "summary": {
+              "title": "Summary",
+              "type": "string"
+            },
+            "source_version": {
+              "title": "Source Version",
+              "type": "string"
+            },
+            "contract_version": {
+              "const": "1.0",
+              "title": "Contract Version",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "company_id",
+            "opportunity_id",
+            "assignee_id",
+            "due_date",
+            "summary",
+            "source_version",
+            "contract_version"
+          ],
+          "title": "ActivityPreview",
+          "type": "object"
+        },
+        "PreviewLine": {
+          "additionalProperties": false,
+          "properties": {
+            "product_id": {
+              "title": "Product Id",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "quantity": {
+              "title": "Quantity",
+              "type": "integer"
+            },
+            "unit_price": {
+              "title": "Unit Price",
+              "type": "string"
+            },
+            "subtotal": {
+              "title": "Subtotal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id",
+            "name",
+            "quantity",
+            "unit_price",
+            "subtotal"
+          ],
+          "title": "PreviewLine",
+          "type": "object"
+        },
+        "QuotePreview": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "quote",
+              "title": "Kind",
+              "type": "string"
+            },
+            "company_id": {
+              "title": "Company Id",
+              "type": "integer"
+            },
+            "customer_id": {
+              "title": "Customer Id",
+              "type": "integer"
+            },
+            "customer_name": {
+              "title": "Customer Name",
+              "type": "string"
+            },
+            "currency": {
+              "const": "IDR",
+              "title": "Currency",
+              "type": "string"
+            },
+            "pricelist_id": {
+              "title": "Pricelist Id",
+              "type": "integer"
+            },
+            "pricing_policy": {
+              "const": "list-price-no-tax-v1",
+              "title": "Pricing Policy",
+              "type": "string"
+            },
+            "items": {
+              "items": {
+                "$ref": "#/$defs/PreviewLine"
+              },
+              "title": "Items",
+              "type": "array"
+            },
+            "total": {
+              "title": "Total",
+              "type": "string"
+            },
+            "source_version": {
+              "title": "Source Version",
+              "type": "string"
+            },
+            "contract_version": {
+              "const": "1.0",
+              "title": "Contract Version",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "company_id",
+            "customer_id",
+            "customer_name",
+            "currency",
+            "pricelist_id",
+            "pricing_policy",
+            "items",
+            "total",
+            "source_version",
+            "contract_version"
+          ],
+          "title": "QuotePreview",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "format": "uuid",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "quote",
+            "activity"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        },
+        "preview": {
+          "discriminator": {
+            "mapping": {
+              "activity": "#/$defs/ActivityPreview",
+              "quote": "#/$defs/QuotePreview"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/QuotePreview"
+            },
+            {
+              "$ref": "#/$defs/ActivityPreview"
+            }
+          ],
+          "title": "Preview"
+        },
+        "payload_hash": {
+          "title": "Payload Hash",
+          "type": "string"
+        },
+        "contract_version": {
+          "const": "1.0",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "actor_id",
+        "kind",
+        "payload",
+        "preview",
+        "payload_hash",
+        "contract_version",
+        "created_at",
+        "expires_at"
+      ],
+      "title": "ProposalOut",
+      "type": "object"
+    },
+    "ApprovalOut": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "proposal_id": {
+          "format": "uuid",
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "approver_id": {
+          "format": "uuid",
+          "title": "Approver Id",
+          "type": "string"
+        },
+        "payload_hash": {
+          "title": "Payload Hash",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "proposal_id",
+        "approver_id",
+        "payload_hash",
+        "expires_at",
+        "created_at"
+      ],
+      "title": "ApprovalOut",
+      "type": "object"
+    },
+    "OperationOut": {
+      "$defs": {
+        "ActivityRecord": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "activity",
+              "title": "Kind",
+              "type": "string"
+            },
+            "external_id": {
+              "title": "External Id",
+              "type": "integer"
+            },
+            "company_id": {
+              "title": "Company Id",
+              "type": "integer"
+            },
+            "opportunity_id": {
+              "title": "Opportunity Id",
+              "type": "integer"
+            },
+            "assignee_id": {
+              "title": "Assignee Id",
+              "type": "integer"
+            },
+            "due_date": {
+              "title": "Due Date",
+              "type": "string"
+            },
+            "summary": {
+              "title": "Summary",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "external_id",
+            "company_id",
+            "opportunity_id",
+            "assignee_id",
+            "due_date",
+            "summary"
+          ],
+          "title": "ActivityRecord",
+          "type": "object"
+        },
+        "QuoteLine": {
+          "additionalProperties": false,
+          "properties": {
+            "product_id": {
+              "title": "Product Id",
+              "type": "integer"
+            },
+            "quantity": {
+              "title": "Quantity",
+              "type": "number"
+            },
+            "unit_price": {
+              "title": "Unit Price",
+              "type": "string"
+            },
+            "subtotal": {
+              "title": "Subtotal",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id",
+            "quantity",
+            "unit_price",
+            "subtotal"
+          ],
+          "title": "QuoteLine",
+          "type": "object"
+        },
+        "QuoteRecord": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "quote",
+              "title": "Kind",
+              "type": "string"
+            },
+            "external_id": {
+              "title": "External Id",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "company_id": {
+              "title": "Company Id",
+              "type": "integer"
+            },
+            "customer_id": {
+              "title": "Customer Id",
+              "type": "integer"
+            },
+            "currency": {
+              "title": "Currency",
+              "type": "string"
+            },
+            "total": {
+              "title": "Total",
+              "type": "string"
+            },
+            "items": {
+              "items": {
+                "$ref": "#/$defs/QuoteLine"
+              },
+              "title": "Items",
+              "type": "array"
+            }
+          },
+          "required": [
+            "kind",
+            "external_id",
+            "name",
+            "state",
+            "company_id",
+            "customer_id",
+            "currency",
+            "total",
+            "items"
+          ],
+          "title": "QuoteRecord",
+          "type": "object"
+        },
+        "Receipt": {
+          "additionalProperties": false,
+          "properties": {
+            "operation_id": {
+              "format": "uuid",
+              "title": "Operation Id",
+              "type": "string"
+            },
+            "payload_hash": {
+              "title": "Payload Hash",
+              "type": "string"
+            },
+            "record": {
+              "discriminator": {
+                "mapping": {
+                  "activity": "#/$defs/ActivityRecord",
+                  "quote": "#/$defs/QuoteRecord"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/QuoteRecord"
+                },
+                {
+                  "$ref": "#/$defs/ActivityRecord"
+                }
+              ],
+              "title": "Record"
+            }
+          },
+          "required": [
+            "operation_id",
+            "payload_hash",
+            "record"
+          ],
+          "title": "Receipt",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "format": "uuid",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "proposal_id": {
+          "format": "uuid",
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "approval_id": {
+          "format": "uuid",
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "format": "uuid",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "dispatched",
+            "unknown",
+            "verified",
+            "failed",
+            "review"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Receipt"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Error Code"
+        },
+        "attempts": {
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "proposal_id",
+        "approval_id",
+        "idempotency_key",
+        "status",
+        "result",
+        "error_code",
+        "attempts",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "OperationOut",
+      "type": "object"
+    }
+  }
+}

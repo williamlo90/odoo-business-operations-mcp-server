@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–1 selesai; fondasi lokal terimplementasi dan diuji. Phase 2–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 ## Tugas assistant
 

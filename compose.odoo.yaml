@@ -1,0 +1,54 @@
+services:
+  odoo-db:
+    image: postgres:17-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: ${ODOO_DB_PASSWORD:?Run deploy/setup_odoo_env.py}
+      POSTGRES_DB: postgres
+    volumes: [odoo-db:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U odoo -d postgres]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  odoo-init:
+    build: ./odoo
+    command: [init]
+    environment: &odoo-env
+      ODOO_DB_PASSWORD: ${ODOO_DB_PASSWORD:?}
+      ODOO_ADMIN_PASSWORD: ${ODOO_ADMIN_PASSWORD:?}
+      OPS_SIGNING_KEY: ${OPS_SIGNING_KEY:?}
+    volumes: &odoo-volumes
+      - odoo-data:/var/lib/odoo
+      - ${ODOO_CONFIG_DIR:-./local/odoo-config}:/run/ops-config
+    depends_on:
+      odoo-db: {condition: service_healthy}
+  odoo-seed:
+    build: ./odoo
+    command: [seed]
+    environment: *odoo-env
+    volumes: *odoo-volumes
+    depends_on:
+      odoo-init: {condition: service_completed_successfully}
+  odoo:
+    build: ./odoo
+    environment: *odoo-env
+    volumes: *odoo-volumes
+    ports: ["127.0.0.1:${ODOO_PORT:-8069}:8069"]
+    depends_on:
+      odoo-seed: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python3, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8069/web/health',timeout=5)"]
+      interval: 5s
+      timeout: 6s
+      retries: 40
+  api:
+    environment:
+      ODOO_CONFIG_PATH: /run/ops-config/connections.json
+      OPS_SIGNING_KEY: ${OPS_SIGNING_KEY:?}
+    volumes: ["${ODOO_CONFIG_DIR:-./local/odoo-config}:/run/ops-config:ro"]
+    depends_on:
+      odoo: {condition: service_healthy}
+volumes:
+  odoo-db:
+  odoo-data:

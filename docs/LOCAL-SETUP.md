@@ -3,7 +3,7 @@
 Phase 1 provides a local HTTP API, PostgreSQL database and TypeScript command-line
 reference client. It records a customer research request and reads it back. All
 customers are synthetic. Odoo, quotation approval, AI and MCP execution arrive in
-later phases.
+later phases. Phase 2 is now available; follow [Odoo local setup](ODOO-LOCAL.md) for quotation and activity workflows.
 
 ## Prerequisites
 

@@ -1,0 +1,40 @@
+{
+  "id": "5d5bdddc-8959-46de-b392-21507e7ede7b",
+  "tenant_id": "00000000-0000-0000-0000-000000000001",
+  "proposal_id": "8330bf93-6f2a-4752-a661-71f53cbffb8b",
+  "approval_id": "0dd83566-6028-449b-aaa6-03363cdcc872",
+  "idempotency_key": "ae3a4356-7603-4f0a-8603-5363a4458087",
+  "status": "verified",
+  "result": {
+    "operation_id": "5d5bdddc-8959-46de-b392-21507e7ede7b",
+    "payload_hash": "8988de6caaac4033abfac5245ba07e34878d2faddac4f7ed0b84dd4ebc9a2840",
+    "record": {
+      "kind": "quote",
+      "external_id": 1,
+      "name": "S00001",
+      "state": "draft",
+      "company_id": 2,
+      "customer_id": 7,
+      "currency": "IDR",
+      "total": "250000.0",
+      "items": [
+        {
+          "product_id": 1,
+          "quantity": 2,
+          "unit_price": "100000.0",
+          "subtotal": "200000.0"
+        },
+        {
+          "product_id": 2,
+          "quantity": 1,
+          "unit_price": "50000.0",
+          "subtotal": "50000.0"
+        }
+      ]
+    }
+  },
+  "error_code": null,
+  "attempts": 1,
+  "created_at": "2026-10-08T10:33:04.551878Z",
+  "updated_at": "2026-10-08T10:33:04.729729Z"
+}

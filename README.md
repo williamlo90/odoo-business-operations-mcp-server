@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–1 selesai; fondasi lokal terimplementasi dan diuji. Phase 2–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 **Pengguna:** Sales operations dan administrator Odoo.
 
@@ -37,7 +37,7 @@ tool task success; correct record selection; unauthorized-write rejection; dupli
 
 ## Cara mulai
 
-1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; pekerjaan berikutnya adalah Phase 2 pada PHASES.md.
+1. Ikuti [local setup](docs/LOCAL-SETUP.md) untuk menjalankan fondasi; ikuti [panduan Odoo](docs/ODOO-LOCAL.md) untuk alur bisnis; pekerjaan berikutnya adalah Phase 3 pada PHASES.md.
 2. Catat apa yang existing, perlu verifikasi, dan baru. Semua checklist folder ini dimulai belum selesai.
 3. Buat satu alur lengkap, uji hasilnya, baru tambah variasi; ikuti urutan fase dan dependency.
 4. Catat evidence path/run ID saat menutup fase. Cloud hanya pada Phase 9.
@@ -46,4 +46,6 @@ Fondasi aplikasi lokal tersedia di backend/ dan client/, dengan PostgreSQL migra
 
 ## Progress implementasi
 
-Phase 0 selesai pada 2026-10-08 untuk inventaris dan scope. Lihat [Phase 0](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), dan [dependencies](docs/DEPENDENCIES.md). Phase 1 selesai; lihat [hasil dan evidence](docs/PHASE-1.md). Alur pertama: customer search → quotation preview → approval → create draft → read-back. Target sandbox: Odoo Community 19.0 lokal; akses dan compatibility belum diuji. Docker engine telah dipulihkan dan digunakan untuk verifikasi Phase 1.
+Phase 0 selesai pada 2026-10-08 untuk inventaris dan scope. Lihat [Phase 0](docs/PHASE-0.md), [acceptance cases](docs/ACCEPTANCE-CASES.md), dan [dependencies](docs/DEPENDENCIES.md). Phase 1 selesai; lihat [hasil dan evidence](docs/PHASE-1.md). Alur pertama: customer search → quotation preview → approval → create draft → read-back. Target sandbox: Odoo Community 19.0 lokal; JSON-2 dan alur quotation/activity telah diuji pada Phase 2. Docker engine telah dipulihkan dan digunakan untuk verifikasi Phase 1.
+
+Phase 2 selesai: customer/opportunity reads, quotation/activity proposal, approval, execute dan read-back terverifikasi. Lihat [hasil Phase 2](docs/PHASE-2.md). API lokal: http://127.0.0.1:8020/docs; Odoo sandbox: http://127.0.0.1:8069.

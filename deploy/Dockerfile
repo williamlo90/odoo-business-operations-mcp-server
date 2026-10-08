@@ -9,4 +9,5 @@ CMD ["python", "-m", "uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port"
 
 FROM base AS tests
 COPY tests /app/tests
+COPY contracts /app/contracts
 CMD ["python", "-m", "pytest", "-q", "-o", "cache_dir=/tmp/pytest-cache", "tests"]

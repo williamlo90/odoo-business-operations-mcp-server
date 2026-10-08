@@ -17,8 +17,10 @@ from pwdlib import PasswordHash
 
 from backend.config import settings
 from backend.db import connection
+from backend.odoo_adapter import PlatformError
+from backend.business import build_router
 
-app = FastAPI(title="Odoo Operations — Local Foundation", version="0.1.0")
+app = FastAPI(title="Odoo Operations", version="0.2.0")
 log = logging.getLogger("operations")
 log.setLevel(logging.INFO)
 handler = logging.StreamHandler()
@@ -85,6 +87,14 @@ async def database_error(request: Request, exc: psycopg.Error):
     return JSONResponse(status_code=503, content={"error": "database_unavailable"})
 
 
+@app.exception_handler(PlatformError)
+async def platform_error(request: Request, exc: PlatformError):
+    status = 404 if exc.code == 'record_not_found' else 409 if exc.code in {
+        'stale_proposal', 'source_changed', 'approval_expired', 'idempotency_conflict'} else 422 if exc.code in {
+        'invalid_input', 'invalid_assignee', 'unsupported_pricing', 'unsupported_product'} else 503
+    return JSONResponse(status_code=status, content={'error': exc.code})
+
+
 def token_digest(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
 
@@ -123,10 +133,10 @@ def live():
 def ready():
     with connection() as conn:
         applied = conn.execute("SELECT version FROM schema_migrations ORDER BY version").fetchall()
-        if [row["version"] for row in applied] != ["001_foundation.sql"]:
+        if [row["version"] for row in applied] != ["001_foundation.sql", "002_business_workflow.sql"]:
             fail(503, "schema_not_ready")
         conn.execute("SELECT id FROM actors LIMIT 1")
-    return {"status": "ready", "schema_version": "001"}
+    return {"status": "ready", "schema_version": "002"}
 
 
 @app.post("/auth/login")
@@ -199,3 +209,6 @@ def get_work(work_id: UUID, current=Depends(reader)):
     if not work:
         fail(404, "work_request_not_found")
     return work
+
+
+app.include_router(build_router(actor, reader, operator))

@@ -1,0 +1,300 @@
+ Image odoo-ops-phase2-clean-odoo Building
+ Image odoo-ops-phase2-clean-seed Building
+ Image odoo-ops-phase2-clean-migrate Building
+ Image odoo-ops-phase2-clean-odoo-init Building
+ Image odoo-ops-phase2-clean-api Building
+ Image odoo-ops-phase2-clean-odoo-seed Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.76kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 728B 0.0s done
+#2 DONE 0.0s
+
+#3 [odoo-seed internal] load build definition from Dockerfile
+#3 transferring dockerfile: 250B done
+#3 DONE 0.0s
+
+#4 [odoo internal] load metadata for docker.io/library/odoo:19.0@sha256:dd9013e669caaa23d26765dc55814655eaeecca7cfc2c265dbabae913bce22fd
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.13-slim-bookworm@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+#5 DONE 0.0s
+
+#6 [odoo-init internal] load .dockerignore
+#6 transferring context: 2B 0.0s done
+#6 DONE 0.0s
+
+#7 [odoo 1/3] FROM docker.io/library/odoo:19.0@sha256:dd9013e669caaa23d26765dc55814655eaeecca7cfc2c265dbabae913bce22fd
+#7 DONE 0.0s
+
+#8 [seed internal] load .dockerignore
+#8 transferring context: 122B 0.0s done
+#8 DONE 0.0s
+
+#9 [odoo-seed internal] load build context
+#9 transferring context: 374B 0.0s done
+#9 DONE 0.0s
+
+#10 [odoo 2/3] COPY addons /opt/ops-addons
+#10 CACHED
+
+#11 [odoo 3/3] COPY runtime.py seed.py /opt/ops/
+#11 CACHED
+
+#12 [odoo-seed] exporting to image
+#12 exporting layers done
+#12 writing image sha256:d1250285aeccf76ea9cad8af45bb5c81be06b139e782b753ed6fbbefe6a0fa95 done
+#12 naming to docker.io/library/odoo-ops-phase2-clean-odoo-seed done
+#12 DONE 0.0s
+
+#13 [migrate base 1/5] FROM docker.io/library/python:3.13-slim-bookworm@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+#13 DONE 0.0s
+
+#14 [odoo] exporting to image
+#14 exporting layers done
+#14 writing image sha256:14ec3300f29da624f6480700b8e2126c79520a3992218ad147ff73afd3efdab4 done
+#14 naming to docker.io/library/odoo-ops-phase2-clean-odoo done
+#14 DONE 0.0s
+
+#15 [odoo-init] exporting to image
+#15 exporting layers done
+#15 writing image sha256:fd6a9d31b51b8dc86c6d00e07623a57e4668247ed05042c9392f8510d6559dd1 done
+#15 naming to docker.io/library/odoo-ops-phase2-clean-odoo-init done
+#15 DONE 0.0s
+
+#16 [api internal] load build context
+#16 transferring context: 535B 0.0s done
+#16 DONE 0.0s
+
+#17 [api base 2/5] WORKDIR /app
+#17 CACHED
+
+#18 [api base 3/5] COPY backend/requirements.lock /app/backend/requirements.lock
+#18 CACHED
+
+#19 [api base 4/5] RUN pip install --no-cache-dir -r backend/requirements.lock && useradd --create-home --uid 10001 app
+#19 CACHED
+
+#20 [api base 5/5] COPY backend /app/backend
+#20 CACHED
+
+#21 [migrate] exporting to image
+#21 exporting layers done
+#21 writing image sha256:4e9eb5282999e9fab4eee375e7a7aea32b67937486818a45f39c0fc49e799919 done
+#21 naming to docker.io/library/odoo-ops-phase2-clean-migrate done
+#21 DONE 0.1s
+
+#22 [api] exporting to image
+#22 exporting layers done
+#22 writing image sha256:59881014a1f19ef924a87071a9e24b1a21c5ac9a23f0647ecedd8d06ca948849 done
+#22 naming to docker.io/library/odoo-ops-phase2-clean-api done
+#22 DONE 0.1s
+
+#23 [seed] exporting to image
+#23 exporting layers done
+#23 writing image sha256:fd9e622ca87522e2b69e24234b609086f7f0985648095f6caf6182c2764e07ea done
+#23 naming to docker.io/library/odoo-ops-phase2-clean-seed done
+#23 DONE 0.1s
+
+#24 [odoo] resolving provenance for metadata file
+#24 DONE 0.1s
+
+#25 [odoo-init] resolving provenance for metadata file
+#25 DONE 0.1s
+
+#26 [seed] resolving provenance for metadata file
+#26 DONE 0.0s
+
+#27 [odoo-seed] resolving provenance for metadata file
+#27 DONE 0.1s
+
+#28 [api] resolving provenance for metadata file
+#28 DONE 0.0s
+
+#29 [migrate] resolving provenance for metadata file
+#29 DONE 0.0s
+ Image odoo-ops-phase2-clean-migrate Built
+ Image odoo-ops-phase2-clean-seed Built
+ Image odoo-ops-phase2-clean-api Built
+ Image odoo-ops-phase2-clean-odoo-init Built
+ Image odoo-ops-phase2-clean-odoo-seed Built
+ Image odoo-ops-phase2-clean-odoo Built
+ Volume odoo-ops-phase2-clean_odoo-data Creating
+ Network odoo-ops-phase2-clean_default Creating
+ Volume odoo-ops-phase2-clean_pgdata Creating
+ Volume odoo-ops-phase2-clean_pgdata Creating
+ Volume odoo-ops-phase2-clean_odoo-data Creating
+ Network odoo-ops-phase2-clean_default Creating
+ Volume odoo-ops-phase2-clean_odoo-db Creating
+ Volume odoo-ops-phase2-clean_odoo-db Creating
+ Volume odoo-ops-phase2-clean_pgdata Created
+ Volume odoo-ops-phase2-clean_pgdata Created
+ Volume odoo-ops-phase2-clean_odoo-data Created
+ Volume odoo-ops-phase2-clean_odoo-data Created
+ Volume odoo-ops-phase2-clean_odoo-db Created
+ Volume odoo-ops-phase2-clean_odoo-db Created
+ Network odoo-ops-phase2-clean_default Created
+ Network odoo-ops-phase2-clean_default Created
+ Container odoo-ops-phase2-clean-db-1 Creating
+ Container odoo-ops-phase2-clean-odoo-db-1 Creating
+ Container odoo-ops-phase2-clean-odoo-db-1 Created
+ Container odoo-ops-phase2-clean-odoo-init-1 Creating
+ Container odoo-ops-phase2-clean-db-1 Created
+ Container odoo-ops-phase2-clean-migrate-1 Creating
+ Container odoo-ops-phase2-clean-odoo-init-1 Created
+ Container odoo-ops-phase2-clean-odoo-seed-1 Creating
+ Container odoo-ops-phase2-clean-migrate-1 Created
+ Container odoo-ops-phase2-clean-seed-1 Creating
+ Container odoo-ops-phase2-clean-odoo-seed-1 Created
+ Container odoo-ops-phase2-clean-odoo-1 Creating
+ Container odoo-ops-phase2-clean-seed-1 Created
+ Container odoo-ops-phase2-clean-odoo-1 Created
+ Container odoo-ops-phase2-clean-api-1 Creating
+ Container odoo-ops-phase2-clean-api-1 Created
+ Container odoo-ops-phase2-clean-odoo-db-1 Starting
+ Container odoo-ops-phase2-clean-db-1 Starting
+ Container odoo-ops-phase2-clean-odoo-db-1 Started
+ Container odoo-ops-phase2-clean-odoo-db-1 Waiting
+ Container odoo-ops-phase2-clean-db-1 Started
+ Container odoo-ops-phase2-clean-db-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-db-1 Healthy
+ Container odoo-ops-phase2-clean-odoo-init-1 Starting
+ Container odoo-ops-phase2-clean-odoo-init-1 Started
+ Container odoo-ops-phase2-clean-odoo-init-1 Waiting
+ Container odoo-ops-phase2-clean-db-1 Healthy
+ Container odoo-ops-phase2-clean-migrate-1 Starting
+ Container odoo-ops-phase2-clean-migrate-1 Started
+ Container odoo-ops-phase2-clean-migrate-1 Waiting
+ Container odoo-ops-phase2-clean-migrate-1 Exited
+ Container odoo-ops-phase2-clean-seed-1 Starting
+ Container odoo-ops-phase2-clean-seed-1 Started
+ Container odoo-ops-phase2-clean-odoo-init-1 Exited
+ Container odoo-ops-phase2-clean-odoo-seed-1 Starting
+ Container odoo-ops-phase2-clean-odoo-seed-1 Started
+ Container odoo-ops-phase2-clean-odoo-seed-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-seed-1 Exited
+ Container odoo-ops-phase2-clean-odoo-1 Starting
+ Container odoo-ops-phase2-clean-odoo-1 Started
+ Container odoo-ops-phase2-clean-odoo-1 Waiting
+ Container odoo-ops-phase2-clean-seed-1 Waiting
+ Container odoo-ops-phase2-clean-seed-1 Exited
+ Container odoo-ops-phase2-clean-odoo-1 Healthy
+ Container odoo-ops-phase2-clean-api-1 Starting
+ Container odoo-ops-phase2-clean-api-1 Started
+ Container odoo-ops-phase2-clean-seed-1 Waiting
+ Container odoo-ops-phase2-clean-db-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-1 Waiting
+ Container odoo-ops-phase2-clean-migrate-1 Waiting
+ Container odoo-ops-phase2-clean-api-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-seed-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-db-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-init-1 Waiting
+ Container odoo-ops-phase2-clean-odoo-1 Healthy
+ Container odoo-ops-phase2-clean-odoo-db-1 Healthy
+ Container odoo-ops-phase2-clean-odoo-seed-1 Exited
+ Container odoo-ops-phase2-clean-migrate-1 Exited
+ Container odoo-ops-phase2-clean-seed-1 Exited
+ Container odoo-ops-phase2-clean-odoo-init-1 Exited
+ Container odoo-ops-phase2-clean-db-1 Healthy
+ Container odoo-ops-phase2-clean-api-1 Healthy
+ Image odoo-ops-phase2-clean-client Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 4.26kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 435B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 70B done
+#4 DONE 0.0s
+
+#5 [build 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 159B done
+#6 DONE 0.0s
+
+#7 [build 6/7] COPY src ./src
+#7 CACHED
+
+#8 [build 2/7] WORKDIR /app
+#8 CACHED
+
+#9 [build 4/7] RUN npm ci
+#9 CACHED
+
+#10 [build 5/7] COPY tsconfig.json ./
+#10 CACHED
+
+#11 [build 3/7] COPY package*.json ./
+#11 CACHED
+
+#12 [build 7/7] RUN npm run build
+#12 CACHED
+
+#13 [stage-1 3/3] COPY --from=build /app/dist ./dist
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 writing image sha256:bfb232a8fab687ae984fb22d7a9abc26a1711df214942c3fb60506c899ec665d done
+#14 naming to docker.io/library/odoo-ops-phase2-clean-client done
+#14 DONE 0.0s
+
+#15 resolving provenance for metadata file
+#15 DONE 0.0s
+ Image odoo-ops-phase2-clean-client Built
+ Container odoo-ops-phase2-clean-client-run-344add98c432 Creating
+ Container odoo-ops-phase2-clean-client-run-344add98c432 Created
+ Container odoo-ops-phase2-clean-client-run-736db001e4f3 Creating
+ Container odoo-ops-phase2-clean-client-run-736db001e4f3 Created
+ Container odoo-ops-phase2-clean-client-run-3726305ea332 Creating
+ Container odoo-ops-phase2-clean-client-run-3726305ea332 Created
+ Container odoo-ops-phase2-clean-api-1 Stopping
+ Container odoo-ops-phase2-clean-api-1 Stopped
+ Container odoo-ops-phase2-clean-api-1 Removing
+ Container odoo-ops-phase2-clean-api-1 Removed
+ Container odoo-ops-phase2-clean-seed-1 Stopping
+ Container odoo-ops-phase2-clean-odoo-1 Stopping
+ Container odoo-ops-phase2-clean-seed-1 Stopped
+ Container odoo-ops-phase2-clean-seed-1 Removing
+ Container odoo-ops-phase2-clean-seed-1 Removed
+ Container odoo-ops-phase2-clean-migrate-1 Stopping
+ Container odoo-ops-phase2-clean-migrate-1 Stopped
+ Container odoo-ops-phase2-clean-migrate-1 Removing
+ Container odoo-ops-phase2-clean-migrate-1 Removed
+ Container odoo-ops-phase2-clean-db-1 Stopping
+ Container odoo-ops-phase2-clean-db-1 Stopped
+ Container odoo-ops-phase2-clean-db-1 Removing
+ Container odoo-ops-phase2-clean-db-1 Removed
+ Container odoo-ops-phase2-clean-odoo-1 Stopped
+ Container odoo-ops-phase2-clean-odoo-1 Removing
+ Container odoo-ops-phase2-clean-odoo-1 Removed
+ Container odoo-ops-phase2-clean-odoo-seed-1 Stopping
+ Container odoo-ops-phase2-clean-odoo-seed-1 Stopped
+ Container odoo-ops-phase2-clean-odoo-seed-1 Removing
+ Container odoo-ops-phase2-clean-odoo-seed-1 Removed
+ Container odoo-ops-phase2-clean-odoo-init-1 Stopping
+ Container odoo-ops-phase2-clean-odoo-init-1 Stopped
+ Container odoo-ops-phase2-clean-odoo-init-1 Removing
+ Container odoo-ops-phase2-clean-odoo-init-1 Removed
+ Container odoo-ops-phase2-clean-odoo-db-1 Stopping
+ Container odoo-ops-phase2-clean-odoo-db-1 Stopped
+ Container odoo-ops-phase2-clean-odoo-db-1 Removing
+ Container odoo-ops-phase2-clean-odoo-db-1 Removed
+ Network odoo-ops-phase2-clean_default Removing
+ Volume odoo-ops-phase2-clean_odoo-data Removing
+ Volume odoo-ops-phase2-clean_odoo-db Removing
+ Volume odoo-ops-phase2-clean_pgdata Removing
+ Volume odoo-ops-phase2-clean_odoo-data Removed
+ Volume odoo-ops-phase2-clean_odoo-db Removed
+ Volume odoo-ops-phase2-clean_pgdata Removed
+ Network odoo-ops-phase2-clean_default Removed

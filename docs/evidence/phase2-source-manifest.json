@@ -1,0 +1,181 @@
+{
+  "run_id": "phase2-20261008-01",
+  "date": "2026-10-08",
+  "timezone": "Asia/Jakarta",
+  "base_revision": "85cc17a130548a271e213c4f3e9d20fd2113beac",
+  "source_revision": "See the commit containing this manifest; exact SHA256 snapshot follows.",
+  "environment": "local synthetic Odoo Community 19.0-20260926 + real PostgreSQL 17.11",
+  "results": {
+    "suite": "38 passed, 1 test-client deprecation warning",
+    "connected_cases": 9,
+    "fresh_volume_cli": "verified",
+    "cli_quote_total": "250000 IDR"
+  },
+  "files": [
+    {
+      "path": "backend/__init__.py",
+      "sha256": "1891576ad56394a8d9f5040296088889d11129071ed30648660e33362cad5b6a"
+    },
+    {
+      "path": "backend/app.py",
+      "sha256": "035719f7f21a37884f59202c48585fd5368ce85aa4ae4b6f75678c11f14e53a6"
+    },
+    {
+      "path": "backend/business.py",
+      "sha256": "4fc52b4786da7df6dddf8876b1e169f0ef3ec5d533761f6622975c9e6f711568"
+    },
+    {
+      "path": "backend/config.py",
+      "sha256": "f7932f85f96017abc20f269d23b6568d3220f79d39a42c3a77def334ae23a79f"
+    },
+    {
+      "path": "backend/contracts.py",
+      "sha256": "cc1da9c43d92e3776cacfe5e9e3e8ceaa5004c9d9019d98c90fce337239134e6"
+    },
+    {
+      "path": "backend/db.py",
+      "sha256": "25e821bb5ba615d929fdd6379dc708deaa0934695f7a83ceb32fe0b74b822729"
+    },
+    {
+      "path": "backend/manage.py",
+      "sha256": "25092cdc6aa1e4e496433080e969011660915d9b20c60d0f7f539e3cbd1b4cfc"
+    },
+    {
+      "path": "backend/migrations/001_foundation.sql",
+      "sha256": "b4c9e3fb5b2931bb63ee36556bb73d626c0243d03e59db338a365114dd951155"
+    },
+    {
+      "path": "backend/migrations/002_business_workflow.sql",
+      "sha256": "174a5a691213c9548ff1c66fcbe45950d6b494e6aadddebf08d037947563fdc9"
+    },
+    {
+      "path": "backend/odoo_adapter.py",
+      "sha256": "b87a89656f33f2e2eedd987c005f8a00236ad515a6004690b02f31450bad66aa"
+    },
+    {
+      "path": "backend/requirements.lock",
+      "sha256": "2b6db1f6ad3354adaac8c4455fb0d5f1540d1c640cecf79e431f734850b5ddf6"
+    },
+    {
+      "path": "client/.dockerignore",
+      "sha256": "a3865618917f4d60ecb5e6be627b3158ef11d7e8609bdd6983d9e71e6e098789"
+    },
+    {
+      "path": "client/Dockerfile",
+      "sha256": "338f6f1ecd22e45e550c20280de99c5c4e0ee27a52a3551a8beb06ff15708a16"
+    },
+    {
+      "path": "client/package-lock.json",
+      "sha256": "5d90934252e6f64b0b4975bf5f89fea5a6cb6c092384e01423e4d47777914cc0"
+    },
+    {
+      "path": "client/package.json",
+      "sha256": "94d0bc423fe0e067ce45c1506610379fba666678ebc41dc747ed87502e63a24a"
+    },
+    {
+      "path": "client/src/index.ts",
+      "sha256": "68c9cfa2ed178481843b6e14ac2a35f4de01a1fc6f4850e3b53b4ee32e453f24"
+    },
+    {
+      "path": "client/tsconfig.json",
+      "sha256": "2f360d76a838f0a772f8cdbe304483a6fc82d417a360a6e4a67a8bb3f3059cbe"
+    },
+    {
+      "path": "compose.connected.yaml",
+      "sha256": "ef4eb06e5de3790d3f94af934d8382b05b7479911c879f498cfa5c2a424cdfab"
+    },
+    {
+      "path": "compose.odoo.yaml",
+      "sha256": "136b177d29f4e7dc658286e88041ec8c0cccb6f7bc94da5b464d3d42c6cd20bc"
+    },
+    {
+      "path": "compose.test.yaml",
+      "sha256": "a9a496e1192448f6a0cf553afefc996905e362f7331b9b9315780afcb4270d38"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "8cac145d63d2272dff2cb60669260d50a18c6f2d54beec3107cd5efaffae2753"
+    },
+    {
+      "path": "contracts/v1/consumer-fixtures.json",
+      "sha256": "2311cdec98a65960fc740f456acf8748ccf2fd226d540ba65ecc3ae5518be46d"
+    },
+    {
+      "path": "contracts/v1/openapi.json",
+      "sha256": "1faddb446f18bb1f8941aa8b4ec871a2d71e50de786c161504f998d788a38f7d"
+    },
+    {
+      "path": "contracts/v1/schemas.json",
+      "sha256": "6482758ba75aeab384f7fe94a679584a9c744d36f38184fe4a49249d336a68a6"
+    },
+    {
+      "path": "deploy/Dockerfile",
+      "sha256": "834d6a5f117f2dcbeeaa3a69377480e4f79e79e0295d69e3f3797ea48fe63e3a"
+    },
+    {
+      "path": "deploy/export_contracts.py",
+      "sha256": "444b41a6d8c32ae356563a690fdd7783effeaa3aa19e1245e9ee425b4100aa9f"
+    },
+    {
+      "path": "deploy/setup_env.py",
+      "sha256": "27b1d8aa8a7fcb511c7e96b3bffe7e00c8278f8cf7172fe9da841e638e2b64f7"
+    },
+    {
+      "path": "deploy/setup_odoo_env.py",
+      "sha256": "e710d57f48f2f2b4e49ddde42b7dbfa5f24e030581e3540b83bf671fe22d6dcc"
+    },
+    {
+      "path": "odoo/.dockerignore",
+      "sha256": "59363a6bc06c528ea104ee0140811bf7517305b70f70e6f214d5ad7ea5b2f7b7"
+    },
+    {
+      "path": "odoo/Dockerfile",
+      "sha256": "6813ab8510109acee51303005126d4a457585adff6a69f9d8a8a47fdb463c406"
+    },
+    {
+      "path": "odoo/addons/ops_bridge/__init__.py",
+      "sha256": "5fd10918e1361ad65b4b41bcd8fb525e659267f47c8c4334ae52530e58908e9e"
+    },
+    {
+      "path": "odoo/addons/ops_bridge/__manifest__.py",
+      "sha256": "f666a63b3c55b64334baec12fa532ce8c582be887bc31f69cf429cbd572b4007"
+    },
+    {
+      "path": "odoo/addons/ops_bridge/models.py",
+      "sha256": "4ed84bf0cfb035f73b4cff97468d388d153fd53fbee6e0e7acf56e6b298f850b"
+    },
+    {
+      "path": "odoo/addons/ops_bridge/security/groups.xml",
+      "sha256": "5fde49174d70b9adf5d78e6f00c3022029f0eb1d23b95b5c5c644f1efb60023a"
+    },
+    {
+      "path": "odoo/runtime.py",
+      "sha256": "17881bb6f3a844923e534d846858af72f5a7b01adbb0bc961b981164ede68927"
+    },
+    {
+      "path": "odoo/seed.py",
+      "sha256": "f6f0f1743777a2a3db3d85048125c2b9d196687c767fb6837fb05e0b4a8064f0"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "b5cb91686400fd0a07c9a50e6c40cca4e21c540e2248a6ee1c2e57be685bd518"
+    },
+    {
+      "path": "tests/test_business.py",
+      "sha256": "6960cb6ff830e35bbb17a37a82b052d4953d180bb5a435cf9f5ee5713ded3a0a"
+    },
+    {
+      "path": "tests/test_connected.py",
+      "sha256": "956c8ceea50d8bf9ed797e985e74b87f11615a1d008def77a901d0ee8f01502e"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "sha256": "c92d842ed5879cebcbe61fdbd63328b6f7fa801056dd78633f48fd471974de9a"
+    },
+    {
+      "path": "tests/test_foundation.py",
+      "sha256": "d5b870445dc688c2cd82de9b77571baa23df38650707e8143fc8fcc4d9d2e4a3"
+    }
+  ],
+  "hash_format": "SHA256 of UTF-8 LF source files"
+}

@@ -67,7 +67,7 @@ services:
       dockerfile: Dockerfile
     environment:
       API_URL: http://api:8000
-      DEMO_USERNAME: operator.a
+      DEMO_USERNAME: ${DEMO_USERNAME:-operator.a}
       DEMO_PASSWORD: ${DEMO_PASSWORD:?}
     depends_on:
       api:

@@ -1,7 +1,7 @@
 # V1 acceptance cases
 
-Specification v0.1, 2026-10-08. Semua kasus **NOT RUN**. Ini expected outcomes
-sebelum implementasi, bukan hasil tes atau dataset final Phase 6.
+Specification v0.1, 2026-10-08. Expected outcomes ditetapkan sebelum implementasi. Status dan batas coverage terbaru
+tercantum pada [Phase 2](PHASE-2.md); ini bukan dataset final Phase 6.
 
 Fixture awal: company A/B; operator, approver, admin dan auditor terpisah;
 dua customer bernama sama dengan ID berbeda; opportunity per company;

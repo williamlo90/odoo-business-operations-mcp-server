@@ -1,0 +1,9 @@
+{
+  "contract_version": "1.0",
+  "consumers": ["04-sales-automation", "05-document-workflow", "08-department-bots"],
+  "quote_request": {"customer_id": 7, "items": [{"product_id": 1, "quantity": 2}, {"product_id": 2, "quantity": 1}]},
+  "activity_request": {"opportunity_id": 1, "assignee_id": 5, "due_date": "2026-12-01", "summary": "Synthetic follow-up"},
+  "expected_synthetic_company_a_total": "250000",
+  "expected_synthetic_company_b_total": "290000",
+  "notes": "IDs are illustrative contract examples, not globally stable identifiers. Resolve actual IDs through scoped read APIs. Project 05 can consume these capabilities but invoice/purchase writes are not implemented."
+}
