@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { randomUUID } from 'node:crypto';
+import { runAssistant } from './assistant.js';
 
 const base = process.env.API_URL ?? "http://127.0.0.1:8020";
 const username = process.env.DEMO_USERNAME ?? "operator.a";
@@ -20,6 +22,17 @@ async function request(path: string, method = "GET", body?: unknown): Promise<an
 }
 
 async function main() {
+  const [entry, ...entryArgs] = process.argv.slice(2);
+  if (entry === 'assistant') {
+    assert.equal(entryArgs.length, 1, 'assistant "TASK" (configure ASSISTANT_PROVIDER and ASSISTANT_MODEL)');
+    const taskId = process.env.ASSISTANT_TASK_ID ?? randomUUID();
+    console.error(JSON.stringify({ task_id: taskId }));
+    const value = await runAssistant({task: entryArgs[0], task_id: taskId,
+      provider: process.env.ASSISTANT_PROVIDER ?? 'ollama', model: process.env.ASSISTANT_MODEL ?? null,
+      local_only: process.env.ASSISTANT_LOCAL_ONLY === '1'});
+    console.log(JSON.stringify(value, null, 2));
+    return;
+  }
   if (!password || password.length < 16) throw new Error("Set DEMO_PASSWORD from the local .env");
   const url = new URL(base);
   if (!['127.0.0.1', 'localhost', 'api'].includes(url.hostname) || url.protocol !== 'http:') {

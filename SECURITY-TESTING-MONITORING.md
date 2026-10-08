@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3 implementasi offline selesai; Phase 4–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 ## Access control sejak awal
 
@@ -55,7 +55,7 @@ Tetapkan workload normal, peak, soak, batas error, resource budget, dan stop con
 
 - Nol bypass izin, cross-tenant leakage, duplicate side effect, dan false-success pada critical scenario suite yang ditetapkan. Nol pada suite terbatas tidak berarti jaminan nol di seluruh produksi.
 - Quality thresholds ditentukan per risiko sebelum final evaluation; laporkan coverage serta kasus yang gagal.
-- Local evidence lulus pada Phase 7; cloud-runtime evidence baru dijalankan pada Phase 9.
+- Local evidence lulus pada Phase 8; cloud-runtime evidence baru dijalankan pada Phase 10.
 - Test yang gagal diselesaikan atau scope dikoreksi dan diverifikasi; tidak menurunkan gate diam-diam setelah melihat hasil.
 
 ## Acceptance automation yang dipilih

@@ -1,0 +1,178 @@
+{
+  "$defs": {
+    "Activity": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "enum": [
+            "prepare_crm_activity"
+          ]
+        },
+        "opportunity_id": {
+          "type": "integer"
+        },
+        "assignee_id": {
+          "type": "integer"
+        },
+        "due_date": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill",
+        "opportunity_id",
+        "assignee_id",
+        "due_date",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "Clarify": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "enum": [
+            "clarify"
+          ]
+        },
+        "missing": {
+          "items": {
+            "enum": [
+              "customer_reference",
+              "product_code",
+              "quantity",
+              "opportunity_id",
+              "assignee_id",
+              "due_date",
+              "summary",
+              "operation_id",
+              "supported_task"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "skill",
+        "missing"
+      ],
+      "type": "object"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "properties": {
+        "product_code": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "product_code",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "Quote": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "enum": [
+            "prepare_quote"
+          ]
+        },
+        "customer_reference": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/Line"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "skill",
+        "customer_reference",
+        "items"
+      ],
+      "type": "object"
+    },
+    "Reconcile": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "enum": [
+            "reconcile_odoo_write"
+          ]
+        },
+        "operation_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill",
+        "operation_id"
+      ],
+      "type": "object"
+    },
+    "Research": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "enum": [
+            "research_customer"
+          ]
+        },
+        "customer_reference": {
+          "type": "string"
+        },
+        "include_opportunities": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "skill",
+        "customer_reference",
+        "include_opportunities"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Research"
+        },
+        {
+          "$ref": "#/$defs/Quote"
+        },
+        {
+          "$ref": "#/$defs/Activity"
+        },
+        {
+          "$ref": "#/$defs/Reconcile"
+        },
+        {
+          "$ref": "#/$defs/Clarify"
+        }
+      ]
+    }
+  },
+  "required": [
+    "request"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,29 @@
+Phase 3 implementation gate, roadmap 0-10. Simulated HTTP downstream; no Docker or inference.
+
+Command: .venv/Scripts/python.exe -m pytest -q --confcutdir=tests/assistant tests/assistant
+.................................................                        [100%]
+49 passed in 1.50s
+
+Command: node --test client/tests/assistant.test.mjs
+TAP version 13
+# Subtest: TypeScript -> Python stdio -> authenticated HTTP -> sourced result and replay
+ok 1 - TypeScript -> Python stdio -> authenticated HTTP -> sourced result and replay
+  ---
+  duration_ms: 2067.7331
+  type: 'test'
+  ...
+# Subtest: stdio boundary rejects malformed requests without exposing submitted secrets
+ok 2 - stdio boundary rejects malformed requests without exposing submitted secrets
+  ---
+  duration_ms: 445.098
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2590.8181

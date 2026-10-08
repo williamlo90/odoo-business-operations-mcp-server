@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3 implementasi offline selesai; Phase 4–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 ## Tugas assistant
 
@@ -33,14 +33,16 @@ Alur: Permintaan operator → assistant memilih skill → tools membaca Odoo →
 
 ## Artefak implementasi yang harus ada
 
-- [ ] Workflow dengan typed contracts, durable state dan recovery path; orchestration mengikuti keputusan proyek (Python atau n8n), bukan wajib dua engine.
-- [ ] Assistant UI/reference client TypeScript dengan preview bukti, proposal, approval dan status.
-- [ ] Prompt/schema/version registry serta adapters hosted/local.
-- [ ] Scenario tests untuk happy path, ambiguous input, refusal/abstention, injection, dan tool failure.
-- [ ] Run trace yang menghubungkan input, model/skill/tool versions, approval, hasil tujuan, latency, dan biaya tanpa membocorkan secrets.
+- [x] Workflow dengan typed contracts, durable state dan recovery path; orchestration mengikuti keputusan proyek (Python atau n8n), bukan wajib dua engine.
+- [x] Assistant UI/reference client TypeScript dengan preview bukti, proposal, approval dan status.
+- [x] Prompt/schema/version registry serta adapters hosted/local.
+- [x] Scenario tests untuk happy path, ambiguous input, refusal/abstention, injection, dan tool failure.
+- [x] Run trace yang menghubungkan input, model/skill/tool versions, approval, hasil tujuan, latency, dan biaya tanpa membocorkan secrets.
 
 **Selesai ketika:** operator dapat menjalankan demo pada PROJECT-DELIVERY.md; hasil diperiksa terhadap reference outcome; kegagalan tidak ditampilkan sebagai sukses.
 
 ## Pemilik orchestration
 
 Custom MCP server mandiri; n8n bukan dependency atau release gate. TypeScript MCP server + Python services + Odoo API. Reference assistant menjalankan tools langsung melalui protocol. Consumer n8n dapat ditambahkan sebagai contoh, bukan kewajiban. Konektor dinilai dari kontrak tools, record mapping, authorization, idempotency dan verified writes. Automation lintas aplikasi ditempatkan di 04/08. Lihat [N8N-AUTOMATION.md](N8N-AUTOMATION.md).
+
+Scope bukti saat ini: gate implementasi offline Phase 3. Kualitas model dan workflow Odoo nyata diverifikasi pada Phase 6; MCP pada Phase 4.

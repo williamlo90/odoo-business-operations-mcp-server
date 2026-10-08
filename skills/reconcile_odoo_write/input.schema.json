@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "const": "reconcile_odoo_write",
+      "title": "Skill",
+      "type": "string"
+    },
+    "operation_id": {
+      "pattern": "^[0-9a-fA-F-]{36}$",
+      "title": "Operation Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "skill",
+    "operation_id"
+  ],
+  "title": "Reconcile",
+  "type": "object"
+}

@@ -2,11 +2,13 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3 implementasi offline selesai; Phase 4–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
-Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9**. Access control dan test dimulai saat feature dibuat; fase 7 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 9.
+Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
 
-Pemakaian API model atau test tenant SaaS dari aplikasi lokal diperbolehkan pada fase integrasi. Itu berbeda dari deployment aplikasi kita ke cloud. Mode offline proyek 07 tetap tidak memakai API eksternal. Infrastructure-as-code boleh disiapkan sebelum fase 9 tanpa apply/provision.
+Roadmap revisi: Phase 3–5 menyelesaikan implementasi dengan tes ringan; pengujian Docker, provider nyata dan model lokal dikumpulkan pada Phase 6. Satu phase implementasi = satu commit pembelajaran.
+
+Pemakaian API model atau test tenant SaaS dari aplikasi lokal diperbolehkan pada fase integrasi. Itu berbeda dari deployment aplikasi kita ke cloud. Mode offline proyek 07 tetap tidak memakai API eksternal. Infrastructure-as-code boleh disiapkan sebelum fase 10 tanpa apply/provision.
 
 ## Phase 0 — Inventaris dan batas pekerjaan
 
@@ -45,38 +47,49 @@ Evidence Phase 1 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-1.md),
 
 Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md), [panduan Odoo](docs/ODOO-LOCAL.md), [kontrak v1](docs/CONTRACT-V1.md). 38 tests lulus, termasuk 9 connected cases Odoo nyata; fresh-volume install dan CLI quotation lulus. AI/MCP/worker tetap pada fase berikutnya.
 
-## Phase 3 — AI assistant dan reusable skills
+## Phase 3 — Implementasi assistant AI dan reusable skills
 
-- [ ] Implementasikan assistant dan kontrak skills di AI-AGENTS.md serta REUSABLE-SKILLS.md, dengan structured outputs dan tool allowlist.
-- [ ] Implementasikan provider interface OpenAI, Claude, Grok; contract test semuanya dan jalankan canary nyata terpisah dengan data yang diizinkan bila credentials tersedia.
-- [ ] Tambahkan local inference Ollama dan evaluasi jalur lokal; aturan offline/private mengikuti LOCAL-AI-AND-PROVIDERS.md.
-- [ ] Tambahkan retrieval sumber kerja yang relevan dan pemeriksaan unsupported claims. AI mengusulkan; domain service menegakkan izin, state, dan aturan.
-- [ ] Versikan prompt/model/skill/schema; simpan latency, usage, biaya dan outcome. Missing usage tidak dilaporkan sebagai biaya nol.
+- [x] Lengkapi empat executable skills, typed contracts, source retrieval dan output validation.
+- [x] Implementasikan adapter OpenAI, Claude, Grok dan Ollama; uji format API, refusal, timeout dan local-only policy dengan HTTP simulasi.
+- [x] Hubungkan client TypeScript dengan assistant Python untuk task, preview, clarification dan recovery.
+- [x] Sediakan state task durable, replay yang aman, versi prompt/schema/skill, latency, token usage dan estimasi biaya berkonfigurasi.
+- [x] Jalankan tes ringan termasuk identity/tenant scope, unsupported claims, malformed output, cancellation dan reuse lintas caller.
 
-**Gate:** satu tugas lengkap berjalan memakai AI, output malformed/unsupported diblokir, skills dapat dipakai ulang oleh assistant dan automation worker. Provider yang belum diuji nyata tidak diberi label live-validated.
+**Gate implementasi:** client dan assistant memakai production code paths dengan transport simulasi; semua tes offline phase lulus. Tidak membutuhkan Docker atau model nyata. Canary provider, provisioning Ollama dan penerimaan bisnis nyata menjadi gate Phase 6.
 
-## Phase 4 — Custom MCP server
+Evidence: [Phase 3](docs/PHASE-3.md), 49 tes Python dan 2 tes client antarp proses lulus.
 
-- [ ] Implementasikan tools TypeScript sesuai MCP-INTEGRATIONS.md: read → prepare → approved execute → verify.
-- [ ] Buat reference client yang benar-benar memanggil MCP melalui protocol; jangan hanya memanggil fungsi tool langsung dalam unit test.
-- [ ] Tegakkan authentication, tenant scope, role, approval, limits, dan sanitized tool responses di server.
-- [ ] Uji schema/protocol, timeout, cancellation, malformed calls, tool injection, stale approval, dan duplicate execution.
+## Phase 4 — Implementasi custom MCP server
 
-**Gate:** assistant menyelesaikan satu tugas melalui MCP dengan final state terverifikasi; request tanpa hak ditolak meskipun prompt memerintahkannya.
+- [ ] Bangun tools TypeScript read → prepare → approved execute → verify dengan schemas dan SDK/protocol dipin.
+- [ ] Hubungkan reference client dan assistant melalui MCP stdio yang benar-benar berjalan antarp proses.
+- [ ] Tegakkan session identity, role, tenant scope, payload/approval constraints, limits, cancellation dan sanitized errors.
+- [ ] Uji protocol, malicious input, expired session, stale approval, concurrent/replayed execution dan unknown outcomes dengan domain HTTP simulasi.
 
-## Phase 5 — Business platform dan automation terhubung
+**Gate implementasi:** percakapan MCP nyata melalui stdio dan alur assistant-to-MCP lulus; platform downstream disimulasikan. Validasi Odoo/PostgreSQL nyata tetap Phase 6.
 
-- [ ] Gunakan worker/scheduler atau integrasi yang dipilih untuk workflow utama. Selesaikan release utama tanpa n8n; extension yang belum dipilih bukan pekerjaan wajib.
+## Phase 5 — Implementasi automation dan recovery
 
-- [ ] Hubungkan Odoo menggunakan kontrak pada BUSINESS-PLATFORM.md; identitas record dan source of truth harus eksplisit.
-- [ ] Jalankan alur read/propose/approve/write/read-back pada sandbox atau platform lokal; fake dipakai untuk failure injection, bukan pengganti bukti connected integration.
-- [ ] Tambahkan satu trigger automation terjadwal/event-based, dengan checkpoint, retry, dead-letter/review queue, dan idempotency.
-- [ ] Pastikan update eksternal, expired credentials, rate limit, duplicate events, dan unknown outcomes memiliki jalan pemulihan.
-- [ ] Siapkan konfigurasi tenant/business kedua sebagai bukti solusi tidak hanya cocok untuk seed demo pertama.
+- [ ] Tambahkan worker Python dan trigger terjadwal/event dengan handler skills yang sama.
+- [ ] Persist jobs, deduplication keys, checkpoints, retry backoff, lease, review/dead-letter state dan outcome.
+- [ ] Pisahkan approval manusia dari automation; jangan membuat approval atau blind retry write.
+- [ ] Uji duplicate events, restart, concurrent claim, expired credentials, unknown results dan isolasi tenant dengan storage lokal terisolasi.
+- [ ] Dokumentasikan ownership scheduler, state, recovery dan konfigurasi tenant kedua; n8n tetap bukan dependency.
 
-**Gate:** perubahan di platform tujuan terbukti benar; replay tidak menggandakan efek; akses sandbox yang belum tersedia tetap menjadi dependency terbuka.
+**Gate implementasi:** worker/scheduler nyata memakai persistent storage ringan, production handlers dan HTTP simulasi; tes restart/dedup/isolation lulus. Database aplikasi dan Odoo tetap sumber kebenaran transaksi bisnis, local job store hanya menyimpan orchestration.
 
-## Phase 6 — Evaluasi kualitas dan nilai pekerjaan
+## Phase 6 — Integrasi nyata dan validasi gabungan
+
+- [ ] Jadwalkan resource proyek ini; jalankan stack Docker secara terkendali tanpa mengganggu proyek lain.
+- [ ] Ulangi regresi PostgreSQL/Odoo Phase 1–2, lalu sambungkan assistant, MCP dan worker.
+- [ ] Jalankan canary nyata OpenAI, Claude dan Grok secara terpisah untuk credentials yang tersedia; catat status per provider.
+- [ ] Provision/pin Ollama dan model/license/artifacts; uji inference, local-only policy, resource usage dan recovery nyata.
+- [ ] Buktikan workflow AI → MCP → proposal → approval manusia → Odoo write → read-back; periksa efek duplikat, stale sources, timeout dan recovery.
+- [ ] Buktikan skill reuse dan tenant kedua pada stack nyata; benahi masalah integrasi sebelum evaluasi kualitas.
+
+**Gate integrasi:** hasil bisnis dan recovery benar-benar terverifikasi pada environment yang disebut. Simulasi tidak menggantikan bukti connected. Provider yang tidak tersedia tetap pending, tidak diberi label live-validated. Tahap ini dikerjakan sebelum evaluasi Phase 7.
+
+## Phase 7 — Evaluasi kualitas dan nilai pekerjaan
 
 - [ ] Bekukan development/regression set dan held-out set terpisah berdasarkan keluarga kasus/sumber; variasi dari template sama tidak dibagi untuk menciptakan holdout semu.
 - [ ] Tentukan rubric, denominator, target kualitas per risiko, dan jumlah kasus per kategori sebelum final run. Laporkan jumlah, coverage, dan ketidakpastian, bukan persentase saja.
@@ -89,7 +102,7 @@ Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md),
 
 **Gate:** laporan bisa direproduksi dengan dataset/version/run ID; semua critical controls lulus pada suite yang dinyatakan; quality thresholds tercapai atau limitations/scope diperbaiki dan diuji ulang.
 
-## Phase 7 — Reliability, security, dan performance lokal
+## Phase 8 — Reliability, security, dan performance lokal
 
 - [ ] Jalankan API/UI/MCP/worker permission tests: beda role, beda tenant, direct API bypass, secret/PII leakage, serta prompt injection.
 - [ ] Uji concurrency, interrupted worker, delayed callback, retry, unknown outcome, queue backlog, database recovery, dan backup/restore terisolasi.
@@ -98,9 +111,9 @@ Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md),
 - [ ] Jalankan beban normal/peak/soak yang ditentukan dari workload V1 dan hardware tercatat; bounded real-provider canary terpisah dari beban synthetic/stub.
 - [ ] Buktikan alert dipicu dan diterima pada test incident; uji release rollback serta runbook troubleshooting.
 
-**Gate:** local release candidate lulus quality/reliability gates. Tes cloud-only existing tidak dipaksa dijalankan lokal; validasi cloud tersebut menunggu fase 9. Laporan lokal tidak diberi label cloud/production traffic.
+**Gate:** local release candidate lulus quality/reliability gates. Tes cloud-only existing tidak dipaksa dijalankan lokal; validasi cloud tersebut menunggu fase 10. Laporan lokal tidak diberi label cloud/production traffic.
 
-## Phase 8 — Delivery pack dan release siap deploy
+## Phase 9 — Delivery pack dan release siap deploy
 
 - [ ] Selesaikan panduan manusia di PROJECT-DELIVERY.md: install, daily use, approval, failure handling, backup, upgrade, dan support.
 - [ ] Rekam demo dengan kasus normal, blocked/ambiguous, dan recovery; simpan acceptance checklist dan bukti hasil platform.
@@ -110,11 +123,11 @@ Evidence Phase 2 (2026-10-08): [delivery dan hasil verifikasi](docs/PHASE-2.md),
 
 **Gate:** aplikasi dapat dipakai dan dipulihkan lokal mengikuti dokumen; semua prerequisite deployment tercatat; bukti release cocok dengan snapshot kode yang akan dideploy.
 
-## Phase 9 — Deployment cloud TERAKHIR, validasi runtime, dan ongoing support
+## Phase 10 — Deployment cloud TERAKHIR, validasi runtime, dan ongoing support
 
 Target: **Azure**. Proyek 07 tetap punya deliverable offline mandiri; deployment private-cloud hanya varian tambahan, bukan syarat agar mode offline bekerja.
 
-- [ ] Setelah fase 0–8 lulus, provision environment terisolasi, deploy immutable image, jalankan migrations, secret/network policies, dan health checks.
+- [ ] Setelah fase 0–9 lulus, provision environment terisolasi, deploy immutable image, jalankan migrations, secret/network policies, dan health checks.
 - [ ] Ulangi connected end-to-end acceptance di runtime cloud, termasuk authorization dan hasil platform; jangan menyalin hasil lokal sebagai bukti cloud.
 - [ ] Jalankan workload cloud normal/peak/soak, failure recovery, queue/concurrency, delivered alerts, backup/restore terisolasi, dan rollback sesuai kontrak beban.
 - [ ] Verifikasi provenance release, data retention, resource/cost caps, serta teardown; dokumentasikan resource yang sengaja dipertahankan.

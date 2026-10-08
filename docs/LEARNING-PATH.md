@@ -1,6 +1,6 @@
 # Jalur pembelajaran per phase
 
-Setiap tag menyimpan versi tetap untuk bahan modul. Branch `main` berisi perkembangan terbaru.
+Setiap tag menyimpan versi tetap untuk bahan modul. Branch `learning-phases` memuat rangkaian baru: satu commit untuk setiap Phase 3–5. Branch `main` mempertahankan riwayat sebelum rangkaian ini.
 
 | Tag | Fokus | Materi dan hasil |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ git switch --detach phase-0
 ```
 
 Ganti tag dengan `phase-1` atau `phase-2` untuk tahap berikutnya. Gunakan
-`git switch main` untuk kembali ke versi terbaru. Untuk mengerjakan latihan:
+`git switch learning-phases` untuk kembali ke versi terbaru. Untuk mengerjakan latihan:
 
 ```bash
 git switch -c latihan-phase-1 phase-1
@@ -41,3 +41,5 @@ sudah diverifikasi. Riwayat commit implementasi tetap dipertahankan.
 Untuk phase berikutnya, buat commit selama pengerjaan, verifikasi gate phase,
 lalu buat annotated tag `phase-N` pada commit penyelesaiannya. Tag yang sudah
 digunakan sebagai bahan modul tetap; koreksi berikutnya memakai tag versi baru.
+
+Roadmap revisi memakai Phase 0–10. Phase 3–5 merupakan checkpoint implementasi offline; validasi terhubung dikumpulkan pada Phase 6. Gunakan tag `phase-3-code` untuk checkpoint assistant.

@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "const": "prepare_crm_activity",
+      "title": "Skill",
+      "type": "string"
+    },
+    "opportunity_id": {
+      "exclusiveMinimum": 0,
+      "title": "Opportunity Id",
+      "type": "integer"
+    },
+    "assignee_id": {
+      "exclusiveMinimum": 0,
+      "title": "Assignee Id",
+      "type": "integer"
+    },
+    "due_date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Due Date",
+      "type": "string"
+    },
+    "summary": {
+      "maxLength": 120,
+      "minLength": 1,
+      "pattern": "^[^<>]+$",
+      "title": "Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "skill",
+    "opportunity_id",
+    "assignee_id",
+    "due_date",
+    "summary"
+  ],
+  "title": "Activity",
+  "type": "object"
+}

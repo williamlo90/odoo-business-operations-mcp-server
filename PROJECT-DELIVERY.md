@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3 implementasi offline selesai; Phase 4–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
 
 ## Penjelasan satu kalimat
 
@@ -28,7 +28,7 @@ Demo menggunakan data sintetis/test tenant. Tunjukkan input, bukti, keputusan, t
 - [ ] Release/evidence manifest: commit, data/model/config versions, tests, integrations yang benar-benar diuji, limitations yang relevan.
 - [ ] Demo singkat dan case study dengan hasil terukur yang benar; single-operator/synthetic tetap dinyatakan sesuai lingkup.
 - [ ] Handover: pemilik credentials/config, permissions, biaya operasi/asumsi, retention, support owner, dan jadwal pemeliharaan.
-- [ ] Cloud deployment appendix setelah Phase 9: environment, health, monitoring, recovery proof, teardown/ongoing ownership.
+- [ ] Cloud deployment appendix setelah Phase 10: environment, health, monitoring, recovery proof, teardown/ongoing ownership.
 
 ## Ongoing support
 
