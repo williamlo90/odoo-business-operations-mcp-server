@@ -22,6 +22,7 @@ Proyek baru. Menjadi konektor bersama untuk proyek 04, 05, dan 08. Tetap punya a
 
 ## Dokumen kerja
 
+- [Jalur pembelajaran dan tag per phase](docs/LEARNING-PATH.md)
 - [PHASES.md](PHASES.md)
 - [AI-AGENTS.md](AI-AGENTS.md)
 - [REUSABLE-SKILLS.md](REUSABLE-SKILLS.md)
