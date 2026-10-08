@@ -1,0 +1,91 @@
+{
+  "run_id": "phase1-20261008-01",
+  "date": "2026-10-08",
+  "timezone": "Asia/Jakarta",
+  "source_revision": "bec092fe4b0ffe5f6cb4dbe941394cd13c90739e",
+  "hash_format": "SHA256 of delivered UTF-8 LF files",
+  "results": {
+    "postgres_http_suite": "17 passed",
+    "container_client": "passed",
+    "fresh_volume_install": "passed",
+    "database_outage_recovery": "passed"
+  },
+  "files": [
+    {
+      "path": "backend/__init__.py",
+      "sha256": "1891576ad56394a8d9f5040296088889d11129071ed30648660e33362cad5b6a"
+    },
+    {
+      "path": "backend/app.py",
+      "sha256": "1d770ff2b46f06dd56ebd88b3041e430b19d790ed02964b433ca27837d5c5092"
+    },
+    {
+      "path": "backend/config.py",
+      "sha256": "f7932f85f96017abc20f269d23b6568d3220f79d39a42c3a77def334ae23a79f"
+    },
+    {
+      "path": "backend/db.py",
+      "sha256": "25e821bb5ba615d929fdd6379dc708deaa0934695f7a83ceb32fe0b74b822729"
+    },
+    {
+      "path": "backend/manage.py",
+      "sha256": "25092cdc6aa1e4e496433080e969011660915d9b20c60d0f7f539e3cbd1b4cfc"
+    },
+    {
+      "path": "backend/migrations/001_foundation.sql",
+      "sha256": "b4c9e3fb5b2931bb63ee36556bb73d626c0243d03e59db338a365114dd951155"
+    },
+    {
+      "path": "backend/requirements.lock",
+      "sha256": "2b6db1f6ad3354adaac8c4455fb0d5f1540d1c640cecf79e431f734850b5ddf6"
+    },
+    {
+      "path": "client/.dockerignore",
+      "sha256": "a3865618917f4d60ecb5e6be627b3158ef11d7e8609bdd6983d9e71e6e098789"
+    },
+    {
+      "path": "client/Dockerfile",
+      "sha256": "338f6f1ecd22e45e550c20280de99c5c4e0ee27a52a3551a8beb06ff15708a16"
+    },
+    {
+      "path": "client/package-lock.json",
+      "sha256": "5d90934252e6f64b0b4975bf5f89fea5a6cb6c092384e01423e4d47777914cc0"
+    },
+    {
+      "path": "client/package.json",
+      "sha256": "94d0bc423fe0e067ce45c1506610379fba666678ebc41dc747ed87502e63a24a"
+    },
+    {
+      "path": "client/src/index.ts",
+      "sha256": "8654980af68af3c5651da4aadbfaf6540fdfe3b0d55f481afaeca9fc318bbf2c"
+    },
+    {
+      "path": "client/tsconfig.json",
+      "sha256": "2f360d76a838f0a772f8cdbe304483a6fc82d417a360a6e4a67a8bb3f3059cbe"
+    },
+    {
+      "path": "compose.test.yaml",
+      "sha256": "a9a496e1192448f6a0cf553afefc996905e362f7331b9b9315780afcb4270d38"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "8c95d3d324a1b4d56098c1a1756a260da213b50c0c86e0366644ecdbc9df6293"
+    },
+    {
+      "path": "deploy/Dockerfile",
+      "sha256": "140f5bc7a2d49191395c59609f4cd388a13cbd18ae441580e5648ac8e2c3145d"
+    },
+    {
+      "path": "deploy/setup_env.py",
+      "sha256": "27b1d8aa8a7fcb511c7e96b3bffe7e00c8278f8cf7172fe9da841e638e2b64f7"
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "b5cb91686400fd0a07c9a50e6c40cca4e21c540e2248a6ee1c2e57be685bd518"
+    },
+    {
+      "path": "tests/test_foundation.py",
+      "sha256": "d5b870445dc688c2cd82de9b77571baa23df38650707e8143fc8fcc4d9d2e4a3"
+    }
+  ]
+}
