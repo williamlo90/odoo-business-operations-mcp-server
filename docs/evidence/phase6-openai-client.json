@@ -1,0 +1,16 @@
+{
+  "provider": "openai",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "prompt_version": "intent-v2-openai",
+  "client": "TypeScript -> Python -> OpenAI Responses -> MCP -> Odoo",
+  "status": "read",
+  "task_id": "3555fead-74e0-45be-b1ed-826af76cc461",
+  "elapsed_seconds": 3.395,
+  "usage": {
+    "input_tokens": 596,
+    "output_tokens": 23,
+    "cost_usd": null,
+    "cost_status": "not_estimated",
+    "rate_version": null
+  }
+}

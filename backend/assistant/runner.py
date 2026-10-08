@@ -12,7 +12,7 @@ from uuid import UUID, uuid4
 from pydantic import ValidationError
 
 from backend.assistant.contracts import Activity, Decision, Quote, Reconcile, Research, VERSION, provider_schema
-from backend.assistant.providers import AssistantError, PROMPT, PROMPT_VERSION
+from backend.assistant.providers import AssistantError, prompt_for, prompt_version_for
 from backend.assistant.skills import SKILL_VERSION, execute_skill
 from backend.assistant.journal import TaskJournal
 from backend.assistant.costs import estimate
@@ -89,12 +89,12 @@ async def run(gateway, *, task=None, provider=None, decision=None,
         'model': provider.config.model if provider else None,
         'local_only': provider.config.local_only if provider else None,
         'rate': rate.model_dump() if rate else None, 'version': VERSION,
-        'prompt': PROMPT_VERSION}, sort_keys=True).encode()).hexdigest()
+        'prompt': prompt_version_for(provider.config.provider) if provider else 'intent-v1'}, sort_keys=True).encode()).hexdigest()
     usage = {'input_tokens': None, 'output_tokens': None, 'cost_usd': None,
              'cost_status': 'not_estimated'}
     trace.write('started', task_id=task_id, contract_version=VERSION,
-        skill_version=SKILL_VERSION, prompt_version=PROMPT_VERSION if provider else None,
-        prompt_sha256=hashlib.sha256(PROMPT.encode()).hexdigest() if provider else None,
+        skill_version=SKILL_VERSION, prompt_version=prompt_version_for(provider.config.provider) if provider else None,
+        prompt_sha256=hashlib.sha256(prompt_for(provider.config.provider).encode()).hexdigest() if provider else None,
         schema_sha256=hashlib.sha256(json.dumps(provider_schema(), sort_keys=True).encode()).hexdigest(),
         provider=provider.config.provider if provider else None,
         model=provider.config.model if provider else None, caller='assistant' if task is not None else 'direct_skill')

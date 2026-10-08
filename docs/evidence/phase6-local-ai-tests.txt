@@ -1,0 +1,24 @@
+Phase 6 local AI integration — 2026-10-08
+Final configuration: Ollama 0.40.1 portable Windows, CPU, qwen2.5:0.5b Q4_K_M.
+Cloud disabled; one model/request; 4096 context; keep_alive=0.
+Runtime and model digest checked by an autouse fixture.
+Command: python -m pytest -q -s --confcutdir=tests/live tests/live/test_local_ai.py
+Result: 5 passed in 22.83s; exit 0.
+
+English customer read intent: passed.
+Indonesian quotation exact product codes/quantities: passed.
+Company A model -> MCP -> proposal -> separate approver -> Odoo -> read-back: verified.
+  proposal 9c0e631f-ebf7-446c-bcf5-8144b3b28533
+  operation 058b1d2e-9c7b-48ff-9c65-1ccec6b58200
+  total IDR 250000; proposal latency 3.509s; tokens 226 in / 61 out.
+Company B same flow: verified.
+  proposal 5bcc2a31-c0d8-4968-a9be-d0614eec002a
+  operation 7686bd11-cf2c-4493-b16e-283b9ecff72e
+  total IDR 290000; proposal latency 3.882s; tokens 226 in / 61 out.
+Task replay returned the same proposal; execution replay returned the same operation.
+Unsupported email: model emitted invalid intent; validator blocked with model_output_invalid.
+Only the identity MCP call occurred; no business tool dispatched.
+
+These are integration/development cases, not held-out quality scores.
+Synthetic sandbox, automated separate approver identity, no customer/production traffic.
+Model quality beyond these cases remains unvalidated. No hosted API calls/cost claims.

@@ -1,6 +1,7 @@
 """Offline contracts and failure injection, never evidence of live provider quality."""
 import asyncio
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 
@@ -113,6 +114,10 @@ def test_wire_contract_and_grounded_quote(name, tmp_path):
     assert value['usage']['cost_usd'] is None
     assert len(calls) == 1
     body = json.loads(calls[0].content)
+    actual_prompt = body['input'][0]['content'] if name == 'openai' else body['system'] if name == 'claude' else body['messages'][0]['content']
+    trace = json.loads((tmp_path / (value['task_id'] + '.jsonl')).read_text(encoding='utf-8').splitlines()[0])
+    assert trace['prompt_sha256'] == hashlib.sha256(actual_prompt.encode()).hexdigest()
+    assert trace['prompt_version'] == ('intent-v2-openai' if name == 'openai' else 'intent-v1')
     if name == 'openai':
         assert calls[0].url == 'https://api.openai.com/v1/responses'
         assert body['text']['format']['schema'] == provider_schema() and body['store'] is False

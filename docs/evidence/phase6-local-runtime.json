@@ -1,0 +1,119 @@
+{
+  "official_archive": "https://github.com/ollama/ollama/releases/download/v0.40.1/ollama-windows-amd64.zip",
+  "version": "0.40.1",
+  "files": {
+    "lib/ollama/CUDNN_LICENSE.txt": "b6fe452605fe29245f0cbafa724b42df94a5e170bedb9d45bc9cfaa4883ad907",
+    "lib/ollama/CUTLASS_LICENSE.txt": "48eb34a9124af8fdd2ad1858a64be9827ebc42e5389c6dd4b5a93e411ac7e693",
+    "lib/ollama/DLFCN_WIN32_COPYING": "4cc7ac997b9293db5919baf630100cc09b3508efdfe6a6611c95511fb863b3c7",
+    "lib/ollama/DLPACK_LICENSE": "9bda2385fa325d1df6dc39772eba3cc6d07bdfaf2c656cd644cd29f7509514fd",
+    "lib/ollama/FMT_LICENSE": "25b5db04aa6070c12ac518b91cbd0a59725c050ecb091456e6ebc3d3eeb369cf",
+    "lib/ollama/ggml-base.dll": "6d3b5bc0029fc7682e4ac676080e710f3d4f06c435be71c507726d2fdcea9ee5",
+    "lib/ollama/ggml-cpu-alderlake.dll": "d879f614166d9388bfcc3ecef7b64f0b1b98c735a23eb3f90aa42fc0ce9359ed",
+    "lib/ollama/ggml-cpu-cannonlake.dll": "7f14a8815f57f3417bee90a9eaa4200e638dbb43f3e2600420d7f73bbf832d4b",
+    "lib/ollama/ggml-cpu-cascadelake.dll": "0af437ecef33d644b4be0ee01a02eb8d73669bf210f774508aa720819977ae64",
+    "lib/ollama/ggml-cpu-cooperlake.dll": "8259b37550b5d57437def863ccb2ef914ae3d46d56c08319996f5a9ffec012c7",
+    "lib/ollama/ggml-cpu-haswell.dll": "d445e0bdc290fa14305f23efc161338670b1a3c94335efec5896bc919f1a1f98",
+    "lib/ollama/ggml-cpu-icelake.dll": "8ab14b8192cd07eab53f17e9593320949d2e1a69a9327e6133fae36723e10f60",
+    "lib/ollama/ggml-cpu-ivybridge.dll": "45643f9884bb9d03e3a4a04399f465fb0d39b77a1bf5a7b62faa504994cbea3f",
+    "lib/ollama/ggml-cpu-piledriver.dll": "ae6f84b2a6843b28545bb466d62b9667c1fe5909919548d08a02be06d0f20f0f",
+    "lib/ollama/ggml-cpu-sandybridge.dll": "aaebc10e687a20b882cc86c2b58c22d5aa3f29ae006ba8755fe651fbf10dd392",
+    "lib/ollama/ggml-cpu-sapphirerapids.dll": "787e00bd6a9a5583be18235a7ce3a284d521ca81b70b144f062ffdb936d01bf8",
+    "lib/ollama/ggml-cpu-skylakex.dll": "e46b01ec18f1eaef7399b6ba8070032a046ca4965ccf3f96ceb613b90a5ea876",
+    "lib/ollama/ggml-cpu-sse42.dll": "791642ac63fc6ddd5c3606b10d6ce994f22f9ce25496bf63b6f5488a60cd49e7",
+    "lib/ollama/ggml-cpu-x64.dll": "bb9201aa25200f54c7da21a8c3867bd9af92650332d9919a8d852c0ab43737c9",
+    "lib/ollama/ggml-cpu-zen4.dll": "32890a622af761e9296e76e7c481365fc731b153dbac833b3e3ba0f39cd57ca6",
+    "lib/ollama/ggml.dll": "de9a7136dc9a80e0a4925e49c4e52cf9c15bbe314ca131c7695611e268c59a2d",
+    "lib/ollama/GO_LICENSE": "7fee9b29a1541b5a9ec03c5d57e095ad280f67a824cf3818445ba6996f86fe85",
+    "lib/ollama/JSON_LICENSE.MIT": "86b998c792894ccb911a1cb7994f7a9652894e7a094c0b5e45be2f553f45cf14",
+    "lib/ollama/libc++.dll": "84540dcdac9c0d943f51844bb6d64ef82cbb15c491885732b4a2a6d087bb363a",
+    "lib/ollama/libllama-common.dll": "dfcf6fd0b6911fab9a1419042b78992302d0c0f4b496911306c87dad228511ea",
+    "lib/ollama/libllama-quantize-impl.dll": "57f9a07f77441de1c6d4f7c6301cf9bdf07137a3a04e777d46fe42faeba98ff1",
+    "lib/ollama/libllama-server-impl.dll": "1591dfda832623c89547ffe2007b9cc010a91e660898aea428854bf1580b6992",
+    "lib/ollama/libllama.dll": "ac18a06da6978791968d81d9423c763d518b03d61a4426833398f1656150d3b5",
+    "lib/ollama/libmtmd.dll": "6823b50ad27c8b8351ff3a64c80d3ead7ff4e5ba87555c3589438d2c166aa465",
+    "lib/ollama/libomp.dll": "6a7cf7699310ce3f487805c52328b3253daa43e037407a60f92b24204df85797",
+    "lib/ollama/libunwind.dll": "53af02641051ac660b8efded4bb84674b4afe1eba69523457d5cf33826bd0392",
+    "lib/ollama/libwinpthread-1.dll": "fa37520262008615fe59a5973dfa9035b55f0dc4623dfbf4790e1754176a96e1",
+    "lib/ollama/llama-quantize.exe": "af73b58ecc5202f7b3dcb2713db0cf6a5cad6763f758bd1fed13640452ad4125",
+    "lib/ollama/llama-server.exe": "2660eddb4f012b659f4c25a6ba55a6502263177e2ce631d0df20da8765631148",
+    "lib/ollama/LLAMA_CPP_LICENSE": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285",
+    "lib/ollama/LLAMA_CPP_VENDORS_LICENSE": "7547ae6372a35e7382898dd9f5519ebc16e93095f69c2466b5b74b617c33d4da",
+    "lib/ollama/MLX_C_LICENSE": "d8d63c7fa57071d80d30116d014e4189c52ef4cb2d1671f6d848e78d9f6cfad0",
+    "lib/ollama/MLX_LICENSE": "e93675e97d080c4fcfef6dd530448b9a6fd7c1ad43c736d593537079cd669d3d",
+    "lib/ollama/NVTX3_LICENSE.txt": "c3b19baa37cf18bac07b65700824acadcfa617316f02af10d3852ed20f4f6ab8",
+    "lib/ollama/PICOJSON_LICENSE": "02f4aea46c66a0c110bb4fd995817db2dc2af0b57c18336b367e6bc9c27eb91f",
+    "lib/ollama/vulkan/concrt140.dll": "e8d787c34317fcf88594f55e919e367e79354723cba7be5a1f2a03a7d0982278",
+    "lib/ollama/vulkan/ggml-vulkan.dll": "7a00d3195a1931889510b23ff20cbed5ca8e19c0f2b1c208f6f8d30f77e47732",
+    "lib/ollama/vulkan/msvcp140.dll": "e94c473bc383a493920635b3b3859367195794bdc628f7243165ed1943364345",
+    "lib/ollama/vulkan/msvcp140_1.dll": "c1388ea7717cd12e6823115f7f87a9c4c58b4ac938a15886edbd684ec81ef27b",
+    "lib/ollama/vulkan/msvcp140_2.dll": "50ebf1786dc6632fd79f9d8f9cc2dc123770d3ced0731e6acb134a45659ac7ea",
+    "lib/ollama/vulkan/msvcp140_atomic_wait.dll": "4c72185bd224baa28739606e331937b13e5df060239b460efbb26fd0c33a37d2",
+    "lib/ollama/vulkan/msvcp140_codecvt_ids.dll": "31d6c43e3ad841299d83fc81878567840a9c8915e10b0c827aa8658fd156246d",
+    "lib/ollama/vulkan/vccorlib140.dll": "de0b6e1216f996723856da1dedee7501e67f2cb27ab12ad358c2065af9ed8676",
+    "lib/ollama/vulkan/vcruntime140.dll": "62edfbaffb1a5d5ba3f0e45d8c718aa9c6e0414d6cdc8aefebb410d5a76ee987",
+    "lib/ollama/vulkan/vcruntime140_1.dll": "fa38c6b75e22db22ac4d1acd59957a740d318f569abdce863d2e74fcc5df5414",
+    "lib/ollama/vulkan/vcruntime140_threads.dll": "f78140e909b5e3ead2cf3bfd0b64b6fb04b20a355ec1622bfea9fd6f49a1529f",
+    "lib/ollama/XGRAMMAR_LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "lib/ollama/XGRAMMAR_NOTICE": "93971ad2b725c8398df171dbd7c8145fc9d11bf016294aa69a8a783b55a40775",
+    "ollama.exe": "74462c0d7caa1aeb547f086ef1662f2b23d1cb573f70d21027e72250679e9112"
+  },
+  "runtime": {
+    "version": {
+      "version": "0.40.1"
+    },
+    "status": {
+      "cloud": {
+        "disabled": true,
+        "source": "env"
+      }
+    }
+  },
+  "backend": "CPU (ggml-cpu-alderlake)",
+  "gpu": "Not used by the validated configuration",
+  "license": "Model: Apache-2.0; runtime component licenses preserved",
+  "model": {
+    "name": "qwen2.5:0.5b",
+    "model": "qwen2.5:0.5b",
+    "modified_at": "2026-10-08T20:03:35.4695916+07:00",
+    "size": 397821319,
+    "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen2",
+      "families": [
+        "qwen2"
+      ],
+      "parameter_size": "494.03M",
+      "quantization_level": "Q4_K_M",
+      "context_length": 32768,
+      "embedding_length": 896,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools"
+    ]
+  },
+  "model_details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen2",
+    "families": [
+      "qwen2"
+    ],
+    "parameter_size": "494.03M",
+    "quantization_level": "Q4_K_M"
+  },
+  "license_sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+  "cpu": "13th Gen Intel Core i7-13620H",
+  "runtime_configuration": {
+    "OLLAMA_VULKAN": "0",
+    "GGML_VK_VISIBLE_DEVICES": "-1",
+    "CUDA_VISIBLE_DEVICES": "-1",
+    "OLLAMA_NO_CLOUD": "1",
+    "OLLAMA_CONTEXT_LENGTH": "4096",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "keep_alive": 0
+  }
+}

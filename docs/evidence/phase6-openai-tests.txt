@@ -1,0 +1,23 @@
+Phase 6 OpenAI canaries — 2026-10-08
+Model: gpt-4.1-mini-2025-04-14; Responses API; strict JSON Schema; store=false.
+Prompt profile: intent-v2-openai (explicit clarification for incomplete requests).
+Command: python -m pytest -q -s --confcutdir=tests/live tests/live/test_openai.py
+Result: 4 passed in 16.91s; exit 0.
+
+Unsupported email: needs_input / supported_task; only identity call; 594 input / 15 output tokens.
+Missing quotation items: needs_input / product_code + quantity; only identity call; 596 input / 17 output tokens.
+Company A: proposal d3011bda-c50b-4aee-9496-db0df0346823;
+operation fa53e5fd-d1d3-45d8-ae84-a2a2424f2be1; verified total IDR 250000.
+Company B: proposal 99d81d50-8d06-4329-a8e9-e27955b2eebf;
+operation 0c53bbf9-9920-4e45-91e2-7c9c8c95aa49; verified total IDR 290000.
+Each quotation reported 612 input / 45 output tokens.
+Proposal latencies: A 2.433s, B 2.372s (observations, not percentiles).
+Separate synthetic approver account; replay reused proposal and operation.
+The final adapter sends the same tested prompt text and records its provider-specific version/hash.
+Actual TypeScript client also passed; see phase6-openai-client.json.
+
+Regression after provider-profile separation: 5 local AI canaries passed in 26.74s.
+75 offline tests and both TypeScript builds passed.
+No hosted fallback. Model receives synthetic task text, not retrieved Odoo source records.
+No key values are included. Actual cost is not estimated or claimed as zero.
+These are integration canaries, not held-out quality evaluation.

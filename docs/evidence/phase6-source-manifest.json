@@ -1,0 +1,21 @@
+{
+  "status": "phase-6-complete-selected-local-scope",
+  "base_revision": "5f3be8d76ced58a920878934b034f044127c1027",
+  "files": {
+    "backend/assistant/providers.py": "974410158562551d617d33f1768bb424e68e05fdfa93d4e353daa6e98dd932b8",
+    "backend/assistant/runner.py": "47a81af3192f0b727bb8fb4df6853424d16f2f1df16605a5d41a130a42ff70ab",
+    "backend/provision_worker.py": "85022a51660f2c38bd8d7b5f38af8ee0bd80b8b29af9da85cbce5fec7d63826e",
+    "compose.resources.yaml": "d9ec240b198123f530569a63b39cd55970935a8bf61c825b25666d8e754f86b5",
+    "deploy/provision_worker.py": "ec874d06d8b34caf3c77b35475609d4ace14b255efa1d7cdb2ff67551ed88a63",
+    "deploy/start_ollama.ps1": "1870df78c6fcfa931833ae2262f151abfaa2a24c537ef37b1b7cad21aebd6f48",
+    "deploy/stop_ollama.ps1": "61c65b74a80453741d5e9c4b90ac88f1a42fc85a85ca7afa350b2b9331c71d15",
+    "tests/assistant/test_core.py": "86074aea9dc5c1d4c3a003eda9ff95298d3b08aaf1ed8e6b98e21d84acf25110",
+    "tests/live/test_local_ai.py": "90230bb8fc8fcee13dbe6ce3976ae41d85227906715317504d2874c3d7ace74b",
+    "tests/live/test_openai.py": "f8c1b66060706688e2d2d7ae766a70db89e6929109a8b9a941ee51fd933af41e",
+    "tests/live/test_stack.py": "67d342e56ceeded6efee56abb8aea841a7b0a536c63a21b0c79a79adcae6bbb9"
+  },
+  "optional_unverified_providers": [
+    "claude",
+    "grok"
+  ]
+}

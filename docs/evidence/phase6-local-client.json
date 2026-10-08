@@ -1,0 +1,17 @@
+{
+  "client": "TypeScript CLI -> Python assistant -> live Ollama CPU -> MCP -> Docker Odoo",
+  "task_id": "14f635e6-0e71-4340-a767-142d4363bf58",
+  "status": "read",
+  "customer_reference": "OPS-A-001",
+  "elapsed_seconds": 4.311,
+  "usage": {
+    "input_tokens": 208,
+    "output_tokens": 35,
+    "cost_usd": null,
+    "cost_status": "not_estimated",
+    "rate_version": null
+  },
+  "runtime_outage": "provider_unavailable without fallback",
+  "recovery": "successful fresh task after runtime restart",
+  "model_unloaded_after_task": true
+}

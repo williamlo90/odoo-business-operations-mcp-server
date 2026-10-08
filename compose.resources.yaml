@@ -1,0 +1,13 @@
+services:
+  db:
+    mem_limit: 192m
+  odoo-db:
+    mem_limit: 256m
+  api:
+    mem_limit: 256m
+  odoo:
+    mem_limit: 768m
+  odoo-init:
+    mem_limit: 768m
+  odoo-seed:
+    mem_limit: 768m

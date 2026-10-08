@@ -1,0 +1,26 @@
+Connected verification — 2026-10-08
+Source base: 5f3be8d (phase-5-code), plus files in phase6-source-manifest.json.
+
+Docker regression suite:
+38 passed, 1 warning in 10.14s; exit 0.
+Includes 9 connected Odoo tests; other cases cover application/database/domain contracts.
+
+Host tests/live/test_stack.py through real MCP and Docker Odoo:
+7 passed in 34.78s; exit 0.
+2 tenant quotation/approval/execute/read-back/replay scenarios.
+2 tenant scheduled worker read/restart scenarios.
+1 activity worker prepare/dedup/approval/execute scenario.
+2 dedicated automation profile CLI replay/persistence scenarios.
+Account provisioning ran for A/B; a second A run preserved existing credentials.
+
+Synthetic sandbox only. Separate approver test identity; automated approval test.
+No hosted provider or local model inference. This is a summary of observed output.
+Steady-state Docker sample: API 68.04 MiB; Odoo 122.6 MiB;
+application DB 20.29 MiB; Odoo DB 56.72 MiB (not peak/capacity measurements).
+Other projects were neither stopped nor modified.
+
+Follow-up verification: mismatching provisioning credentials were rejected;
+original automation login still worked. Offline regression: 49 assistant,
+16 worker, 2 client and 8 MCP tests passed again; both TypeScript builds passed.
+Ollama 0.40.1 portable runtime returned cloud.disabled=true. A missing local
+model was rejected before generation with local_runtime_unverified.
