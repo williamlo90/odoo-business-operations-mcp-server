@@ -1,0 +1,4185 @@
+{
+  "run_id": "20261008T142431Z",
+  "workload_sha256": "2dde597a6a076c8baa5026323ff682bc6d3b2bd510120cc1bd91def10cd673c5",
+  "base_revision": "802cbc3bdf556b4547c777ba5cbe2e2f61dfb6e4",
+  "passed": true,
+  "workloads": [
+    {
+      "spec": {
+        "name": "normal",
+        "count": 24,
+        "rate_per_second": 1,
+        "concurrency": 2,
+        "read_p95_seconds": 2,
+        "write_p95_seconds": 5
+      },
+      "rows": [
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.20025570003781468,
+          "elapsed_seconds": 0.07727040001191199,
+          "total_seconds": 0.27752610004972667
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004826799966394901,
+          "elapsed_seconds": 0.04762960004154593,
+          "total_seconds": 0.05245640000794083
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012235500034876168,
+          "elapsed_seconds": 0.04489379993174225,
+          "total_seconds": 0.05712929996661842
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.004516400047577918,
+          "operation_id": "7d242557-bf7c-492f-8892-6b1a979f8e57",
+          "elapsed_seconds": 0.3703610999509692,
+          "total_seconds": 0.37487749999854714
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0027878000400960445,
+          "elapsed_seconds": 0.07959069998469204,
+          "total_seconds": 0.08237850002478808
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0051518999971449375,
+          "elapsed_seconds": 0.09100929996930063,
+          "total_seconds": 0.09616119996644557
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00383160007186234,
+          "elapsed_seconds": 0.05683119990862906,
+          "total_seconds": 0.0606627999804914
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.012411699979566038,
+          "operation_id": "4f3a6b48-7b5f-4f94-a339-3a72b938e47f",
+          "elapsed_seconds": 0.37904910009820014,
+          "total_seconds": 0.3914608000777662
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008642600034363568,
+          "elapsed_seconds": 0.1636132999556139,
+          "total_seconds": 0.17225589998997748
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014922600006684661,
+          "elapsed_seconds": 0.04866770002990961,
+          "total_seconds": 0.06359030003659427
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008770000073127449,
+          "elapsed_seconds": 0.061858999892137945,
+          "total_seconds": 0.0706289999652654
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.013853400014340878,
+          "operation_id": "06b514d4-06e9-4aa2-8bc2-b85dc4a7a330",
+          "elapsed_seconds": 0.36754250002559274,
+          "total_seconds": 0.3813959000399336
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012531400076113641,
+          "elapsed_seconds": 0.04672059998847544,
+          "total_seconds": 0.05925200006458908
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.010543500073254108,
+          "elapsed_seconds": 0.12233129993546754,
+          "total_seconds": 0.13287480000872165
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.009319600067101419,
+          "elapsed_seconds": 0.0439748999197036,
+          "total_seconds": 0.05329449998680502
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.007591100060380995,
+          "operation_id": "b0756942-5d6d-43fe-bd02-a036bcb529f6",
+          "elapsed_seconds": 0.3874801999190822,
+          "total_seconds": 0.3950712999794632
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014876100001856685,
+          "elapsed_seconds": 0.04532140004448593,
+          "total_seconds": 0.06019750004634261
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.009048799984157085,
+          "elapsed_seconds": 0.05412930005695671,
+          "total_seconds": 0.0631781000411138
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006420999998226762,
+          "elapsed_seconds": 0.05451589997392148,
+          "total_seconds": 0.06093689997214824
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.00923179998062551,
+          "operation_id": "b54ca508-ac62-47f3-93e8-8c02e943c83b",
+          "elapsed_seconds": 0.34402310010045767,
+          "total_seconds": 0.3532549000810832
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0007471999851986766,
+          "elapsed_seconds": 0.044783700024709105,
+          "total_seconds": 0.04553090000990778
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00301059999037534,
+          "elapsed_seconds": 0.05390990001615137,
+          "total_seconds": 0.05692050000652671
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0015690000727772713,
+          "elapsed_seconds": 0.04801839997526258,
+          "total_seconds": 0.049587400048039854
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.0011705000652000308,
+          "operation_id": "cafabd57-c2e7-42a6-8462-135725c8dea4",
+          "elapsed_seconds": 0.381049899966456,
+          "total_seconds": 0.382220400031656
+        }
+      ],
+      "http_calls": [
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.07721949997358024,
+          "downstream_seconds": 0.024239999999999998,
+          "correlation_id": "84a6692d-4ef1-4fb8-8003-9cc97f91d3ce"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.047570499940775335,
+          "downstream_seconds": 0.02615,
+          "correlation_id": "7874795c-9a5b-41f0-b13c-95651be0444a"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.044856199994683266,
+          "downstream_seconds": 0.02597,
+          "correlation_id": "70a05db8-8926-4019-9683-9f4a2c632281"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06922950001899153,
+          "downstream_seconds": 0.03563,
+          "correlation_id": "830eb6cd-920a-410a-95d8-5c361302dc3c"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06616499996744096,
+          "downstream_seconds": 0.03162,
+          "correlation_id": "683ad1fd-99be-429e-b30a-807b366c9745"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1302424999885261,
+          "downstream_seconds": 0.08266,
+          "correlation_id": "4366cfd8-fcc2-4005-8125-11a90c695a64"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07105170004069805,
+          "downstream_seconds": 0.02624,
+          "correlation_id": "4880d213-6af7-444e-b554-dc98ef76427f"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.03343249997124076,
+          "downstream_seconds": 0.0,
+          "correlation_id": "02bebd2a-1b2a-42f9-a519-06fd150390ab"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.07952949998434633,
+          "downstream_seconds": 0.03279,
+          "correlation_id": "946c8539-4054-4d6b-9aab-5e799e76a689"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.09094169992022216,
+          "downstream_seconds": 0.02444,
+          "correlation_id": "58167802-82e3-462e-9bcc-987e962ff723"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05678989994339645,
+          "downstream_seconds": 0.02359,
+          "correlation_id": "ee0e3933-d7a4-43e6-8695-c0c04f912fb8"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07679469999857247,
+          "downstream_seconds": 0.041299999999999996,
+          "correlation_id": "7963b7e0-4f12-4887-b4c6-9fd0209f442b"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.075069599901326,
+          "downstream_seconds": 0.03361,
+          "correlation_id": "a90a889f-9f2c-4c78-8ce7-5ac519c7456f"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13909770001191646,
+          "downstream_seconds": 0.09117,
+          "correlation_id": "845c78a0-e4a3-4028-bc84-775830e5f209"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06273630005307496,
+          "downstream_seconds": 0.02532,
+          "correlation_id": "887ebe2e-7c7e-4b4b-9214-c358e84056b3"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.0250687999650836,
+          "downstream_seconds": 0.0,
+          "correlation_id": "6f656553-8a4a-49ef-80fc-1fd4ee677bb3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.16352920001372695,
+          "downstream_seconds": 0.05442,
+          "correlation_id": "35c7c1cb-0135-4d5d-befa-f9af9c807ec8"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04862050001975149,
+          "downstream_seconds": 0.024120000000000003,
+          "correlation_id": "ff7ce111-e688-478a-82fd-d6503e57e8ea"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.061796900001354516,
+          "downstream_seconds": 0.03222,
+          "correlation_id": "54dccf78-7e95-4538-8818-2e4debf16f03"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06915550003759563,
+          "downstream_seconds": 0.03289,
+          "correlation_id": "e18036dc-b634-428a-b35b-66e283951236"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07069989992305636,
+          "downstream_seconds": 0.03293,
+          "correlation_id": "29005374-a6fe-45b3-b8e5-6a31534f8570"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.131537799956277,
+          "downstream_seconds": 0.08151,
+          "correlation_id": "3ce7b82b-6707-448d-9ceb-3230ae841ef4"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.0693322999868542,
+          "downstream_seconds": 0.02557,
+          "correlation_id": "ae4e26c0-27b0-44f6-8d3b-6ce7db4e85fe"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.0266138999722898,
+          "downstream_seconds": 0.0,
+          "correlation_id": "74dfb6fa-44f9-4493-9084-21f5e5c1aead"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04668100003618747,
+          "downstream_seconds": 0.02542,
+          "correlation_id": "7d578be0-f218-4238-b889-dd51463477af"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.12225260003469884,
+          "downstream_seconds": 0.06431,
+          "correlation_id": "7bc025ac-f595-4193-ba16-15905e7ccbd3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04393419995903969,
+          "downstream_seconds": 0.02503,
+          "correlation_id": "b8cc9b2f-cc85-49fd-8bd5-4925f4f3fd5f"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06224360002670437,
+          "downstream_seconds": 0.03288,
+          "correlation_id": "05b7f16c-e58e-4ce3-904a-5dd9f3c302fc"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06549980002455413,
+          "downstream_seconds": 0.033159999999999995,
+          "correlation_id": "c370ee40-6d1e-4b69-a893-1a19b0436b71"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1548289000056684,
+          "downstream_seconds": 0.10314,
+          "correlation_id": "e5c3da60-2852-4508-9298-e44b091382e2"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07862159993965179,
+          "downstream_seconds": 0.03028,
+          "correlation_id": "dae022ee-b12c-49ec-a921-e2120cc0b4a3"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.026097599999047816,
+          "downstream_seconds": 0.0,
+          "correlation_id": "dd03d7e0-ba64-4757-86da-419d0c345ed2"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04528130008839071,
+          "downstream_seconds": 0.0253,
+          "correlation_id": "244cb271-2bf8-4e4a-a157-8385bd9cd37d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.054088300094008446,
+          "downstream_seconds": 0.027129999999999998,
+          "correlation_id": "e289c6f7-cf47-4116-b352-4d5d9d785e11"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.054470500093884766,
+          "downstream_seconds": 0.02948,
+          "correlation_id": "ea4eeadc-740a-4e21-904c-31459aca81fe"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06417849997524172,
+          "downstream_seconds": 0.03498,
+          "correlation_id": "9efd138e-1ccf-4497-854d-ae2fbc4ba8f3"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06548950006254017,
+          "downstream_seconds": 0.03234,
+          "correlation_id": "87299b61-b4b7-4077-a466-cf53a9c9c67e"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12307249999139458,
+          "downstream_seconds": 0.07762000000000001,
+          "correlation_id": "ef538de9-0101-40e1-9daf-9af96bc62ba4"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06700370006728917,
+          "downstream_seconds": 0.027489999999999997,
+          "correlation_id": "d184960d-7688-45c3-b24b-8452907f443a"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.024093499989248812,
+          "downstream_seconds": 0.0,
+          "correlation_id": "000bcac8-12d7-41af-ade2-21a672659c7a"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04470889992080629,
+          "downstream_seconds": 0.0256,
+          "correlation_id": "5e1633bf-1742-47fa-a567-a150bb18104d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05384750000666827,
+          "downstream_seconds": 0.0261,
+          "correlation_id": "b47b36f6-1ac9-4060-a7c7-ca1ae1388662"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04796400002669543,
+          "downstream_seconds": 0.023870000000000002,
+          "correlation_id": "2f921a88-25bb-4dd3-a07d-e4129183829e"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06471459998283535,
+          "downstream_seconds": 0.03399,
+          "correlation_id": "6ce4539f-8a04-4d75-8681-5010433a4ae8"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06784130004234612,
+          "downstream_seconds": 0.03497,
+          "correlation_id": "283c2eb2-85d7-4045-a76c-e6cd5757b472"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1394311001058668,
+          "downstream_seconds": 0.08965000000000001,
+          "correlation_id": "d885c7ad-54e0-44fb-881e-a1be74dfa155"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07903030002489686,
+          "downstream_seconds": 0.03133,
+          "correlation_id": "405f26e0-0d40-4b62-89d9-49b88070f539"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.029823699966073036,
+          "downstream_seconds": 0.0,
+          "correlation_id": "85cf67ce-ca6c-4c04-be76-d4b3453c0f74"
+        }
+      ],
+      "wall_seconds": 23.382795099983923,
+      "states": {
+        "correct_read": 18,
+        "verified": 6
+      },
+      "per_kind_seconds": {
+        "read": {
+          "n": 18,
+          "p50": 0.0539,
+          "p90": 0.1223,
+          "p95": 0.1636,
+          "p99": 0.1636
+        },
+        "write": {
+          "n": 6,
+          "p50": 0.3704,
+          "p90": 0.3875,
+          "p95": 0.3875,
+          "p99": 0.3875
+        }
+      },
+      "queue_seconds": {
+        "n": 24,
+        "p50": 0.0086,
+        "p90": 0.0149,
+        "p95": 0.0149,
+        "p99": 0.2003
+      },
+      "total_seconds": {
+        "n": 24,
+        "p50": 0.0636,
+        "p90": 0.3822,
+        "p95": 0.3915,
+        "p99": 0.3951
+      },
+      "per_stage_seconds": {
+        "approve": {
+          "n": 6,
+          "p50": 0.0662,
+          "p90": 0.0751,
+          "p95": 0.0751,
+          "p99": 0.0751
+        },
+        "customer_search": {
+          "n": 18,
+          "p50": 0.0538,
+          "p90": 0.1223,
+          "p95": 0.1635,
+          "p99": 0.1635
+        },
+        "execute_ack": {
+          "n": 6,
+          "p50": 0.1315,
+          "p90": 0.1548,
+          "p95": 0.1548,
+          "p99": 0.1548
+        },
+        "execute_replay": {
+          "n": 6,
+          "p50": 0.0261,
+          "p90": 0.0334,
+          "p95": 0.0334,
+          "p99": 0.0334
+        },
+        "prepare": {
+          "n": 6,
+          "p50": 0.0647,
+          "p90": 0.0768,
+          "p95": 0.0768,
+          "p99": 0.0768
+        },
+        "readback": {
+          "n": 6,
+          "p50": 0.0693,
+          "p90": 0.079,
+          "p95": 0.079,
+          "p99": 0.079
+        }
+      },
+      "downstream_per_stage_seconds": {
+        "approve": {
+          "n": 6,
+          "p50": 0.0329,
+          "p90": 0.035,
+          "p95": 0.035,
+          "p99": 0.035
+        },
+        "customer_search": {
+          "n": 18,
+          "p50": 0.0256,
+          "p90": 0.0544,
+          "p95": 0.0643,
+          "p99": 0.0643
+        },
+        "execute_ack": {
+          "n": 6,
+          "p50": 0.0827,
+          "p90": 0.1031,
+          "p95": 0.1031,
+          "p99": 0.1031
+        },
+        "execute_replay": {
+          "n": 6,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0
+        },
+        "prepare": {
+          "n": 6,
+          "p50": 0.034,
+          "p90": 0.0413,
+          "p95": 0.0413,
+          "p99": 0.0413
+        },
+        "readback": {
+          "n": 6,
+          "p50": 0.0262,
+          "p90": 0.0313,
+          "p95": 0.0313,
+          "p99": 0.0313
+        }
+      },
+      "achieved_correct_tasks_per_second": 1.0263956852624732,
+      "verified_operations_per_minute": 15.395935278937097,
+      "error_rate": 0.0,
+      "dropped": 0,
+      "passed": true
+    },
+    {
+      "spec": {
+        "name": "peak",
+        "count": 40,
+        "rate_per_second": 4,
+        "concurrency": 4,
+        "read_p95_seconds": 5,
+        "write_p95_seconds": 10
+      },
+      "rows": [
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.19227100000716746,
+          "elapsed_seconds": 0.04560509999282658,
+          "total_seconds": 0.23787609999999404
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0009630999993532896,
+          "elapsed_seconds": 0.0752513000043109,
+          "total_seconds": 0.0762144000036642
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014228900079615414,
+          "elapsed_seconds": 0.05902059993240982,
+          "total_seconds": 0.07324950001202524
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008467800100333989,
+          "elapsed_seconds": 0.05029629997443408,
+          "total_seconds": 0.058764100074768066
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.012723900028504431,
+          "operation_id": "72ec232c-c57f-42ed-97f6-709e4da3ef39",
+          "elapsed_seconds": 0.3605280000483617,
+          "total_seconds": 0.37325190007686615
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006323500070720911,
+          "elapsed_seconds": 0.049676200025714934,
+          "total_seconds": 0.055999700096435845
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.003327700076624751,
+          "elapsed_seconds": 0.04236770002171397,
+          "total_seconds": 0.04569540009833872
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.015344900079071522,
+          "elapsed_seconds": 0.043619000003673136,
+          "total_seconds": 0.05896390008274466
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.0028384000761434436,
+          "operation_id": "76d9923b-c525-4c2e-9d57-cce7a418f1cb",
+          "elapsed_seconds": 0.39213970000855625,
+          "total_seconds": 0.3949781000846997
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011186500079929829,
+          "elapsed_seconds": 0.049787099938839674,
+          "total_seconds": 0.0609736000187695
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00892390008084476,
+          "elapsed_seconds": 0.043002899968996644,
+          "total_seconds": 0.051926800049841404
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.013896999997086823,
+          "elapsed_seconds": 0.0458901000674814,
+          "total_seconds": 0.05978710006456822
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.003408999997191131,
+          "operation_id": "162a70bc-b576-4087-90ee-472c5c7b4c89",
+          "elapsed_seconds": 0.3653635000810027,
+          "total_seconds": 0.36877250007819384
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.01155799999833107,
+          "elapsed_seconds": 0.052206600084900856,
+          "total_seconds": 0.06376460008323193
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0047851999988779426,
+          "elapsed_seconds": 0.04440970008727163,
+          "total_seconds": 0.04919490008614957
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.013465500087477267,
+          "elapsed_seconds": 0.05180819996166974,
+          "total_seconds": 0.06527370004914701
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.0020009001018479466,
+          "operation_id": "7f14cf2e-58fc-4d7b-a691-218a0117133c",
+          "elapsed_seconds": 0.43619529996067286,
+          "total_seconds": 0.4381962000625208
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.009128400008194149,
+          "elapsed_seconds": 0.04687820002436638,
+          "total_seconds": 0.05600660003256053
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006646400084719062,
+          "elapsed_seconds": 0.045060499920509756,
+          "total_seconds": 0.05170690000522882
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.015073000104166567,
+          "elapsed_seconds": 0.0679337999317795,
+          "total_seconds": 0.08300680003594607
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.0038548000156879425,
+          "operation_id": "3ac92f1f-08b5-4dd9-ab92-33ffe2a16236",
+          "elapsed_seconds": 0.4248335000593215,
+          "total_seconds": 0.42868830007500947
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012117000063881278,
+          "elapsed_seconds": 0.12377519998699427,
+          "total_seconds": 0.13589220005087554
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.007265700027346611,
+          "elapsed_seconds": 0.04471470008138567,
+          "total_seconds": 0.05198040010873228
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012360100052319467,
+          "elapsed_seconds": 0.04872680001426488,
+          "total_seconds": 0.06108690006658435
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.01575090002734214,
+          "operation_id": "01b1683c-b316-4ae6-bcf8-48d3e4c8f03d",
+          "elapsed_seconds": 0.39990770001895726,
+          "total_seconds": 0.4156586000462994
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.010711500071920455,
+          "elapsed_seconds": 0.04352649999782443,
+          "total_seconds": 0.054238000069744885
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.009595700073987246,
+          "elapsed_seconds": 0.049093800014816225,
+          "total_seconds": 0.05868950008880347
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004314600024372339,
+          "elapsed_seconds": 0.044399100006558,
+          "total_seconds": 0.04871370003093034
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.007544300053268671,
+          "operation_id": "4c49525d-f6a6-4e40-8a28-bacf53d2d2a0",
+          "elapsed_seconds": 0.38152159994933754,
+          "total_seconds": 0.3890659000026062
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00038870004937052727,
+          "elapsed_seconds": 0.04440929996781051,
+          "total_seconds": 0.04479800001718104
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.01203670003451407,
+          "elapsed_seconds": 0.04438640002626926,
+          "total_seconds": 0.05642310006078333
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008766000042669475,
+          "elapsed_seconds": 0.044677200028672814,
+          "total_seconds": 0.05344320007134229
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.009286000044085085,
+          "operation_id": "ecbdd9db-2816-44bc-a8eb-0b0de7752007",
+          "elapsed_seconds": 0.37591359997168183,
+          "total_seconds": 0.3851996000157669
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004790600039996207,
+          "elapsed_seconds": 0.056860200013034046,
+          "total_seconds": 0.06165080005303025
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014940300025045872,
+          "elapsed_seconds": 0.046672899974510074,
+          "total_seconds": 0.061613199999555945
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006420499994419515,
+          "elapsed_seconds": 0.04859390005003661,
+          "total_seconds": 0.055014400044456124
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.008754200069233775,
+          "operation_id": "6f16f92f-fe06-4351-983e-7210c6d29d0c",
+          "elapsed_seconds": 0.34522979997564107,
+          "total_seconds": 0.35398400004487485
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0049931000685319304,
+          "elapsed_seconds": 0.05449220002628863,
+          "total_seconds": 0.05948530009482056
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00603780010715127,
+          "elapsed_seconds": 0.05080559989437461,
+          "total_seconds": 0.05684340000152588
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.004212800064124167,
+          "operation_id": "7fd6900c-9270-4637-9e71-3065e2e57f25",
+          "elapsed_seconds": 0.4232181999832392,
+          "total_seconds": 0.42743100004736334
+        }
+      ],
+      "http_calls": [
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.045567499939352274,
+          "downstream_seconds": 0.023809999999999998,
+          "correlation_id": "b3d3f0ac-5df7-42e4-bc00-5208a4c7f943"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.07521049992647022,
+          "downstream_seconds": 0.02438,
+          "correlation_id": "f2340bbd-f0f7-4732-8912-13fb6dd8074b"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05897859996184707,
+          "downstream_seconds": 0.02656,
+          "correlation_id": "39d43ac1-c652-498f-832e-6b156e7fdcb4"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07460060005541891,
+          "downstream_seconds": 0.03489,
+          "correlation_id": "3758661e-c060-4395-b8ba-8fdb02bee5b5"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06795460009016097,
+          "downstream_seconds": 0.033549999999999996,
+          "correlation_id": "237616b4-a00c-4916-8cd5-93113c78781e"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13668880006298423,
+          "downstream_seconds": 0.08245999999999999,
+          "correlation_id": "7d6c818a-45f9-4554-b412-02d854bd4ef7"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05025560001377016,
+          "downstream_seconds": 0.02515,
+          "correlation_id": "efdd0e3e-fbdf-41b8-8831-24fbc23d2d3e"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06038429995533079,
+          "downstream_seconds": 0.02497,
+          "correlation_id": "a42f706e-e1df-45b9-975f-611b8f3dd36a"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02071439998690039,
+          "downstream_seconds": 0.0,
+          "correlation_id": "11d65bfc-9b4d-412d-8532-06704809a39c"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04963259992655367,
+          "downstream_seconds": 0.023960000000000002,
+          "correlation_id": "334e22f4-0880-449e-8ac0-8794917cce9e"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04232229990884662,
+          "downstream_seconds": 0.02478,
+          "correlation_id": "60108e34-c714-43c5-8c94-3b8b900e2d05"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.0874329999787733,
+          "downstream_seconds": 0.032850000000000004,
+          "correlation_id": "5fe56b97-cd05-4cc4-9aa8-76f42238e419"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06638139998540282,
+          "downstream_seconds": 0.033049999999999996,
+          "correlation_id": "73dc5ab0-9276-42fa-addd-94f22d7df643"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.137377499951981,
+          "downstream_seconds": 0.08993999999999999,
+          "correlation_id": "6e32cd81-5d48-4a4e-ad20-212c2a0b54e3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.043579200049862266,
+          "downstream_seconds": 0.02646,
+          "correlation_id": "2f82daed-4a0f-4a26-acc5-b47f6e9e38ba"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06645699997898191,
+          "downstream_seconds": 0.026879999999999998,
+          "correlation_id": "73f80298-3351-457a-8d15-f881f4a163d9"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.034225899958983064,
+          "downstream_seconds": 0.0,
+          "correlation_id": "afa40c6f-2ee2-407a-8566-1d9d72b50d7a"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0497474999865517,
+          "downstream_seconds": 0.02429,
+          "correlation_id": "45fd5a72-354d-4ca3-8c43-57b74cc366eb"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04296200000680983,
+          "downstream_seconds": 0.0232,
+          "correlation_id": "5f63f5bf-ba67-4657-9f10-887df052b76f"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06759710004553199,
+          "downstream_seconds": 0.03522,
+          "correlation_id": "ff8c81b3-9815-4033-9523-80b26468f6b5"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.08268029999453574,
+          "downstream_seconds": 0.04554,
+          "correlation_id": "58034360-dc6e-4a2d-bd6d-015716d3ebb0"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1293852999806404,
+          "downstream_seconds": 0.07933,
+          "correlation_id": "61f129bc-ec2c-4958-9aaa-4b84111bb477"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04584869998507202,
+          "downstream_seconds": 0.02491,
+          "correlation_id": "c6b89756-ac88-4956-a7f8-d3d24afcfb62"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06237120006699115,
+          "downstream_seconds": 0.02594,
+          "correlation_id": "e512bac7-2cd5-4a48-b434-1a30c8825a8d"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02312489994801581,
+          "downstream_seconds": 0.0,
+          "correlation_id": "fbd3c739-081c-4361-9089-03a591117bf3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05216540000401437,
+          "downstream_seconds": 0.02971,
+          "correlation_id": "45f6b0fc-d417-4d71-8fcd-279243aab980"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0443718999158591,
+          "downstream_seconds": 0.02364,
+          "correlation_id": "85cfe816-b625-4a05-b28c-25002ed4db71"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.12392299994826317,
+          "downstream_seconds": 0.08175,
+          "correlation_id": "d68de028-a78d-4fbf-8f7f-689a9ce3b52a"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07636889989953488,
+          "downstream_seconds": 0.03605,
+          "correlation_id": "0e52227a-96ff-4905-ad19-a6fd65621428"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.051768000004813075,
+          "downstream_seconds": 0.02985,
+          "correlation_id": "7ce02181-25fb-4884-8277-1f76e61fa865"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13447119994089007,
+          "downstream_seconds": 0.08563,
+          "correlation_id": "f5efe9b5-a791-4625-aac8-dcf015d5526b"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07373369997367263,
+          "downstream_seconds": 0.02842,
+          "correlation_id": "d1a6b9d4-8f1f-40b5-ad15-794b1b577109"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02748370007611811,
+          "downstream_seconds": 0.0,
+          "correlation_id": "49b93c3d-d105-43da-b955-82b3c15b7723"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04683299991302192,
+          "downstream_seconds": 0.02831,
+          "correlation_id": "334e4e97-717b-4c57-b883-61a273e9dce2"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04501819994766265,
+          "downstream_seconds": 0.02427,
+          "correlation_id": "3e694b04-e88e-45ef-b9a1-abbc7d4d85d9"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07293630007188767,
+          "downstream_seconds": 0.03171,
+          "correlation_id": "4f68bf63-8ae8-4d4d-95bd-4ee03ccaccf3"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.10518539999611676,
+          "downstream_seconds": 0.06232,
+          "correlation_id": "27fc30d7-e4c6-4984-9e35-1fb460e0e7ef"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1425742000574246,
+          "downstream_seconds": 0.09431999999999999,
+          "correlation_id": "5e7c3dbf-1fd7-4500-96e3-a2d976baea09"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.06789479998406023,
+          "downstream_seconds": 0.02425,
+          "correlation_id": "b176c01d-c1ef-4acb-a369-d116dc9e6572"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07274900004267693,
+          "downstream_seconds": 0.02587,
+          "correlation_id": "2cd00c9c-2710-435a-a707-29c818710360"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.031176800024695694,
+          "downstream_seconds": 0.0,
+          "correlation_id": "6a37de4b-633f-46b1-9bcd-8ecddd515dd0"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.1236795000731945,
+          "downstream_seconds": 0.05068,
+          "correlation_id": "c1287a85-704b-4ebd-a95d-33537bda1e11"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04467059997841716,
+          "downstream_seconds": 0.02539,
+          "correlation_id": "d0873357-452f-4cc0-b91c-b8967285a465"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06914470007177442,
+          "downstream_seconds": 0.0386,
+          "correlation_id": "7c2d2a8b-7903-4c57-ba29-2891ea6f7493"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07138289988506585,
+          "downstream_seconds": 0.032600000000000004,
+          "correlation_id": "2f51d3d8-6ead-4c86-b344-3008a395d3e6"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.048683400033041835,
+          "downstream_seconds": 0.02871,
+          "correlation_id": "6d256a81-ab59-4a81-97a3-a095b758c437"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1618418999714777,
+          "downstream_seconds": 0.0995,
+          "correlation_id": "8007a98c-5a1e-4d0a-b2eb-cbea3880d6a1"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07103600003756583,
+          "downstream_seconds": 0.02867,
+          "correlation_id": "d86f3e76-1247-4e28-964d-f156c4720339"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02627920010127127,
+          "downstream_seconds": 0.0,
+          "correlation_id": "61bc03cb-78c9-45ca-8873-b2b2bec69668"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04348850005771965,
+          "downstream_seconds": 0.02391,
+          "correlation_id": "47329043-ce48-4e45-a47b-c3a7d12e7530"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04905599995981902,
+          "downstream_seconds": 0.02921,
+          "correlation_id": "ca59635c-ef6c-402b-96c4-7c6fc6210465"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.08240830001886934,
+          "downstream_seconds": 0.03582,
+          "correlation_id": "42792aec-92b4-43b6-ad61-1fb4a4f33082"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07022950006648898,
+          "downstream_seconds": 0.03553,
+          "correlation_id": "6122a19f-96ba-4a79-be6a-54d2f6213ab2"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12905569991562515,
+          "downstream_seconds": 0.08039,
+          "correlation_id": "de976424-3cd8-4ef2-ae15-b2f6c3ebc414"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04435929993633181,
+          "downstream_seconds": 0.023379999999999998,
+          "correlation_id": "6d4e0858-613e-4a3d-94ab-e8e41c210150"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07149850006680936,
+          "downstream_seconds": 0.02568,
+          "correlation_id": "36243667-6171-4dc3-950e-68ecb753a284"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.028038599994033575,
+          "downstream_seconds": 0.0,
+          "correlation_id": "8ea75611-e095-4f26-9a07-9f6b35590419"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04437250003684312,
+          "downstream_seconds": 0.02608,
+          "correlation_id": "31b2024d-8e4d-496d-b2a7-6c2f1cf6d365"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.044345300062559545,
+          "downstream_seconds": 0.024329999999999997,
+          "correlation_id": "88da0aa1-329a-45dc-b883-f218e494f589"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.08643829997163266,
+          "downstream_seconds": 0.04374,
+          "correlation_id": "f601fd58-bb0b-4c17-85b0-df75d7ab59a2"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06876459997147322,
+          "downstream_seconds": 0.032670000000000005,
+          "correlation_id": "5e90fce0-72e7-40c6-98f4-a3b228d32b5c"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.1312679999973625,
+          "downstream_seconds": 0.07997,
+          "correlation_id": "057c235f-dd65-4c96-80c4-327f4aae3234"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04463910008780658,
+          "downstream_seconds": 0.02558,
+          "correlation_id": "2f786b6d-ec17-4872-abac-9773e6f3b1e0"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06502219999674708,
+          "downstream_seconds": 0.02556,
+          "correlation_id": "e02eef8c-505e-4adf-b04c-becb2a0468c9"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02420940005686134,
+          "downstream_seconds": 0.0,
+          "correlation_id": "8382049e-4b5b-467a-8cb6-aa723cc7b0d7"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05679850000888109,
+          "downstream_seconds": 0.033960000000000004,
+          "correlation_id": "c4b578db-9043-46a4-a4cf-3a5dd23e689b"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04663029999937862,
+          "downstream_seconds": 0.02595,
+          "correlation_id": "23dfed76-c888-4f07-93d0-28f6bf4517a1"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06345490005332977,
+          "downstream_seconds": 0.03504,
+          "correlation_id": "2f7855a6-0d98-4324-be97-a1e66d96b807"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06387910002376884,
+          "downstream_seconds": 0.03233,
+          "correlation_id": "358b071f-7b43-41d8-b8aa-8b1d18fbd2d0"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12924619996920228,
+          "downstream_seconds": 0.08047,
+          "correlation_id": "0cfb8d0a-002a-4f61-b5a4-1de77e110a1d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04853899998124689,
+          "downstream_seconds": 0.0265,
+          "correlation_id": "83ef618e-1af8-4495-ac6e-3bef4dd7a98a"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06688719999510795,
+          "downstream_seconds": 0.02816,
+          "correlation_id": "a5c8f7cb-b4ce-43ea-90c4-0c4d76a947b5"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.021554000093601644,
+          "downstream_seconds": 0.0,
+          "correlation_id": "bb950d34-3367-4e8d-b471-29071ff21cf9"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05444780003745109,
+          "downstream_seconds": 0.02903,
+          "correlation_id": "dc1a4cf0-b115-4994-9ff6-10053933b7ac"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.050760500016622245,
+          "downstream_seconds": 0.02436,
+          "correlation_id": "12b390b5-ef2b-4d93-b371-b202bca69605"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07319499994628131,
+          "downstream_seconds": 0.04256,
+          "correlation_id": "e962355c-610a-4762-b5a5-6e42944ece9e"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.0721301999874413,
+          "downstream_seconds": 0.03412,
+          "correlation_id": "d574fbba-0609-45db-9e14-69c6d766bd9b"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.18032629997469485,
+          "downstream_seconds": 0.09415000000000001,
+          "correlation_id": "f626c267-7b73-4fb3-b182-d719c818c00d"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07092510000802577,
+          "downstream_seconds": 0.028399999999999998,
+          "correlation_id": "71c70a47-5258-4c02-80d2-6b23f67b2374"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.026432499988004565,
+          "downstream_seconds": 0.0,
+          "correlation_id": "15772b57-d258-4af5-87ae-a671a6db1936"
+        }
+      ],
+      "wall_seconds": 10.178243600064889,
+      "states": {
+        "correct_read": 30,
+        "verified": 10
+      },
+      "per_kind_seconds": {
+        "read": {
+          "n": 30,
+          "p50": 0.0469,
+          "p90": 0.059,
+          "p95": 0.0753,
+          "p99": 0.1238
+        },
+        "write": {
+          "n": 10,
+          "p50": 0.3815,
+          "p90": 0.4248,
+          "p95": 0.4362,
+          "p99": 0.4362
+        }
+      },
+      "queue_seconds": {
+        "n": 40,
+        "p50": 0.0088,
+        "p90": 0.0149,
+        "p95": 0.0153,
+        "p99": 0.1923
+      },
+      "total_seconds": {
+        "n": 40,
+        "p50": 0.061,
+        "p90": 0.395,
+        "p95": 0.4274,
+        "p99": 0.4382
+      },
+      "per_stage_seconds": {
+        "approve": {
+          "n": 10,
+          "p50": 0.0702,
+          "p90": 0.0827,
+          "p95": 0.1052,
+          "p99": 0.1052
+        },
+        "customer_search": {
+          "n": 30,
+          "p50": 0.0468,
+          "p90": 0.059,
+          "p95": 0.0752,
+          "p99": 0.1237
+        },
+        "execute_ack": {
+          "n": 10,
+          "p50": 0.1345,
+          "p90": 0.1618,
+          "p95": 0.1803,
+          "p99": 0.1803
+        },
+        "execute_replay": {
+          "n": 10,
+          "p50": 0.0263,
+          "p90": 0.0312,
+          "p95": 0.0342,
+          "p99": 0.0342
+        },
+        "prepare": {
+          "n": 10,
+          "p50": 0.0732,
+          "p90": 0.0874,
+          "p95": 0.1239,
+          "p99": 0.1239
+        },
+        "readback": {
+          "n": 10,
+          "p50": 0.0669,
+          "p90": 0.0727,
+          "p95": 0.0737,
+          "p99": 0.0737
+        }
+      },
+      "downstream_per_stage_seconds": {
+        "approve": {
+          "n": 10,
+          "p50": 0.0335,
+          "p90": 0.0455,
+          "p95": 0.0623,
+          "p99": 0.0623
+        },
+        "customer_search": {
+          "n": 30,
+          "p50": 0.0251,
+          "p90": 0.0297,
+          "p95": 0.034,
+          "p99": 0.0507
+        },
+        "execute_ack": {
+          "n": 10,
+          "p50": 0.0825,
+          "p90": 0.0943,
+          "p95": 0.0995,
+          "p99": 0.0995
+        },
+        "execute_replay": {
+          "n": 10,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0
+        },
+        "prepare": {
+          "n": 10,
+          "p50": 0.0352,
+          "p90": 0.0437,
+          "p95": 0.0818,
+          "p99": 0.0818
+        },
+        "readback": {
+          "n": 10,
+          "p50": 0.0259,
+          "p90": 0.0284,
+          "p95": 0.0287,
+          "p99": 0.0287
+        }
+      },
+      "achieved_correct_tasks_per_second": 3.929951136141504,
+      "verified_operations_per_minute": 58.94926704212256,
+      "error_rate": 0.0,
+      "dropped": 0,
+      "passed": true
+    },
+    {
+      "spec": {
+        "name": "soak",
+        "count": 60,
+        "rate_per_second": 0.5,
+        "concurrency": 2,
+        "read_p95_seconds": 3,
+        "write_p95_seconds": 7
+      },
+      "rows": [
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.1943703000433743,
+          "elapsed_seconds": 0.053243399946950376,
+          "total_seconds": 0.24761369999032468
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004716400057077408,
+          "elapsed_seconds": 0.04378559999167919,
+          "total_seconds": 0.0485020000487566
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004209000035189092,
+          "elapsed_seconds": 0.04667149996384978,
+          "total_seconds": 0.050880499999038875
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.01489150000270456,
+          "operation_id": "5350825e-1125-4e47-a9ac-e03999884c64",
+          "elapsed_seconds": 0.35844670003280044,
+          "total_seconds": 0.373338200035505
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.010206800070591271,
+          "elapsed_seconds": 0.04967259999830276,
+          "total_seconds": 0.05987940006889403
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004332700045779347,
+          "elapsed_seconds": 0.0582185999955982,
+          "total_seconds": 0.06255130004137754
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014505799976177514,
+          "elapsed_seconds": 0.0478875000262633,
+          "total_seconds": 0.06239330000244081
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.00875190005172044,
+          "operation_id": "6a38b29a-7145-41e1-809a-769fa0d40c33",
+          "elapsed_seconds": 0.4069588999263942,
+          "total_seconds": 0.41571079997811466
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011988500016741455,
+          "elapsed_seconds": 0.05600280000362545,
+          "total_seconds": 0.06799130002036691
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0015188000397756696,
+          "elapsed_seconds": 0.05480259994510561,
+          "total_seconds": 0.05632139998488128
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.010969400056637824,
+          "elapsed_seconds": 0.05726999999023974,
+          "total_seconds": 0.06823940004687756
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.005675900029018521,
+          "operation_id": "f3a9713c-2cb5-4120-ac07-6f207860a472",
+          "elapsed_seconds": 0.45950899994932115,
+          "total_seconds": 0.46518489997833967
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008020800072699785,
+          "elapsed_seconds": 0.04909529990982264,
+          "total_seconds": 0.05711609998252243
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014534300076775253,
+          "elapsed_seconds": 0.04857679991982877,
+          "total_seconds": 0.06311109999660403
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.013100799988023937,
+          "elapsed_seconds": 0.04493670002557337,
+          "total_seconds": 0.05803750001359731
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.01339970005210489,
+          "operation_id": "4ccf32f6-c4d9-4491-8e9d-4e5de9f3d40d",
+          "elapsed_seconds": 0.3725994999986142,
+          "total_seconds": 0.3859992000507191
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0023113000206649303,
+          "elapsed_seconds": 0.05637380003463477,
+          "total_seconds": 0.0586851000552997
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.009639600059017539,
+          "elapsed_seconds": 0.04912879993207753,
+          "total_seconds": 0.058768399991095066
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.003041899995878339,
+          "elapsed_seconds": 0.053606700035743415,
+          "total_seconds": 0.056648600031621754
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.015373100060969591,
+          "operation_id": "202e270c-b8a3-4f8d-8b13-b2b71265deda",
+          "elapsed_seconds": 0.4265346999745816,
+          "total_seconds": 0.4419078000355512
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.01540600007865578,
+          "elapsed_seconds": 0.05740459996741265,
+          "total_seconds": 0.07281060004606843
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011816699989140034,
+          "elapsed_seconds": 0.046137900091707706,
+          "total_seconds": 0.05795460008084774
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004674400086514652,
+          "elapsed_seconds": 0.047450499958358705,
+          "total_seconds": 0.05212490004487336
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.0007127000717446208,
+          "operation_id": "e9003268-1661-4ff0-90ef-df8f439c3ea0",
+          "elapsed_seconds": 0.3881962000159547,
+          "total_seconds": 0.3889089000876993
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0033684000372886658,
+          "elapsed_seconds": 0.042495799949392676,
+          "total_seconds": 0.04586419998668134
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012321699992753565,
+          "elapsed_seconds": 0.0523443000856787,
+          "total_seconds": 0.06466600007843226
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006336300051771104,
+          "elapsed_seconds": 0.043311199988238513,
+          "total_seconds": 0.04964750004000962
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.009540900005958974,
+          "operation_id": "c770999c-751d-4a00-b64b-e0e1e6d36983",
+          "elapsed_seconds": 0.3662064999807626,
+          "total_seconds": 0.3757473999867216
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.003700000001117587,
+          "elapsed_seconds": 0.08330290007870644,
+          "total_seconds": 0.08700290007982403
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011951100081205368,
+          "elapsed_seconds": 0.048137999954633415,
+          "total_seconds": 0.06008910003583878
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.015633200062438846,
+          "elapsed_seconds": 0.05345899995882064,
+          "total_seconds": 0.06909220002125949
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.014869700069539249,
+          "operation_id": "1b7d50f9-67d4-497e-8b22-a87a026935d0",
+          "elapsed_seconds": 0.32553209993056953,
+          "total_seconds": 0.3404018000001088
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011346000013872981,
+          "elapsed_seconds": 0.04300800000783056,
+          "total_seconds": 0.05435400002170354
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014616600004956126,
+          "elapsed_seconds": 0.039288299973122776,
+          "total_seconds": 0.0539048999780789
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.000682300073094666,
+          "elapsed_seconds": 0.05384870001580566,
+          "total_seconds": 0.05453100008890033
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.011301900027319789,
+          "operation_id": "d7592e87-1c0c-4015-aa60-4693d0ccb692",
+          "elapsed_seconds": 0.369902899954468,
+          "total_seconds": 0.3812047999817878
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.014158800011500716,
+          "elapsed_seconds": 0.04814590001478791,
+          "total_seconds": 0.06230470002628863
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.007181100081652403,
+          "elapsed_seconds": 0.06377469992730767,
+          "total_seconds": 0.07095580000896007
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.005712300073355436,
+          "elapsed_seconds": 0.052370999939739704,
+          "total_seconds": 0.05808330001309514
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.01386060006916523,
+          "operation_id": "3308a9a7-c983-4519-9773-46b7d78c53c5",
+          "elapsed_seconds": 0.36753359995782375,
+          "total_seconds": 0.381394200026989
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0039950000355020165,
+          "elapsed_seconds": 0.04360089998226613,
+          "total_seconds": 0.047595900017768145
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.015199100016616285,
+          "elapsed_seconds": 0.07410890003666282,
+          "total_seconds": 0.0893080000532791
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.002418800024315715,
+          "elapsed_seconds": 0.04723979998379946,
+          "total_seconds": 0.04965860000811517
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.012139600003138185,
+          "operation_id": "1cba7e5c-136b-4f94-8a97-984a8231bb9d",
+          "elapsed_seconds": 0.4552820000099018,
+          "total_seconds": 0.46742160001304
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0004411999834701419,
+          "elapsed_seconds": 0.05125920008867979,
+          "total_seconds": 0.05170040007214993
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0025348999770358205,
+          "elapsed_seconds": 0.06793180003296584,
+          "total_seconds": 0.07046670001000166
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.012740700040012598,
+          "elapsed_seconds": 0.051461099996231496,
+          "total_seconds": 0.0642018000362441
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.012290999991819263,
+          "operation_id": "85bbce6a-7702-4a11-8b02-8116e395eb04",
+          "elapsed_seconds": 0.43927100009750575,
+          "total_seconds": 0.451562000089325
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.00751490006223321,
+          "elapsed_seconds": 0.049767700023949146,
+          "total_seconds": 0.057282600086182356
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.004282300011254847,
+          "elapsed_seconds": 0.07110230007674545,
+          "total_seconds": 0.0753846000880003
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0009512000251561403,
+          "elapsed_seconds": 0.053090999950654805,
+          "total_seconds": 0.054042199975810945
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.012495400034822524,
+          "operation_id": "f944cbe6-262e-4b63-9769-4d0ed9713dd8",
+          "elapsed_seconds": 0.5216218000277877,
+          "total_seconds": 0.5341172000626102
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0023143000435084105,
+          "elapsed_seconds": 0.05451849999371916,
+          "total_seconds": 0.05683280003722757
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.01227649999782443,
+          "elapsed_seconds": 0.05117450002580881,
+          "total_seconds": 0.06345100002363324
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.008147499989718199,
+          "elapsed_seconds": 0.062047400046139956,
+          "total_seconds": 0.07019490003585815
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.007503799977712333,
+          "operation_id": "f928ee1f-1f77-4828-8f34-3126e938eb68",
+          "elapsed_seconds": 0.42897130001802,
+          "total_seconds": 0.4364750999957323
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.0014173000818118453,
+          "elapsed_seconds": 0.0453296999912709,
+          "total_seconds": 0.046747000073082745
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.011427400051616132,
+          "elapsed_seconds": 0.09227399993687868,
+          "total_seconds": 0.10370139998849481
+        },
+        {
+          "kind": "read",
+          "state": "correct_read",
+          "queue_seconds": 0.006894599995575845,
+          "elapsed_seconds": 0.06299420003779233,
+          "total_seconds": 0.06988880003336817
+        },
+        {
+          "kind": "write",
+          "state": "verified",
+          "queue_seconds": 0.003938600071705878,
+          "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+          "elapsed_seconds": 0.38329699996393174,
+          "total_seconds": 0.3872356000356376
+        }
+      ],
+      "http_calls": [
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05320150009356439,
+          "downstream_seconds": 0.02666,
+          "correlation_id": "3dac5a91-c5db-4756-96c7-460307791d0f"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04373240005224943,
+          "downstream_seconds": 0.0228,
+          "correlation_id": "a84ceadf-5196-4358-ad56-d87d4c0a0f6e"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.046632700017653406,
+          "downstream_seconds": 0.02271,
+          "correlation_id": "7fda7cbe-8fb3-4289-89e2-f428725faa12"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07009089994244277,
+          "downstream_seconds": 0.039979999999999995,
+          "correlation_id": "4b129ae2-75c5-4951-ab27-72fda66847f7"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.0664815999334678,
+          "downstream_seconds": 0.03208,
+          "correlation_id": "2b2ee8c5-c855-4054-93b1-1cc30d74eae8"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12604110001120716,
+          "downstream_seconds": 0.07911,
+          "correlation_id": "ff9ce50a-0424-4167-9f1f-4f5ccb41a487"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06862380006350577,
+          "downstream_seconds": 0.02871,
+          "correlation_id": "f05ba8df-e89d-4448-9ed7-343f1e10edeb"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.026988100027665496,
+          "downstream_seconds": 0.0,
+          "correlation_id": "5faedd6a-ac7d-4a1d-9991-31a62c6df535"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.049618199933320284,
+          "downstream_seconds": 0.02791,
+          "correlation_id": "5b26fc72-5794-4cf7-b173-040f7c04cf1d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.058152199955657125,
+          "downstream_seconds": 0.032409999999999994,
+          "correlation_id": "10e2dcda-a458-44e7-ace1-49145d747810"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04784339992329478,
+          "downstream_seconds": 0.02653,
+          "correlation_id": "bd26cdf8-4e32-4b57-91b2-03fabc92b14a"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06551820004824549,
+          "downstream_seconds": 0.03183,
+          "correlation_id": "2cca2ce4-2b3a-44d2-abbc-59049656cf39"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07256310002412647,
+          "downstream_seconds": 0.032619999999999996,
+          "correlation_id": "ef9a7bea-eb73-4630-8c9f-2b942666e958"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.14977370004635304,
+          "downstream_seconds": 0.09297,
+          "correlation_id": "e4f8c1e6-3992-462a-86c0-3bcdd42094d0"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.09230039990507066,
+          "downstream_seconds": 0.032979999999999995,
+          "correlation_id": "188f84b2-f6c3-4b47-9bb2-65141382b131"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02656840009149164,
+          "downstream_seconds": 0.0,
+          "correlation_id": "65a6c3d7-cbcb-4c21-a745-04058087805d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0558398999273777,
+          "downstream_seconds": 0.03118,
+          "correlation_id": "d8df65a8-d240-45c3-8f9b-f397c492508b"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05474639998283237,
+          "downstream_seconds": 0.029079999999999998,
+          "correlation_id": "4c4d732f-b9e0-403c-a31b-66b9dd64e0b8"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05721969995647669,
+          "downstream_seconds": 0.029079999999999998,
+          "correlation_id": "0241d3bc-fc38-4356-9af0-75dad83834b3"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.08426050003618002,
+          "downstream_seconds": 0.04184,
+          "correlation_id": "df429dc4-89c2-4885-aed1-eba06a9fe793"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.08655110001564026,
+          "downstream_seconds": 0.04288,
+          "correlation_id": "768ffb41-91f2-4bfe-8058-d35b74534b56"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.17325620003975928,
+          "downstream_seconds": 0.10916,
+          "correlation_id": "adc1d740-51dc-46a9-b085-7ecec5eb8e6d"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.08303890004754066,
+          "downstream_seconds": 0.03653,
+          "correlation_id": "35bf4ea9-555c-490a-8f8d-86b5e1c9e289"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.03216850000899285,
+          "downstream_seconds": 0.0,
+          "correlation_id": "f47fa775-d102-4c0b-a093-3f720aad9ba8"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04905459994915873,
+          "downstream_seconds": 0.02797,
+          "correlation_id": "037ac500-ed13-4811-b409-fc38c8e3dd8e"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04852950002532452,
+          "downstream_seconds": 0.02476,
+          "correlation_id": "d9c79ba1-8930-46f6-9610-4576693571f6"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.044895999948494136,
+          "downstream_seconds": 0.02524,
+          "correlation_id": "919615c9-adc6-4854-9f40-d9741da8dc9a"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06842599995434284,
+          "downstream_seconds": 0.03599,
+          "correlation_id": "93100dbe-cdb9-4529-965d-9c056ebe7387"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07330339995678514,
+          "downstream_seconds": 0.032729999999999995,
+          "correlation_id": "32ed846f-5553-40c3-9beb-e926c533f58f"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13699350005481392,
+          "downstream_seconds": 0.08609,
+          "correlation_id": "ebab9cf6-ad72-46d2-9794-59a22e324ac4"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06848569994326681,
+          "downstream_seconds": 0.027280000000000002,
+          "correlation_id": "fbb3dcc5-38f7-476e-ad0d-72f2b557eeda"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02516369998920709,
+          "downstream_seconds": 0.0,
+          "correlation_id": "812e4944-1a83-4637-8089-606df1773dc8"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05631130002439022,
+          "downstream_seconds": 0.02665,
+          "correlation_id": "a792616b-88a3-4ed6-b0db-33b0bc249eb7"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.049085000064224005,
+          "downstream_seconds": 0.0282,
+          "correlation_id": "01aebec2-f1eb-415b-aae5-01756a971491"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05356559995561838,
+          "downstream_seconds": 0.02608,
+          "correlation_id": "ad073266-7f51-4bdb-bd12-3cff1fed86dc"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07080779992975295,
+          "downstream_seconds": 0.03714,
+          "correlation_id": "74734d1f-e1d0-4da6-82bb-d75aaf800da8"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.09116930002346635,
+          "downstream_seconds": 0.03754,
+          "correlation_id": "32c7cd12-798a-4cf8-ae0a-d4f3fac774c1"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.17156099993735552,
+          "downstream_seconds": 0.11164,
+          "correlation_id": "18d6707d-7b01-449c-b30c-1870291e7723"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.0670275999000296,
+          "downstream_seconds": 0.02625,
+          "correlation_id": "3b55b038-30ee-443b-ba2c-82e8d3f0d83c"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02568980003707111,
+          "downstream_seconds": 0.0,
+          "correlation_id": "77342d24-8126-4e0e-9258-daffdf0c6c51"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.057357899961061776,
+          "downstream_seconds": 0.02615,
+          "correlation_id": "2d09b325-c764-4b7e-8a9b-61a1ef021e4f"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.046096299891360104,
+          "downstream_seconds": 0.026109999999999998,
+          "correlation_id": "0decaba2-6006-4a72-aff7-20fc8844d8d6"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0473964000120759,
+          "downstream_seconds": 0.0238,
+          "correlation_id": "20ce7329-b76f-4b04-83f4-ee51ae085349"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06564779998734593,
+          "downstream_seconds": 0.03227,
+          "correlation_id": "bd645a2c-cdee-4d1b-8d2a-13a0dd301ad0"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06908609997481108,
+          "downstream_seconds": 0.03181,
+          "correlation_id": "248bf43a-6e78-4c6a-a5d2-934c8a6752df"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13525990000925958,
+          "downstream_seconds": 0.08628,
+          "correlation_id": "70e9a390-5847-47ce-8ada-2d82a1187322"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.0787207999965176,
+          "downstream_seconds": 0.02763,
+          "correlation_id": "ea76aa7d-f818-4237-91ba-d9f019fc182a"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.03922789997886866,
+          "downstream_seconds": 0.0,
+          "correlation_id": "abab390a-4299-4709-8936-a1163a044ba6"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04246010002680123,
+          "downstream_seconds": 0.023440000000000003,
+          "correlation_id": "dd9b0fc6-9f37-4703-ac2a-866fc82776e3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05230159999337047,
+          "downstream_seconds": 0.03034,
+          "correlation_id": "dfb2264b-7f47-4e2b-9b8a-8f12c38112aa"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04327370005194098,
+          "downstream_seconds": 0.02379,
+          "correlation_id": "d5e2e3ae-7468-4aa5-8c3f-0e4fa4a17dfb"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07159999990835786,
+          "downstream_seconds": 0.03363,
+          "correlation_id": "ca1d3438-0dcc-44fc-9251-55feb1e4a584"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06812329997774214,
+          "downstream_seconds": 0.0335,
+          "correlation_id": "8f360901-cf56-4deb-96b2-7fe2bc713b45"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13854379998520017,
+          "downstream_seconds": 0.07911,
+          "correlation_id": "a52157fc-c0c4-47f7-ad5a-b754c1cb9198"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.0636907999869436,
+          "downstream_seconds": 0.02745,
+          "correlation_id": "342d0692-6e70-44dc-9705-4c3626a58834"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.024032699991948903,
+          "downstream_seconds": 0.0,
+          "correlation_id": "bd47242e-2be9-4233-b340-db9228328f6f"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0832123999716714,
+          "downstream_seconds": 0.039700000000000006,
+          "correlation_id": "90eef219-87a3-43c5-b919-26f5863c0a2c"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04809089994523674,
+          "downstream_seconds": 0.02547,
+          "correlation_id": "ac744162-b8ac-4176-b819-4e4efeb11d33"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05341319995932281,
+          "downstream_seconds": 0.02608,
+          "correlation_id": "194b0b1b-c063-40bc-983a-bb68daeba1fa"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.05771490000188351,
+          "downstream_seconds": 0.03109,
+          "correlation_id": "9e6608ff-79e4-4351-9158-063d6b323f0b"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06108210003003478,
+          "downstream_seconds": 0.0315,
+          "correlation_id": "71224728-6827-4405-881b-3fef915fb870"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12158459995407611,
+          "downstream_seconds": 0.07790000000000001,
+          "correlation_id": "200c4e33-f195-492d-bf89-cbb9e66ec3fc"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06344699999317527,
+          "downstream_seconds": 0.02619,
+          "correlation_id": "8d4bcfeb-c212-4ac2-beaa-3d7dfddef81c"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02148630004376173,
+          "downstream_seconds": 0.0,
+          "correlation_id": "75714d3f-3bea-47b6-939f-285a5af4e9ab"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0429664000403136,
+          "downstream_seconds": 0.02417,
+          "correlation_id": "38c24767-6144-4ea4-a540-783236b3df3c"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.03922270005568862,
+          "downstream_seconds": 0.02298,
+          "correlation_id": "b1d42c74-3595-4bb8-a6ac-ff0cabbf5f9f"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.053791699931025505,
+          "downstream_seconds": 0.02885,
+          "correlation_id": "835a9107-47e4-4cdf-8841-8130cd6a7f5b"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07199530000798404,
+          "downstream_seconds": 0.03868,
+          "correlation_id": "a0788e46-1c0f-4438-b6cc-d4ff06ff88f7"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.06619170005433261,
+          "downstream_seconds": 0.032189999999999996,
+          "correlation_id": "6bf19d3b-87b2-4de8-a644-a319a668615d"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.12964209995698184,
+          "downstream_seconds": 0.08236,
+          "correlation_id": "7a22a9b2-9c6a-4614-a423-41dba99cc082"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07508720003534108,
+          "downstream_seconds": 0.027899999999999998,
+          "correlation_id": "0c525850-abbe-4090-8c5c-f916b0d36181"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.026762900059111416,
+          "downstream_seconds": 0.0,
+          "correlation_id": "4233b1dd-8d70-4841-8431-adf1c590b926"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04810530005488545,
+          "downstream_seconds": 0.02641,
+          "correlation_id": "f78db3f7-d23f-4154-ac73-680d8b3cc9cf"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.063734499970451,
+          "downstream_seconds": 0.02893,
+          "correlation_id": "cf8649b3-0061-4bc7-a450-5b616f59631d"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05232899996917695,
+          "downstream_seconds": 0.02451,
+          "correlation_id": "68d7e780-e568-4e73-9a16-123660ccb700"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.06279710005037487,
+          "downstream_seconds": 0.03531,
+          "correlation_id": "f5faa566-af97-4d4e-92fc-e84ac06fb092"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.0700094000203535,
+          "downstream_seconds": 0.03428,
+          "correlation_id": "97f58039-3e61-459a-b594-6dc10b48465f"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.14363860001321882,
+          "downstream_seconds": 0.09207,
+          "correlation_id": "ac57aebd-42c0-4124-8539-7914dedb68fd"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06568480003625154,
+          "downstream_seconds": 0.027329999999999997,
+          "correlation_id": "9aa6244e-c79f-489f-ab77-1921d2f81c12"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02520619996357709,
+          "downstream_seconds": 0.0,
+          "correlation_id": "08af3bf3-afc2-4c06-9dd8-a60ae9b68b99"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0435620000353083,
+          "downstream_seconds": 0.02457,
+          "correlation_id": "d82f2a68-6a35-45b9-a8d2-fd20ada54f43"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.07404109998606145,
+          "downstream_seconds": 0.0417,
+          "correlation_id": "39d78357-cc93-4b8a-8642-20e33204f353"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04718490003142506,
+          "downstream_seconds": 0.02844,
+          "correlation_id": "70f3e0e5-cde8-49ae-9e8d-4d4e4382d424"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07057829992845654,
+          "downstream_seconds": 0.0367,
+          "correlation_id": "4f020028-2c8c-4a6c-8415-3e4cae96096f"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.09961879998445511,
+          "downstream_seconds": 0.05146,
+          "correlation_id": "0b1c84a6-0794-4524-9724-dca9361d60c5"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.17702850000932813,
+          "downstream_seconds": 0.10036,
+          "correlation_id": "708b0e85-24d9-4ad3-b6ac-21c8463fbb0f"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07855110010132194,
+          "downstream_seconds": 0.032420000000000004,
+          "correlation_id": "0a0ec92e-d4b4-489c-8808-67f79a50a712"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.029283100040629506,
+          "downstream_seconds": 0.0,
+          "correlation_id": "3158d2ca-6619-4b3e-a21a-fb87348343e6"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.051221299916505814,
+          "downstream_seconds": 0.03022,
+          "correlation_id": "ba62529f-39b2-42bb-997f-9fab622238ec"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.06788759992923588,
+          "downstream_seconds": 0.036950000000000004,
+          "correlation_id": "34de568d-2c74-4f0a-8b81-b28c8dbdfe12"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.051420000032521784,
+          "downstream_seconds": 0.03083,
+          "correlation_id": "44b906c9-542a-4b5f-9952-1456cd235861"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.10283630003686994,
+          "downstream_seconds": 0.0644,
+          "correlation_id": "c0e068fb-0f99-4ff4-8969-9958abec4609"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.07654699997510761,
+          "downstream_seconds": 0.037590000000000005,
+          "correlation_id": "1f342545-dce2-4e9f-8900-a4aa37a8ba73"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.16217749996576458,
+          "downstream_seconds": 0.10647,
+          "correlation_id": "3a57c476-9ae0-4829-94b3-d2dd3f691c31"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.07306660001631826,
+          "downstream_seconds": 0.0291,
+          "correlation_id": "295980f0-2ea1-43e2-9f1d-199354febd37"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.02438850002363324,
+          "downstream_seconds": 0.0,
+          "correlation_id": "f3c1e004-1ab2-4ad4-a4fa-a51e99f3c338"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04971950000617653,
+          "downstream_seconds": 0.027399999999999997,
+          "correlation_id": "9f9507d5-cf34-4812-949e-ef4ccf4f7e9e"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.0710487999022007,
+          "downstream_seconds": 0.0329,
+          "correlation_id": "d976b51f-c36c-4cf9-9cd5-4bf1362df7c1"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05304260004777461,
+          "downstream_seconds": 0.02944,
+          "correlation_id": "f016bb07-a2f9-489a-bad9-85c24d5e995a"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.10522519994992763,
+          "downstream_seconds": 0.04345,
+          "correlation_id": "7842781e-6320-4508-ad7d-858bbb75756f"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.09513260005041957,
+          "downstream_seconds": 0.04464,
+          "correlation_id": "e300bfdd-8be0-4ac9-9ccb-1920125eb663"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.19084050005767494,
+          "downstream_seconds": 0.11016,
+          "correlation_id": "218bbf7b-fd58-47ce-9879-73c4c33d712a"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.0912238999735564,
+          "downstream_seconds": 0.03022,
+          "correlation_id": "af675a72-b7e3-49e8-beb5-15cfa445e37c"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.03897959995083511,
+          "downstream_seconds": 0.0,
+          "correlation_id": "779fd340-6ad4-462e-9b3d-19bcfa570db4"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.05447229999117553,
+          "downstream_seconds": 0.02638,
+          "correlation_id": "e4a51932-0f78-459d-a151-d898aa7f883f"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.051136599970050156,
+          "downstream_seconds": 0.02506,
+          "correlation_id": "3593b606-d78b-4f52-bae9-65f4372cb1c9"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.061995600000955164,
+          "downstream_seconds": 0.03336,
+          "correlation_id": "700c63a7-a6e3-4873-ac77-4809c37ec0ea"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.09282940009143203,
+          "downstream_seconds": 0.050159999999999996,
+          "correlation_id": "db0b7faf-8f81-4a9e-bc8a-e85e6fbf164a"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.08381680003367364,
+          "downstream_seconds": 0.03422,
+          "correlation_id": "bb337336-9f51-41ab-bac0-728f4c0f4447"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.157856100006029,
+          "downstream_seconds": 0.10078,
+          "correlation_id": "3f9a2bc7-abd1-4ac8-8310-c3f88b896ce9"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06904570001643151,
+          "downstream_seconds": 0.02607,
+          "correlation_id": "adb67b37-fbed-4811-9d4f-0cf894baef10"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.025152300018817186,
+          "downstream_seconds": 0.0,
+          "correlation_id": "a150ab5e-206a-440f-9b1e-f5bc5361c943"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.04528870002832264,
+          "downstream_seconds": 0.02497,
+          "correlation_id": "4a9be13f-174b-44c7-90cf-d7d94bd41cf3"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.09221989999059588,
+          "downstream_seconds": 0.040479999999999995,
+          "correlation_id": "5e3d6f10-b20a-42a6-b694-9047a23ee683"
+        },
+        {
+          "stage": "customer_search",
+          "status": 200,
+          "elapsed_seconds": 0.06293350004125386,
+          "downstream_seconds": 0.03505,
+          "correlation_id": "57d10d19-92b9-45e5-be31-654f551cbbdf"
+        },
+        {
+          "stage": "prepare",
+          "status": 201,
+          "elapsed_seconds": 0.07410240010358393,
+          "downstream_seconds": 0.040619999999999996,
+          "correlation_id": "bea186e9-9cc2-4ffc-9db0-f4877d96871b"
+        },
+        {
+          "stage": "approve",
+          "status": 201,
+          "elapsed_seconds": 0.08268430002499372,
+          "downstream_seconds": 0.043840000000000004,
+          "correlation_id": "acd2e39a-9845-4692-b0a1-4252131760a1"
+        },
+        {
+          "stage": "execute_ack",
+          "status": 200,
+          "elapsed_seconds": 0.13683299999684095,
+          "downstream_seconds": 0.08521,
+          "correlation_id": "5b702035-e9ba-4cba-8b3e-9ae5c4a3ea44"
+        },
+        {
+          "stage": "readback",
+          "status": 200,
+          "elapsed_seconds": 0.06593269994482398,
+          "downstream_seconds": 0.027399999999999997,
+          "correlation_id": "9f333683-9a94-4130-8f47-fb5f26e6a7df"
+        },
+        {
+          "stage": "execute_replay",
+          "status": 200,
+          "elapsed_seconds": 0.023538499954156578,
+          "downstream_seconds": 0.0,
+          "correlation_id": "049d8801-1fa3-4390-9439-ed238d87c612"
+        }
+      ],
+      "wall_seconds": 118.38783230003901,
+      "states": {
+        "correct_read": 45,
+        "verified": 15
+      },
+      "per_kind_seconds": {
+        "read": {
+          "n": 45,
+          "p50": 0.0515,
+          "p90": 0.0679,
+          "p95": 0.0741,
+          "p99": 0.0923
+        },
+        "write": {
+          "n": 15,
+          "p50": 0.3882,
+          "p90": 0.4595,
+          "p95": 0.5216,
+          "p99": 0.5216
+        }
+      },
+      "queue_seconds": {
+        "n": 60,
+        "p50": 0.0088,
+        "p90": 0.0149,
+        "p95": 0.0154,
+        "p99": 0.1944
+      },
+      "total_seconds": {
+        "n": 60,
+        "p50": 0.0635,
+        "p90": 0.4157,
+        "p95": 0.4516,
+        "p99": 0.5341
+      },
+      "per_stage_seconds": {
+        "approve": {
+          "n": 15,
+          "p50": 0.0733,
+          "p90": 0.0951,
+          "p95": 0.0996,
+          "p99": 0.0996
+        },
+        "customer_search": {
+          "n": 45,
+          "p50": 0.0514,
+          "p90": 0.0679,
+          "p95": 0.074,
+          "p99": 0.0922
+        },
+        "execute_ack": {
+          "n": 15,
+          "p50": 0.1436,
+          "p90": 0.177,
+          "p95": 0.1908,
+          "p99": 0.1908
+        },
+        "execute_replay": {
+          "n": 15,
+          "p50": 0.0257,
+          "p90": 0.039,
+          "p95": 0.0392,
+          "p99": 0.0392
+        },
+        "prepare": {
+          "n": 15,
+          "p50": 0.0708,
+          "p90": 0.1028,
+          "p95": 0.1052,
+          "p99": 0.1052
+        },
+        "readback": {
+          "n": 15,
+          "p50": 0.069,
+          "p90": 0.0912,
+          "p95": 0.0923,
+          "p99": 0.0923
+        }
+      },
+      "downstream_per_stage_seconds": {
+        "approve": {
+          "n": 15,
+          "p50": 0.0342,
+          "p90": 0.0446,
+          "p95": 0.0515,
+          "p99": 0.0515
+        },
+        "customer_search": {
+          "n": 45,
+          "p50": 0.0267,
+          "p90": 0.035,
+          "p95": 0.0397,
+          "p99": 0.0417
+        },
+        "execute_ack": {
+          "n": 15,
+          "p50": 0.0921,
+          "p90": 0.1102,
+          "p95": 0.1116,
+          "p99": 0.1116
+        },
+        "execute_replay": {
+          "n": 15,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "p99": 0.0
+        },
+        "prepare": {
+          "n": 15,
+          "p50": 0.0371,
+          "p90": 0.0502,
+          "p95": 0.0644,
+          "p99": 0.0644
+        },
+        "readback": {
+          "n": 15,
+          "p50": 0.0276,
+          "p90": 0.033,
+          "p95": 0.0365,
+          "p99": 0.0365
+        }
+      },
+      "achieved_correct_tasks_per_second": 0.5068088403539442,
+      "verified_operations_per_minute": 7.602132605309164,
+      "error_rate": 0.0,
+      "dropped": 0,
+      "passed": true
+    }
+  ],
+  "resources": [
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "26.42%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "22.27%",
+      "MemUsage": "57.01MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "842kB / 784kB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "1.50%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.17%",
+      "MemUsage": "25.28MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.22MB / 8.59MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "3.34%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.59%",
+      "MemUsage": "127.4MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "1.48MB / 1.72MB",
+      "PIDs": "4"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.23%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.90%",
+      "MemUsage": "71.43MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "17.1MB / 15MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.40%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "23.64%",
+      "MemUsage": "60.51MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "951kB / 879kB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.48%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.07%",
+      "MemUsage": "25.1MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.28MB / 8.68MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.77%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.26%",
+      "MemUsage": "124.9MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "1.67MB / 1.94MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.03%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.84%",
+      "MemUsage": "71.28MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "17.3MB / 15.2MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.49%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "24.72%",
+      "MemUsage": "63.29MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.06MB / 972kB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.42%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.14%",
+      "MemUsage": "25.23MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.35MB / 8.77MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.80%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.26%",
+      "MemUsage": "124.8MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "1.85MB / 2.17MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.56%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.84%",
+      "MemUsage": "71.28MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "17.5MB / 15.4MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "7.57%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "24.74%",
+      "MemUsage": "63.34MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.13MB / 1.04MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "1.95%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.43%",
+      "MemUsage": "25.79MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.39MB / 8.82MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "3.11%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.27%",
+      "MemUsage": "125MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "1.98MB / 2.32MB",
+      "PIDs": "4"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.73%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.78%",
+      "MemUsage": "71.12MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "17.7MB / 15.5MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "53.41%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.99%",
+      "MemUsage": "66.52MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.56MB / 1.4MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "11.36%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.38%",
+      "MemUsage": "25.7MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.58MB / 9.09MB",
+      "PIDs": "7"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "20.58%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "2.67MB / 3.18MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "3.99%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.83%",
+      "MemUsage": "71.25MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "18.4MB / 16MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.47%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.82%",
+      "MemUsage": "66.1MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.73MB / 1.55MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "6.18%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.48%",
+      "MemUsage": "25.88MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.73MB / 9.29MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.73%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.30%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "2.96MB / 3.53MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.13%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.84%",
+      "MemUsage": "71.27MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "18.8MB / 16.4MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.17%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.81%",
+      "MemUsage": "66.07MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.79MB / 1.6MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.11%",
+      "MemUsage": "25.16MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.76MB / 9.34MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.30%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.05MB / 3.64MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "5.27%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.85%",
+      "MemUsage": "71.3MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "18.9MB / 16.5MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.78%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.81%",
+      "MemUsage": "66.07MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.84MB / 1.65MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.61%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.11%",
+      "MemUsage": "25.16MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.79MB / 9.38MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.45%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.83%",
+      "MemUsage": "129.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.14MB / 3.75MB",
+      "PIDs": "9"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.23%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.85%",
+      "MemUsage": "71.3MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19MB / 16.6MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.58%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.85%",
+      "MemUsage": "66.19MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.9MB / 1.69MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.55%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.11%",
+      "MemUsage": "25.16MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.83MB / 9.42MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.31%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.23MB / 3.86MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.04%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.85%",
+      "MemUsage": "71.3MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.1MB / 16.7MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "18.45%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.97%",
+      "MemUsage": "66.49MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "1.96MB / 1.74MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.99%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.55%",
+      "MemUsage": "26.01MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.86MB / 9.47MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.30%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.33MB / 3.98MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.53%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "28.11%",
+      "MemUsage": "71.95MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.2MB / 16.7MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.19%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.81%",
+      "MemUsage": "66.07MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.01MB / 1.79MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.03%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.13%",
+      "MemUsage": "25.21MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.89MB / 9.51MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.05%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.30%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.41MB / 4.09MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.87%",
+      "MemUsage": "71.34MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.3MB / 16.8MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "15.54%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.81%",
+      "MemUsage": "66.07MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.07MB / 1.84MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "11.74%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.13%",
+      "MemUsage": "25.22MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.92MB / 9.56MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "17.61%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.31%",
+      "MemUsage": "125.2MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.51MB / 4.2MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.02%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.88%",
+      "MemUsage": "71.37MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.3MB / 16.8MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "39.38%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.93%",
+      "MemUsage": "66.38MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.12MB / 1.89MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "7.71%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.46%",
+      "MemUsage": "25.84MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.96MB / 9.6MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "7.70%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.32%",
+      "MemUsage": "125.4MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.6MB / 4.32MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.80%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.90%",
+      "MemUsage": "71.43MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.5MB / 16.9MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.33%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.80%",
+      "MemUsage": "66.05MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.13MB / 1.9MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "9.18%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.12%",
+      "MemUsage": "25.19MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "7.96MB / 9.61MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.31%",
+      "MemUsage": "125.3MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.62MB / 4.33MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.00%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.87%",
+      "MemUsage": "71.34MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.6MB / 17MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.94%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.80%",
+      "MemUsage": "66.04MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.19MB / 1.95MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.77%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.13%",
+      "MemUsage": "25.21MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8MB / 9.65MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.95%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.32%",
+      "MemUsage": "125.4MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.71MB / 4.45MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.22%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.86%",
+      "MemUsage": "71.32MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.7MB / 17.1MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.18%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.79%",
+      "MemUsage": "66.04MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.24MB / 1.99MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.50%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.17%",
+      "MemUsage": "25.29MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.03MB / 9.7MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.8MB / 4.56MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.02%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.87%",
+      "MemUsage": "71.34MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.8MB / 17.2MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "29.20%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.80%",
+      "MemUsage": "66.05MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.3MB / 2.04MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "5.01%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.56%",
+      "MemUsage": "26.04MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.06MB / 9.74MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.9MB / 4.67MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.34%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.86%",
+      "MemUsage": "71.33MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "19.9MB / 17.3MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.15%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.80%",
+      "MemUsage": "66.05MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.36MB / 2.09MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.12%",
+      "MemUsage": "25.2MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.09MB / 9.79MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "3.98MB / 4.78MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.87%",
+      "MemUsage": "71.34MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "20MB / 17.3MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.69%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.80%",
+      "MemUsage": "66.04MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.41MB / 2.14MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "4.42%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.14%",
+      "MemUsage": "25.23MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.13MB / 9.83MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "10.13%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "4.08MB / 4.9MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.01%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.89%",
+      "MemUsage": "71.41MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "20.1MB / 17.4MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "11.69%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.79%",
+      "MemUsage": "66.04MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.47MB / 2.18MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.59%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.13%",
+      "MemUsage": "25.21MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.16MB / 9.88MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.89%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "4.17MB / 5.01MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.19%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.90%",
+      "MemUsage": "71.43MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "20.2MB / 17.5MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "18.31%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.84%",
+      "MemUsage": "66.15MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.52MB / 2.23MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "12.66%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.20%",
+      "MemUsage": "25.35MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.19MB / 9.92MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.02%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "4.26MB / 5.12MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "0.02%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.87%",
+      "MemUsage": "71.35MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "20.3MB / 17.6MB",
+      "PIDs": "12"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "21.69%",
+      "Container": "2229e6c25bc53734ce770b406f6cf2c56813446369950749de1045778bc3f828",
+      "ID": "2229e6c25bc5",
+      "MemPerc": "25.89%",
+      "MemUsage": "66.28MiB / 256MiB",
+      "Name": "odoo-ops-local-api-1",
+      "NetIO": "2.6MB / 2.3MB",
+      "PIDs": "2"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "11.72%",
+      "Container": "b13b7946b4cacd26897fb7c776945e508f26fe2e8d1de8075e464e198644cfc9",
+      "ID": "b13b7946b4ca",
+      "MemPerc": "13.44%",
+      "MemUsage": "25.81MiB / 192MiB",
+      "Name": "odoo-ops-local-db-1",
+      "NetIO": "8.24MB / 9.98MB",
+      "PIDs": "6"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "8.56%",
+      "Container": "a17b560249ca3d080ee253145be740e5c458e87b03202e699522485c21ba21f7",
+      "ID": "a17b560249ca",
+      "MemPerc": "16.34%",
+      "MemUsage": "125.5MiB / 768MiB",
+      "Name": "odoo-ops-local-odoo-1",
+      "NetIO": "4.35MB / 5.24MB",
+      "PIDs": "3"
+    },
+    {
+      "BlockIO": "0B / 0B",
+      "CPUPerc": "2.63%",
+      "Container": "9aee2db5e4be344f51e361a4c5c0c78de0d768619ba991a8ff822c5e3366c1e2",
+      "ID": "9aee2db5e4be",
+      "MemPerc": "27.91%",
+      "MemUsage": "71.46MiB / 256MiB",
+      "Name": "odoo-ops-local-odoo-db-1",
+      "NetIO": "20.4MB / 17.7MB",
+      "PIDs": "12"
+    }
+  ],
+  "final_effect_counts": [
+    {
+      "operation_id": "7d242557-bf7c-492f-8892-6b1a979f8e57",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "4f3a6b48-7b5f-4f94-a339-3a72b938e47f",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "06b514d4-06e9-4aa2-8bc2-b85dc4a7a330",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "b0756942-5d6d-43fe-bd02-a036bcb529f6",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "b54ca508-ac62-47f3-93e8-8c02e943c83b",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "cafabd57-c2e7-42a6-8462-135725c8dea4",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "72ec232c-c57f-42ed-97f6-709e4da3ef39",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "76d9923b-c525-4c2e-9d57-cce7a418f1cb",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "162a70bc-b576-4087-90ee-472c5c7b4c89",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "7f14cf2e-58fc-4d7b-a691-218a0117133c",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "3ac92f1f-08b5-4dd9-ab92-33ffe2a16236",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "01b1683c-b316-4ae6-bcf8-48d3e4c8f03d",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "4c49525d-f6a6-4e40-8a28-bacf53d2d2a0",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "ecbdd9db-2816-44bc-a8eb-0b0de7752007",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "6f16f92f-fe06-4351-983e-7210c6d29d0c",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "7fd6900c-9270-4637-9e71-3065e2e57f25",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "5350825e-1125-4e47-a9ac-e03999884c64",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "6a38b29a-7145-41e1-809a-769fa0d40c33",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "f3a9713c-2cb5-4120-ac07-6f207860a472",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "4ccf32f6-c4d9-4491-8e9d-4e5de9f3d40d",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "202e270c-b8a3-4f8d-8b13-b2b71265deda",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "e9003268-1661-4ff0-90ef-df8f439c3ea0",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "c770999c-751d-4a00-b64b-e0e1e6d36983",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "1b7d50f9-67d4-497e-8b22-a87a026935d0",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "d7592e87-1c0c-4015-aa60-4693d0ccb692",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "3308a9a7-c983-4519-9773-46b7d78c53c5",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "1cba7e5c-136b-4f94-8a97-984a8231bb9d",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "85bbce6a-7702-4a11-8b02-8116e395eb04",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "f944cbe6-262e-4b63-9769-4d0ed9713dd8",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "f928ee1f-1f77-4828-8f34-3126e938eb68",
+      "ledger_and_order_count": "1|1"
+    },
+    {
+      "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+      "ledger_and_order_count": "1|1"
+    }
+  ],
+  "business_metrics": {
+    "operations": {
+      "dispatched": 0,
+      "unknown": 0,
+      "verified": 82,
+      "failed": 0,
+      "review": 0
+    },
+    "proposals": 107,
+    "oldest_unresolved_seconds": 0.0
+  },
+  "inference_seconds": null,
+  "inference_scope": "No model calls in load",
+  "http_ack_semantics": "Synchronous execution reply after dispatch/readback; no asynchronous accepted-only result counted",
+  "application_images": {
+    "api": "sha256:94b701bec5fcbe57067543a3c3d260541e9fb21041baf9dac003d52229ea1c22",
+    "db": "sha256:589f742565e4f6d22149176b032974f55f8201a8a37b71ed587ec5c6902e689f",
+    "odoo": "sha256:47d7cfdc2e28b1ea0020a7441e6e0d9ef45d0280833e10a7ed61ecd47ccaca7f",
+    "odoo-db": "sha256:589f742565e4f6d22149176b032974f55f8201a8a37b71ed587ec5c6902e689f"
+  }
+}

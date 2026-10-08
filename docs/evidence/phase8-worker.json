@@ -1,0 +1,38 @@
+{
+  "run_id": "2d90a0dd-3135-47f0-a949-0107cfb85f43",
+  "passed": true,
+  "tasks": 12,
+  "consumers": 2,
+  "completed": 12,
+  "duplicates": 0,
+  "scope": "Actual dedicated worker identity, MCP stdio and synthetic Odoo reads; no model inference",
+  "queue_before": {
+    "counts": {
+      "queued": 12
+    },
+    "oldest_wait_seconds": 0.051999807357788086
+  },
+  "queue_wait_seconds": {
+    "n": 12,
+    "p50": 2.7349,
+    "p90": 5.5138,
+    "p95": 5.5366,
+    "p99": 5.5366
+  },
+  "processing_seconds": {
+    "n": 12,
+    "p50": 0.1389,
+    "p90": 0.1577,
+    "p95": 0.1763,
+    "p99": 0.1763
+  },
+  "end_to_end_seconds": {
+    "n": 12,
+    "p50": 2.8617,
+    "p90": 5.6445,
+    "p95": 5.6755,
+    "p99": 5.6755
+  },
+  "achieved_tasks_per_second": 1.845856578068948,
+  "elapsed_seconds": 6.5010467999381945
+}

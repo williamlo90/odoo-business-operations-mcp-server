@@ -1,0 +1,61 @@
+Phase 8 local controls - 2026-10-08
+Environment: Windows host, synthetic Odoo sandbox, actual PostgreSQL and MCP stdio.
+Parent commit: 802cbc3bdf556b4547c777ba5cbe2e2f61dfb6e4
+Final staged source is identified by phase8-manifest.json and phase-8-reliability.
+
+Offline: python deploy/check_offline.py
+  evaluator: 6 passed
+  assistant: 54 passed
+  worker: 16 passed
+  reliability: 12 passed
+  TypeScript client: build passed, 2 tests passed
+  TypeScript MCP: build passed, 8 tests passed
+  Total: 98 passed. No Docker/provider/model calls in this command.
+
+Connected:
+  docker compose -f compose.test.yaml -f compose.connected.yaml build tests
+  docker compose -f compose.test.yaml -f compose.connected.yaml run --rm tests python -m pytest -q -o cache_dir=/tmp/pytest-cache tests/test_foundation.py tests/test_business.py tests/test_contracts.py tests/test_connected.py tests/test_observability.py
+  Result: 41 passed in 10.77 seconds.
+  Existing warning: StarletteDeprecationWarning for httpx TestClient dependency.
+  Isolated test database/container/network removed with the same files and down.
+
+Live:
+  ODOO_LIVE_TESTS=synthetic-sandbox
+  OPENAI_LIVE_TESTS=yes
+  OLLAMA_LIVE_TESTS=yes
+  OLLAMA_TEST_MODEL=qwen2.5:0.5b
+  python -m pytest -q -s --confcutdir=tests/live tests/live/test_stack.py tests/live/test_local_ai.py tests/live/test_quality_regression.py::test_local_missing_quantity_cannot_create_proposal tests/live/test_openai.py::test_openai_quote_mcp_approval_odoo_readback_and_replay[a-250000]
+  Result: 14 passed in 67.61 seconds.
+  OpenAI: one model call, verified quotation, pinned model/prompt; replay made no second model call.
+  Ollama: pinned 0.40.1 CPU, qwen2.5:0.5b; local-only policy, supported paths and fail-closed paths.
+  These selected canaries do not replace the historical Phase 7 quality score.
+
+Workload: python -m reliability.load
+  124 tasks: 93 correct reads + 31 verified draft writes.
+  31/31 direct ledger/order counts exactly 1|1; replay matched every operation.
+  All normal/peak/bounded-soak gates passed; zero failures and dropped tasks.
+  Runtime images, durations, percentiles and resource samples: phase8-load.json.
+
+Worker: python -m reliability.worker_drill
+  12 actual MCP/Odoo reads, 2 consumers, 12 single completions, zero duplicate jobs.
+  Dedicated automation.a profile; durable queue inspected after processing.
+  Separate offline cases cover process death, delayed completion, unknown results and retry bounds.
+
+Recovery: python -m deploy.recovery_drill
+  ODOO_LIVE_TESTS=synthetic-sandbox; RECOVERY_QUIESCE_CONFIRMED=yes.
+  Producers stopped before source API/Odoo quiescence.
+  Isolated DB/filestore restore, 17 critical table fingerprints, 2 SQLite snapshots passed.
+  Database outage generated 1 received firing alert and 1 received recovery, no duplicate receipt.
+  Compatible image rollback and rollforward verified with image IDs and actual Odoo read-back.
+  Source resumed and read-back passed; run-owned lab resources removed.
+  Local durable receiver only; no external notifications/human paging.
+
+Evidence hygiene:
+  25 runtime backend Python files matched local tested source bytes.
+  305 Odoo log spans checked: correlation_id, method, status and duration only.
+  Locally configured credential values absent from current API logs and staged public files.
+  Dumps, connector configuration, environment keys and task databases remain ignored under local/.
+  Final source/evidence hashes and runtime mappings: phase8-manifest.json.
+
+Boundary: finite synthetic local scope, bounded ~118-second soak, no host OOM test,
+no independent generalization, manual ROI, cloud acceptance or destructive migration rollback claim.

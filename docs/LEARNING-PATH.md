@@ -69,3 +69,10 @@ secara berurutan tanpa Docker, provider nyata atau model lokal.
 Compare these stages with `git diff phase-6-integration phase-7-quality`.
 Phase 7 qualification is a synthetic regression result. The local 0.5B model
 remains experimental; the tested OpenAI profile is the qualified option.
+
+| Reliability checkpoint | One phase, one commit | Guide |
+| --- | --- | --- |
+| `phase-8-reliability` | Scoped metrics, numeric guard hardening, bounded load, recovery/alerts/rollback evidence | `docs/PHASE-8.md` |
+
+Use `git diff phase-7-quality phase-8-reliability` to study this phase. Phase 7's frozen evaluation remains reproducible at its own tag; Phase 8 uses assistant
+contract `0.3.2` and its separately recorded control/canary evidence.

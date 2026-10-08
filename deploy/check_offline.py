@@ -13,6 +13,7 @@ commands = [
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/evaluation', 'tests/evaluation'],
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/assistant', 'tests/assistant'],
     [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/worker', 'tests/worker'],
+    [sys.executable, '-m', 'pytest', '-q', '--confcutdir=tests/reliability', 'tests/reliability'],
     [npm, 'run', 'build', '--prefix', 'client'],
     [node, '--test', 'client/tests/assistant.test.mjs'],
     [npm, 'run', 'build', '--prefix', 'mcp-server'],

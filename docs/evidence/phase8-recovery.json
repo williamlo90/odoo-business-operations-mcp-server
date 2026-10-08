@@ -1,0 +1,72 @@
+{
+  "run_id": "cc32d386-4f34-4fee-844c-3118976e3883",
+  "candidate_image": "sha256:94b701bec5fcbe57067543a3c3d260541e9fb21041baf9dac003d52229ea1c22",
+  "rollback_image": "sha256:14109f4a1788a4a043b687df74310010dbf28675c7bba986d9ef751d0dcf8220",
+  "passed": true,
+  "backup_seconds": 14.88682910008356,
+  "restored_readback": {
+    "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+    "status": "verified",
+    "downstream_header_present": true
+  },
+  "restore_seconds": 30.114488700055517,
+  "database_recovery_seconds": 1.2626736001111567,
+  "alerts": {
+    "firing_received": 1,
+    "recovery_received": 1,
+    "duplicate_delivery": 0,
+    "receiver": "local durable SQLite receiver; no external human paging"
+  },
+  "rollback_readback": {
+    "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+    "status": "verified",
+    "downstream_header_present": false
+  },
+  "rollforward_readback": {
+    "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+    "status": "verified",
+    "downstream_header_present": true
+  },
+  "application_tables": {
+    "actors": "12:8fcd80bcb39d82696b04a21cebc86278",
+    "customers": "4:bc31292c030ef4a4374f633eacbc4768",
+    "proposals": "142:344b1802a14f287db1d33427eecf67cf",
+    "approvals": "106:370a9d5c2f1b30455a7d4e62e72ce012",
+    "operations": "105:154c012eb773c606304b1d8e280eb091",
+    "business_events": "569:fbe12dcdacb3ee2f80a1795f0394bddb",
+    "schema_migrations": "2:260b869a771daa7b7b7534ede35598fd"
+  },
+  "odoo_tables": {
+    "res_partner": "15:678675e4c897c3489cfed156d273f5df",
+    "product_product": "4:f7c99a947bf25d975ac760dd3adb7c11",
+    "product_template": "4:f9f468b0a14d66675a9f1ff19e5d191d",
+    "crm_lead": "2:888f2bafecb3793a0f8658dd577d1c2d",
+    "ops_connection": "2:7914d62e7bc9b81afe7612031292ff8b",
+    "ops_operation": "143:ddddbae32c9705603fcd26f2d5885b8c",
+    "sale_order": "131:b6216c856ed306492d721f4bc2908785",
+    "sale_order_line": "183:f67e11fed5068eaf314805fe59e93bf3",
+    "mail_activity": "12:1dc51bf026f2e72517d15c6d5732867c",
+    "ir_attachment": "536:47ea2d12b7d5fd615d1dbc4e0cc69a15"
+  },
+  "filestore": {
+    "files": 882,
+    "sha256": "0e75b0b6a154e3911087a1cc6f93ba38230967bd23cc7cb2aa6d7e925044e468"
+  },
+  "sqlite_snapshots": 2,
+  "backup_hashes": {
+    "app.dump": "16a69c599915a4f27b40bba03105f7260debb3683805afbdd29874cbaabe06af",
+    "odoo.dump": "d7105ad2319c830c4db82141b6d6cb83e3a9a5c38274e13d5fba6983744c9fd0",
+    "filestore.tar": "fd0b448078e68f4cb08f195ba4dda6dea05effadec435835a0f1fa0bbfb5de00",
+    "config/connections.json": "d9132310d6098045551dc124d0eb86503baf8f1c07ffebb4859c135004b638c5",
+    "private-config.json": "d9363f74b217a3955f7bc9dcd4b37a9e33913756ebcac7a3843cf10753a5adc2",
+    "local__assistant-runs__tasks.sqlite3": "807a652d785b2206eba6147dea20062fa664d39166f9c6c3c0bbd382fa853356",
+    "local__phase8-worker__jobs.sqlite3": "3da09ef3d951a8958b56ca4a5935864283d2ba11cfce2b22c6e0b2ef12cd44f8"
+  },
+  "source_readback": {
+    "operation_id": "542efc88-daaf-4931-8429-ff72303d44f8",
+    "status": "verified",
+    "downstream_header_present": true
+  },
+  "source_resumed": true,
+  "total_seconds": 92.11517200001981
+}

@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-7 selesai untuk scope lokal terpilih; Phase 8-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; Phase 9-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 ## Access control sejak awal
 
@@ -26,16 +26,16 @@ Pisahkan tenant dan object-level authorization pada API, MCP, workers, retrieval
 - [x] Pagination menghasilkan record yang hilang/berulang
 - [x] Tool injection meminta akses model atau field terlarang
 
-Bukti Phase 7: 38 tes domain/PostgreSQL/Odoo, 20 tes live, dan 86 tes offline lulus. Mapping kasus ke test ada pada [laporan Phase 7](docs/PHASE-7.md). Fault injection dan hasil model dinilai terpisah; reliability/load menyeluruh tetap Phase 8.
+Bukti Phase 7: 38 tes domain/PostgreSQL/Odoo, 20 tes live, dan 86 tes offline lulus. Mapping kasus ke test ada pada [laporan Phase 7](docs/PHASE-7.md). Fault injection dan hasil model dinilai terpisah. Phase 8 menambahkan 98 tes offline, 41 tes PostgreSQL/Odoo, 14 tes live serta load/recovery lokal; lihat [evidence Phase 8](docs/PHASE-8.md).
 
 ## Lapisan testing
 
-- [ ] Unit: aturan bisnis, schemas, matching/parsing, transitions, permissions, evaluator semantics.
-- [ ] Contract: provider, custom MCP protocol, platform API, migrations, skill versions.
-- [ ] Integration: PostgreSQL nyata terisolasi, queue/worker, approval/execute/verify, sandbox platform.
-- [ ] End-to-end: operator menjalankan UI/client sampai outcome tujuan; negative tests memanggil API langsung.
-- [ ] AI quality: frozen labels, held-out cases, wrong/missing evidence, prompt injection, unsupported claims, abstention, regressions.
-- [ ] Reliability: duplicate events, lost response, concurrent writes, worker interruption, resource exhaustion, restore dan rollback.
+- [x] Unit: aturan bisnis, schemas, matching/parsing, transitions, permissions, evaluator semantics.
+- [x] Contract: provider, custom MCP protocol, platform API, migrations, skill versions.
+- [x] Integration: PostgreSQL nyata terisolasi, queue/worker, approval/execute/verify, sandbox platform.
+- [x] End-to-end: operator menjalankan client CLI sampai outcome tujuan; negative tests memanggil API langsung.
+- [x] AI quality: frozen labels, regresi sintetis (tanpa klaim holdout independen), wrong/missing evidence, prompt injection, unsupported claims, abstention, regressions.
+- [x] Reliability: duplicate events, lost response, concurrent writes, worker interruption, bounded request/queue limits dan memory caps (tanpa memaksa host OOM), restore dan rollback.
 
 ## KPI dan alat ukur
 
@@ -47,11 +47,13 @@ Tetapkan workload normal, peak, soak, batas error, resource budget, dan stop con
 
 ## Monitoring dan troubleshooting
 
-- [ ] Correlation ID dari request sampai outcome; structured logs dengan redaction; metrics untuk errors, queue age, stale sync, model/schema failure, latency, resource usage, dan cost.
-- [ ] Business metrics untuk verified completion, review/escalation, false closure/false hold jika relevan, dan perubahan kualitas per versi.
-- [ ] Alert test: trigger incident terkontrol, buktikan notification diterima, dan dokumentasikan tindakan operator.
-- [ ] Runbook untuk provider outage, expired platform token, failed sync, stuck job, unknown write, database restore, model rollback, dan duplicate incident.
-- [ ] Retention dan akses logs/evidence/feedback jelas; raw sensitif disimpan terbatas, public evidence disanitasi.
+- [x] Correlation ID API/MCP dan durasi Odoo; structured logs tanpa payload/credentials. Assistant traces menyimpan model latency, usage dan status; biaya tetap unknown tanpa rate card.
+- [x] Metrik business per tenant: status operasi, jumlah proposal dan usia sejak update operasi unresolved. Queue counts/age tersedia pada monitor lokal.
+- [x] Alert test: database outage memicu firing/recovery dan diterima receiver SQLite lokal. Tidak ada klaim email/Slack atau paging manusia.
+- [x] Runbook untuk provider outage, expired credentials, stale source, stuck job, unknown write, restore, rollback dan duplicate incident.
+- [x] Akses dan retention lokal dijelaskan dalam [runbook](docs/LOCAL-RUNBOOK.md); raw backup tetap ignored, evidence publik disanitasi.
+
+Monitoring otomatis untuk spend, quality drift dan runtime cloud belum diimplementasikan; bukan bagian dari alert readiness/queue lokal. Tidak ada UI browser di scope ini.
 
 ## Release gate
 

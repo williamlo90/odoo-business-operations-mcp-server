@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-7 selesai untuk scope lokal terpilih; Phase 8-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; Phase 9-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 **Pengguna:** Sales operations dan administrator Odoo.
 
@@ -62,3 +62,5 @@ Phase 5 implementasi worker offline selesai: antrean SQLite persisten, dedup eve
 Phase 6 selesai untuk scope lokal terpilih: integrasi Docker/Odoo lulus 38 tes regresi dan 7 skenario assistant/MCP/worker terhubung dan 5 canary AI lokal nyata (Ollama CPU). Empat canary OpenAI dan client nyata juga lulus; Claude/Grok opsional dan belum live-validated. Lihat [status dan reproduksi Phase 6](docs/PHASE-6.md).
 
 Phase 7 selesai: profil OpenAI `gpt-4.1-mini-2025-04-14` / `intent-v4-openai` lulus **18/18** kasus regresi sintetis melalui assistant/MCP/Odoo. Qwen2.5 0.5B lokal mendapat **7/18** dan tetap eksperimental. Tersedia guard jumlah barang, dataset/rubric beku, serta laporan hasil dan batas klaim pada [Phase 7](docs/PHASE-7.md).
+
+Phase 8 selesai: 124 tugas load lokal, 31 draft quotation terverifikasi tanpa duplikasi, serta backup/restore, database recovery dan rollback image teruji. Metrik per tenant, tracing durasi Odoo, dan alert dengan receiver lokal tersedia. Lihat [hasil reliability](docs/PHASE-8.md) dan [runbook operator](docs/LOCAL-RUNBOOK.md). Phase 9 melengkapi delivery pack; cloud tetap Phase 10.

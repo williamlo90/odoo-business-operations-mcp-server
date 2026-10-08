@@ -1,0 +1,16 @@
+{
+  "scope": "One bounded hosted canary, separate from load; N=1, no percentile claim",
+  "provider": "openai",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "assistant_contract": "0.3.2",
+  "prompt_version": "intent-v4-openai",
+  "task_id": "ef04c60a-97ea-430d-a805-6572e3cd01e1",
+  "operation_id": "fa1539de-518e-4c3e-a601-811d5edb510a",
+  "verified": true,
+  "model_inference_seconds": 3.64541,
+  "assistant_to_proposal_seconds": 4.593310000000001,
+  "input_tokens": 941,
+  "output_tokens": 45,
+  "cost_usd": null,
+  "cost_status": "not_estimated"
+}

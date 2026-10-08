@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-7 selesai untuk scope lokal terpilih; Phase 8-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; Phase 9-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
 
@@ -112,14 +112,16 @@ Progress Phase 6: [integrasi Docker/Odoo](docs/PHASE-6.md) lulus 38 tes regresi 
 
 ## Phase 8 — Reliability, security, dan performance lokal
 
-- [ ] Jalankan API/UI/MCP/worker permission tests: beda role, beda tenant, direct API bypass, secret/PII leakage, serta prompt injection.
-- [ ] Uji concurrency, interrupted worker, delayed callback, retry, unknown outcome, queue backlog, database recovery, dan backup/restore terisolasi.
-- [ ] Ukur p50/p90/p95/p99 per operasi dan per alur end-to-end, dengan sample count, error rate, achieved throughput, dropped work, resources, dan correctness.
-- [ ] Pisahkan waktu HTTP acknowledgement, queue wait, inference, downstream action, dan hasil terverifikasi. Fast failure/conflict tidak disamakan dengan pekerjaan selesai.
-- [ ] Jalankan beban normal/peak/soak yang ditentukan dari workload V1 dan hardware tercatat; bounded real-provider canary terpisah dari beban synthetic/stub.
-- [ ] Buktikan alert dipicu dan diterima pada test incident; uji release rollback serta runbook troubleshooting.
+- [x] Jalankan API/client CLI/MCP/worker permission tests: beda role, beda tenant, direct API bypass, secret/PII leakage, serta prompt injection.
+- [x] Uji concurrency, interrupted worker, late completion/lost downstream response (tanpa endpoint callback), retry, unknown outcome, queue backlog, database recovery, dan backup/restore terisolasi.
+- [x] Ukur p50/p90/p95/p99 per operasi dan per alur end-to-end, dengan sample count, error rate, achieved throughput, dropped work, resources, dan correctness.
+- [x] Pisahkan waktu HTTP acknowledgement, queue wait, inference, downstream action, dan hasil terverifikasi. Fast failure/conflict tidak disamakan dengan pekerjaan selesai.
+- [x] Jalankan beban normal/peak/soak yang ditentukan dari workload V1 dan hardware tercatat; bounded real-provider canary terpisah dari beban synthetic/stub.
+- [x] Buktikan alert dipicu dan diterima pada test incident; uji release rollback serta runbook troubleshooting.
 
 **Gate:** local release candidate lulus quality/reliability gates. Tes cloud-only existing tidak dipaksa dijalankan lokal; validasi cloud tersebut menunggu fase 10. Laporan lokal tidak diberi label cloud/production traffic.
+
+Evidence: [Phase 8](docs/PHASE-8.md), [runbook lokal](docs/LOCAL-RUNBOOK.md), dan workload beku `reliability/workload.json`. Scope ini merupakan local release candidate; cloud dan paging manusia belum dikonfigurasi.
 
 ## Phase 9 — Delivery pack dan release siap deploy
 

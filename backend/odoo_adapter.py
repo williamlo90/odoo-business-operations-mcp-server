@@ -1,5 +1,6 @@
 """Fixed JSON-2 capability allowlist; no caller-supplied model/method/URL."""
 import json
+import logging
 import os
 import re
 import time
@@ -7,6 +8,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import httpx
+from backend.telemetry import request_timing
 
 METHODS = frozenset({'info', 'customers', 'catalog', 'opportunities', 'opportunity', 'prepare', 'execute', 'status'})
 KNOWN_ERRORS = frozenset({'forbidden', 'invalid_signature', 'scope_mismatch', 'self_approval',
@@ -44,6 +46,25 @@ class OdooAdapter:
     def call(self, method, **payload):
         if method not in METHODS:
             raise PlatformError('tool_not_allowed')
+        started, status = time.monotonic(), 'ok'
+        try:
+            return self._call(method, **payload)
+        except PlatformError as exc:
+            status = exc.code
+            raise
+        except Exception:
+            status = 'internal_error'
+            raise
+        finally:
+            elapsed = round((time.monotonic()-started)*1000, 2)
+            timing = request_timing.get()
+            if timing:
+                timing.downstream_ms += elapsed
+                logging.getLogger('operations').info(json.dumps({'event':'odoo_call',
+                    'correlation_id':timing.correlation_id, 'method':method,
+                    'status':status, 'duration_ms':elapsed}))
+
+    def _call(self, method, **payload):
         attempts = 1 if method == 'execute' else 3
         for attempt in range(attempts):
             try:

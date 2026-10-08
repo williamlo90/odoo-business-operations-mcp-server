@@ -19,6 +19,7 @@ from backend.config import settings
 from backend.db import connection
 from backend.odoo_adapter import PlatformError
 from backend.business import build_router
+from backend.telemetry import RequestTiming, request_timing
 
 app = FastAPI(title="Odoo Operations", version="0.2.0")
 log = logging.getLogger("operations")
@@ -54,10 +55,14 @@ async def request_log(request: Request, call_next):
     correlation = str(uuid4())
     request.state.correlation_id = correlation
     started = time.monotonic()
+    timing = RequestTiming(correlation)
+    context_token = request_timing.set(timing)
     try:
         response = await call_next(request)
     except Exception:
         response = JSONResponse(status_code=500, content={"error": "internal_error"})
+    finally:
+        request_timing.reset(context_token)
     route = request.scope.get("route")
     log.info(json.dumps({"event": "http_request", "correlation_id": correlation,
                          "route": route.path if route else "unmatched",
@@ -65,6 +70,7 @@ async def request_log(request: Request, call_next):
                          "status": response.status_code,
                          "duration_ms": round((time.monotonic() - started) * 1000, 2)}))
     response.headers["X-Correlation-ID"] = correlation
+    response.headers["X-Downstream-Duration-Ms"] = str(round(timing.downstream_ms, 2))
     response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
@@ -173,6 +179,21 @@ def logout(credentials: Annotated[HTTPAuthorizationCredentials, Depends(bearer)]
 @app.get("/me")
 def me(current=Depends(actor)):
     return current
+
+
+@app.get('/v1/metrics')
+def metrics(current=Depends(reader)):
+    with connection() as conn:
+        rows = conn.execute('SELECT status,count(*) AS count FROM operations WHERE tenant_id=%s GROUP BY status',
+                            (current['tenant_id'],)).fetchall()
+        age = conn.execute("""SELECT COALESCE(max(extract(epoch FROM now()-updated_at)),0) AS seconds
+            FROM operations WHERE tenant_id=%s AND status IN ('unknown','dispatched','review')""",
+            (current['tenant_id'],)).fetchone()['seconds']
+        proposals = conn.execute('SELECT count(*) AS count FROM proposals WHERE tenant_id=%s',
+                                 (current['tenant_id'],)).fetchone()['count']
+    counts = dict.fromkeys(['dispatched','unknown','verified','failed','review'], 0)
+    counts.update({row['status']:row['count'] for row in rows})
+    return {'operations':counts, 'proposals':proposals, 'oldest_unresolved_seconds':float(age)}
 
 
 @app.get("/customers")

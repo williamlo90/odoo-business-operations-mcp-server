@@ -1,0 +1,54 @@
+{
+  "version": "local-load-v1",
+  "environment": "synthetic Odoo, single host, no hosted inference in load",
+  "workloads": [
+    {
+      "name": "normal",
+      "count": 24,
+      "rate_per_second": 1,
+      "concurrency": 2,
+      "read_p95_seconds": 2,
+      "write_p95_seconds": 5
+    },
+    {
+      "name": "peak",
+      "count": 40,
+      "rate_per_second": 4,
+      "concurrency": 4,
+      "read_p95_seconds": 5,
+      "write_p95_seconds": 10
+    },
+    {
+      "name": "soak",
+      "count": 60,
+      "rate_per_second": 0.5,
+      "concurrency": 2,
+      "read_p95_seconds": 3,
+      "write_p95_seconds": 7
+    }
+  ],
+  "mix": "every fourth task is quote prepare/approve/execute/readback; other tasks are sourced customer reads",
+  "max_error_rate": 0,
+  "max_dropped": 0,
+  "max_duplicate_effects": 0,
+  "max_queue_wait_seconds": 5,
+  "max_task_seconds": 20,
+  "stop_after_failures": 3,
+  "memory_limits_mib": {
+    "api": 256,
+    "db": 192,
+    "odoo": 768,
+    "odoo-db": 256
+  },
+  "max_restore_seconds": 180,
+  "max_recovery_seconds": 60,
+  "monitor_failure_threshold": 2,
+  "monitor_recovery_threshold": 2,
+  "hosted_canary": "one bounded existing OpenAI quotation integration case, separate from load",
+  "notes": [
+    "Small samples; p99 uses nearest rank and is not a production tail guarantee.",
+    "Synchronous HTTP execution ack occurs after dispatch/readback; queue wait is measured separately.",
+    "No async callback endpoint exists; delayed/lost downstream response and late worker completion cover the applicable recovery paths.",
+    "Local alert delivery means durable spool plus explicit receiver acknowledgement; no email/Slack or human paging claim."
+  ]
+}

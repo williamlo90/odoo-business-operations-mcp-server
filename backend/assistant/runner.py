@@ -54,7 +54,8 @@ def check_grounding(request, task):
         # This checks presence, not semantic association; approval still reviews
         # which quantity belongs to each product.
         for line in request.items:
-            if not re.search(r'(?<![\w.\-])' + str(line.quantity) + r'(?![\w\-]|\.\d|,\d)', task):
+            if not re.search(r'(?<![\w.,/+\-\u2212])' + str(line.quantity)
+                             + r'(?![\w%+\-\u2212]|[.,/]\d)', task):
                 raise AssistantError('unsupported_model_quantity')
 
 

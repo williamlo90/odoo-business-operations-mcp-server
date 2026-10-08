@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–5 implementasi offline selesai; Phase 6–10 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; delivery pack lengkap Phase 9 dan deployment Phase 10 belum selesai**. Runbook lokal tersedia pada [LOCAL-RUNBOOK](docs/LOCAL-RUNBOOK.md).
 
 ## Penjelasan satu kalimat
 
@@ -14,7 +14,7 @@ Memberi assistant akses yang terbatas dan dapat diaudit untuk membaca data Odoo 
 
 ## Demo penerimaan
 
-Assistant menyiapkan draft quotation dari record Odoo; operator melihat preview lalu menyetujui; read-back membuktikan hanya satu draft benar terbentuk meski request diulang.
+Assistant menyiapkan draft quotation dari record Odoo; operator melihat preview, approver terpisah menyetujui; read-back membuktikan hanya satu draft benar terbentuk meski request diulang.
 
 Demo menggunakan data sintetis/test tenant. Tunjukkan input, bukti, keputusan, tindakan, hasil, dan cara menangani kegagalan. Jangan hanya memperlihatkan chat yang menjawab dengan lancar.
 
