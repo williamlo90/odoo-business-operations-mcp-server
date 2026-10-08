@@ -1,0 +1,17 @@
+{
+  "status": "design-only-not-provisioned",
+  "target": "restricted synthetic demo",
+  "region_proposal": "southeastasia",
+  "vm_size_proposal": "Standard_B2ls_v2",
+  "instance_count": 1,
+  "model_hosting": "optional hosted API; no cloud Ollama or GPU",
+  "monthly_demo_compute_hours": 50,
+  "proposed_azure_budget_usd": 30,
+  "proposed_model_budget_usd": 5,
+  "budget_approved": false,
+  "subscription_id": null,
+  "owner_source_cidr": null,
+  "domain": null,
+  "alert_recipient": null,
+  "provisioning_enabled": false
+}

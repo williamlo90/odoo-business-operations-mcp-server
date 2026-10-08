@@ -1,0 +1,218 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Odoo operations — recorded CLI demo</title><style>body{font:16px system-ui;background:#111820;color:#e0e8ef;max-width:1000px;margin:40px auto;padding:0 24px}h1{font-size:36px}h2{font-size:21px;color:#83dfb5}p{color:#b0beca;line-height:1.6}section{margin:36px 0;border-top:1px solid #394651;padding-top:20px}pre{background:#080d12;padding:20px;overflow:auto;font-size:13px;line-height:1.5}a{color:#83dfb5}</style><h1>One approved draft. One verified outcome.</h1><p>Recorded reference CLI session · synthetic local Odoo · 2026-10-08T14:33:58.925502+00:00</p><p>Actual CLI recording; synthetic local data; separate test approver automated; no LLM call. Recovery is resume/replay, not injected network loss.</p><p><b>PASS:</b> one operation ledger entry and one draft order. These are recorded outputs, not a live control panel.</p><section><h2>Read scoped source records</h2><p>operator.a · 0.361 s · exit 0</p><pre>$ node client/dist/index.js customers
+
+{
+  &quot;items&quot;: [
+    {
+      &quot;id&quot;: 7,
+      &quot;name&quot;: &quot;Synthetic Nusantara Trading&quot;,
+      &quot;reference&quot;: &quot;OPS-A-001&quot;,
+      &quot;company_id&quot;: 2,
+      &quot;source&quot;: &quot;odoo:res.partner&quot;,
+      &quot;version&quot;: &quot;2026-10-08 14:19:47.538166&quot;
+    },
+    {
+      &quot;id&quot;: 8,
+      &quot;name&quot;: &quot;Synthetic Nusantara Trading&quot;,
+      &quot;reference&quot;: &quot;OPS-A-002&quot;,
+      &quot;company_id&quot;: 2,
+      &quot;source&quot;: &quot;odoo:res.partner&quot;,
+      &quot;version&quot;: &quot;2026-10-08 09:55:12.272407&quot;
+    }
+  ],
+  &quot;next_cursor&quot;: null,
+  &quot;revision&quot;: &quot;0cb10f52480baa5ff4ec9c79a7bab9adb8f2aa8438a14fe88b6eef67eb0c5a5e&quot;,
+  &quot;ambiguous&quot;: true
+}</pre></section><section><h2>Ambiguous name cannot select a customer</h2><p>operator.a · 0.273 s · exit 1</p><pre>$ node client/dist/index.js quote Synthetic Nusantara Trading OPS-A-P1:2
+
+An exact, unique customer reference is required
+
+0 !== 1</pre></section><section><h2>Prepare an exact quotation</h2><p>operator.a · 0.39 s · exit 0</p><pre>$ node client/dist/index.js quote OPS-A-001 OPS-A-P1:2,OPS-A-P2:1
+
+{
+  &quot;id&quot;: &quot;e1c529c8-f29f-4c30-9d75-17a9f7b74549&quot;,
+  &quot;tenant_id&quot;: &quot;00000000-0000-0000-0000-000000000001&quot;,
+  &quot;actor_id&quot;: &quot;00000000-0000-0000-0000-000000000065&quot;,
+  &quot;kind&quot;: &quot;quote&quot;,
+  &quot;payload&quot;: {
+    &quot;items&quot;: [
+      {
+        &quot;quantity&quot;: 2,
+        &quot;product_id&quot;: 1
+      },
+      {
+        &quot;quantity&quot;: 1,
+        &quot;product_id&quot;: 2
+      }
+    ],
+    &quot;customer_id&quot;: 7
+  },
+  &quot;preview&quot;: {
+    &quot;kind&quot;: &quot;quote&quot;,
+    &quot;company_id&quot;: 2,
+    &quot;customer_id&quot;: 7,
+    &quot;customer_name&quot;: &quot;Synthetic Nusantara Trading&quot;,
+    &quot;currency&quot;: &quot;IDR&quot;,
+    &quot;pricelist_id&quot;: 3,
+    &quot;pricing_policy&quot;: &quot;list-price-no-tax-v1&quot;,
+    &quot;items&quot;: [
+      {
+        &quot;product_id&quot;: 1,
+        &quot;name&quot;: &quot;Synthetic Service 1&quot;,
+        &quot;quantity&quot;: 2,
+        &quot;unit_price&quot;: &quot;100000.0&quot;,
+        &quot;subtotal&quot;: &quot;200000.0&quot;
+      },
+      {
+        &quot;product_id&quot;: 2,
+        &quot;name&quot;: &quot;Synthetic Service 2&quot;,
+        &quot;quantity&quot;: 1,
+        &quot;unit_price&quot;: &quot;50000.0&quot;,
+        &quot;subtotal&quot;: &quot;50000.0&quot;
+      }
+    ],
+    &quot;total&quot;: &quot;250000.0&quot;,
+    &quot;source_version&quot;: &quot;e51c40903c236f89e64a5086992df0b9bc0b46bcb502f138f7a33aacdb3a9771&quot;,
+    &quot;contract_version&quot;: &quot;1.0&quot;
+  },
+  &quot;payload_hash&quot;: &quot;0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70&quot;,
+  &quot;contract_version&quot;: &quot;1.0&quot;,
+  &quot;created_at&quot;: &quot;2026-10-08T14:34:00.410131Z&quot;,
+  &quot;expires_at&quot;: &quot;2026-10-08T15:04:00.409992Z&quot;
+}</pre></section><section><h2>Operator cannot approve their proposal</h2><p>operator.a · 0.241 s · exit 1</p><pre>$ node client/dist/index.js approve e1c529c8-f29f-4c30-9d75-17a9f7b74549 0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70
+
+API 403: role_not_permitted</pre></section><section><h2>Separate approver reviews and approves</h2><p>approver.a · 0.319 s · exit 0</p><pre>$ node client/dist/index.js approve e1c529c8-f29f-4c30-9d75-17a9f7b74549 0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70
+
+{
+  &quot;id&quot;: &quot;14f0d7cb-c12f-454e-a562-84f4cd549829&quot;,
+  &quot;tenant_id&quot;: &quot;00000000-0000-0000-0000-000000000001&quot;,
+  &quot;proposal_id&quot;: &quot;e1c529c8-f29f-4c30-9d75-17a9f7b74549&quot;,
+  &quot;approver_id&quot;: &quot;00000000-0000-0000-0000-000000000066&quot;,
+  &quot;payload_hash&quot;: &quot;0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70&quot;,
+  &quot;expires_at&quot;: &quot;2026-10-08T15:04:00.409992Z&quot;,
+  &quot;created_at&quot;: &quot;2026-10-08T14:34:00.917234Z&quot;
+}</pre></section><section><h2>Create the draft and verify Odoo read-back</h2><p>operator.a · 0.493 s · exit 0</p><pre>$ node client/dist/index.js execute e1c529c8-f29f-4c30-9d75-17a9f7b74549 14f0d7cb-c12f-454e-a562-84f4cd549829 400231c6-a68f-4a9a-8bd2-fb00ed9d421e
+
+{
+  &quot;id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+  &quot;tenant_id&quot;: &quot;00000000-0000-0000-0000-000000000001&quot;,
+  &quot;proposal_id&quot;: &quot;e1c529c8-f29f-4c30-9d75-17a9f7b74549&quot;,
+  &quot;approval_id&quot;: &quot;14f0d7cb-c12f-454e-a562-84f4cd549829&quot;,
+  &quot;idempotency_key&quot;: &quot;400231c6-a68f-4a9a-8bd2-fb00ed9d421e&quot;,
+  &quot;status&quot;: &quot;verified&quot;,
+  &quot;result&quot;: {
+    &quot;operation_id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+    &quot;payload_hash&quot;: &quot;0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70&quot;,
+    &quot;record&quot;: {
+      &quot;kind&quot;: &quot;quote&quot;,
+      &quot;external_id&quot;: 132,
+      &quot;name&quot;: &quot;S00132&quot;,
+      &quot;state&quot;: &quot;draft&quot;,
+      &quot;company_id&quot;: 2,
+      &quot;customer_id&quot;: 7,
+      &quot;currency&quot;: &quot;IDR&quot;,
+      &quot;total&quot;: &quot;250000.0&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;product_id&quot;: 1,
+          &quot;quantity&quot;: 2,
+          &quot;unit_price&quot;: &quot;100000.0&quot;,
+          &quot;subtotal&quot;: &quot;200000.0&quot;
+        },
+        {
+          &quot;product_id&quot;: 2,
+          &quot;quantity&quot;: 1,
+          &quot;unit_price&quot;: &quot;50000.0&quot;,
+          &quot;subtotal&quot;: &quot;50000.0&quot;
+        }
+      ]
+    }
+  },
+  &quot;error_code&quot;: null,
+  &quot;attempts&quot;: 1,
+  &quot;created_at&quot;: &quot;2026-10-08T14:34:01.182173Z&quot;,
+  &quot;updated_at&quot;: &quot;2026-10-08T14:34:01.413105Z&quot;
+}</pre></section><section><h2>Resume from saved operation ID after a caller restart</h2><p>operator.a · 0.328 s · exit 0</p><pre>$ node client/dist/index.js status efe480dd-846c-4462-8208-d3951a6f263b
+
+{
+  &quot;id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+  &quot;tenant_id&quot;: &quot;00000000-0000-0000-0000-000000000001&quot;,
+  &quot;proposal_id&quot;: &quot;e1c529c8-f29f-4c30-9d75-17a9f7b74549&quot;,
+  &quot;approval_id&quot;: &quot;14f0d7cb-c12f-454e-a562-84f4cd549829&quot;,
+  &quot;idempotency_key&quot;: &quot;400231c6-a68f-4a9a-8bd2-fb00ed9d421e&quot;,
+  &quot;status&quot;: &quot;verified&quot;,
+  &quot;result&quot;: {
+    &quot;operation_id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+    &quot;payload_hash&quot;: &quot;0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70&quot;,
+    &quot;record&quot;: {
+      &quot;kind&quot;: &quot;quote&quot;,
+      &quot;external_id&quot;: 132,
+      &quot;name&quot;: &quot;S00132&quot;,
+      &quot;state&quot;: &quot;draft&quot;,
+      &quot;company_id&quot;: 2,
+      &quot;customer_id&quot;: 7,
+      &quot;currency&quot;: &quot;IDR&quot;,
+      &quot;total&quot;: &quot;250000.0&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;product_id&quot;: 1,
+          &quot;quantity&quot;: 2,
+          &quot;unit_price&quot;: &quot;100000.0&quot;,
+          &quot;subtotal&quot;: &quot;200000.0&quot;
+        },
+        {
+          &quot;product_id&quot;: 2,
+          &quot;quantity&quot;: 1,
+          &quot;unit_price&quot;: &quot;50000.0&quot;,
+          &quot;subtotal&quot;: &quot;50000.0&quot;
+        }
+      ]
+    }
+  },
+  &quot;error_code&quot;: null,
+  &quot;attempts&quot;: 1,
+  &quot;created_at&quot;: &quot;2026-10-08T14:34:01.182173Z&quot;,
+  &quot;updated_at&quot;: &quot;2026-10-08T14:34:01.747206Z&quot;
+}</pre></section><section><h2>Replay the original execution key safely</h2><p>operator.a · 0.221 s · exit 0</p><pre>$ node client/dist/index.js execute e1c529c8-f29f-4c30-9d75-17a9f7b74549 14f0d7cb-c12f-454e-a562-84f4cd549829 400231c6-a68f-4a9a-8bd2-fb00ed9d421e
+
+{
+  &quot;id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+  &quot;tenant_id&quot;: &quot;00000000-0000-0000-0000-000000000001&quot;,
+  &quot;proposal_id&quot;: &quot;e1c529c8-f29f-4c30-9d75-17a9f7b74549&quot;,
+  &quot;approval_id&quot;: &quot;14f0d7cb-c12f-454e-a562-84f4cd549829&quot;,
+  &quot;idempotency_key&quot;: &quot;400231c6-a68f-4a9a-8bd2-fb00ed9d421e&quot;,
+  &quot;status&quot;: &quot;verified&quot;,
+  &quot;result&quot;: {
+    &quot;operation_id&quot;: &quot;efe480dd-846c-4462-8208-d3951a6f263b&quot;,
+    &quot;payload_hash&quot;: &quot;0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70&quot;,
+    &quot;record&quot;: {
+      &quot;kind&quot;: &quot;quote&quot;,
+      &quot;external_id&quot;: 132,
+      &quot;name&quot;: &quot;S00132&quot;,
+      &quot;state&quot;: &quot;draft&quot;,
+      &quot;company_id&quot;: 2,
+      &quot;customer_id&quot;: 7,
+      &quot;currency&quot;: &quot;IDR&quot;,
+      &quot;total&quot;: &quot;250000.0&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;product_id&quot;: 1,
+          &quot;quantity&quot;: 2,
+          &quot;unit_price&quot;: &quot;100000.0&quot;,
+          &quot;subtotal&quot;: &quot;200000.0&quot;
+        },
+        {
+          &quot;product_id&quot;: 2,
+          &quot;quantity&quot;: 1,
+          &quot;unit_price&quot;: &quot;50000.0&quot;,
+          &quot;subtotal&quot;: &quot;50000.0&quot;
+        }
+      ]
+    }
+  },
+  &quot;error_code&quot;: null,
+  &quot;attempts&quot;: 1,
+  &quot;created_at&quot;: &quot;2026-10-08T14:34:01.182173Z&quot;,
+  &quot;updated_at&quot;: &quot;2026-10-08T14:34:01.747206Z&quot;
+}</pre></section><section><h2>Another tenant cannot see this operation</h2><p>operator.b · 0.222 s · exit 1</p><pre>$ node client/dist/index.js status efe480dd-846c-4462-8208-d3951a6f263b
+
+API 404: operation_not_found</pre></section></html>

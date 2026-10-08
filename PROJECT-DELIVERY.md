@@ -1,47 +1,55 @@
-# Project Delivery — Panduan untuk Manusia
+# Odoo Business Operations — delivery pack
 
-Proyek 02: **Odoo Business Operations MCP Server**
+Status: **Phases 0–9 complete for the selected local scope. Azure deployment remains Phase 10.**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; delivery pack lengkap Phase 9 dan deployment Phase 10 belum selesai**. Runbook lokal tersedia pada [LOCAL-RUNBOOK](docs/LOCAL-RUNBOOK.md).
+## Business brief
 
-## Penjelasan satu kalimat
+Sales operations needs reliable access to customer records and a controlled way
+to prepare quotations and CRM follow-ups. This project gives an assistant four
+typed skills through a scoped MCP server. It resolves source records, prepares
+an immutable preview, requires a separate approver and verifies the final Odoo
+record. The model cannot approve its own proposal or issue arbitrary database
+commands. William owns this synthetic local demonstration and its operation.
 
-Memberi assistant akses yang terbatas dan dapat diaudit untuk membaca data Odoo serta menyiapkan perubahan bisnis tanpa akses database bebas.
+The delivered interface is a reference CLI with reusable Python skills and a
+persistent worker. There is no browser chat UI. The current pricing workflow
+supports its explicit list-price/no-tax policy; unsupported pricing stops for
+review. Company and role are loaded from authenticated identity, not model text.
 
-**Siapa yang memakai:** Sales operations dan administrator Odoo.
+## What has been demonstrated
 
-**Pekerjaan sehari-hari:** Permintaan operator → assistant memilih skill → tools membaca Odoo → proposal perubahan → preview → approval → eksekusi → read-back Odoo → receipt dan audit.
+Phase 8 passed 98 offline, 41 connected and 14 live checks. Its bounded 124-task
+load produced 31 verified draft quotations without duplicate effects. Matching
+backup/restore, database recovery, a local alert receiver and compatible image
+rollback passed. These are synthetic local results, not production traffic or
+human ROI. Phase 7's frozen OpenAI result was 18/18; the small local model scored
+7/18 and remains experimental. The delivery demo separately records nine real
+CLI stages and verifies exactly one Odoo draft.
 
-## Demo penerimaan
+## Start here
 
-Assistant menyiapkan draft quotation dari record Odoo; operator melihat preview, approver terpisah menyetujui; read-back membuktikan hanya satu draft benar terbentuk meski request diulang.
+| Deliverable | Guide or evidence |
+| --- | --- |
+| Install, login, daily work and statuses | [Operator guide](docs/USER-GUIDE.md) |
+| Actual normal, blocked and resumed workflow | [Recorded CLI demo](docs/demo/index.html), [receipts](docs/demo/recording.json) |
+| Expected/observed acceptance | [Delivery acceptance](docs/DELIVERY-ACCEPTANCE.md) |
+| Failure handling, backup and rollback | [Local runbook](docs/LOCAL-RUNBOOK.md) |
+| Versions, secrets inventory and migration procedure | [Release specification](docs/RELEASE.md) |
+| Ownership, cadence and improvement backlog | [Handover](docs/HANDOVER.md) |
+| Cloud topology, budget proposal and deployment gates | [Azure design](docs/AZURE-PLAN.md) |
+| Reproducible source/artifact hashes | [Release manifest](docs/evidence/phase9-manifest.json) |
 
-Demo menggunakan data sintetis/test tenant. Tunjukkan input, bukti, keputusan, tindakan, hasil, dan cara menangani kegagalan. Jangan hanya memperlihatkan chat yang menjawab dengan lancar.
+All local delivery items above are complete. The demonstration uses a recorded
+HTML terminal transcript rather than a screen-capture video. Human approval is
+represented by a separate automated test identity; a real operator must still
+review the preview. The worker and scheduler work without n8n. No n8n extension
+was selected.
 
-## Dokumen delivery yang dibuat saat implementasi
+## Cloud handover boundary
 
-- [ ] Business brief satu halaman: masalah, owner, scope, hasil yang diukur, dan batas kemampuan.
-- [ ] Quick start: prerequisites, install lokal, seed demo, login roles, startup/shutdown, dan uninstall/cleanup.
-- [ ] User guide berbahasa English: langkah penggunaan dengan contoh dan screenshot, istilah sederhana, arti setiap status, serta kapan harus meminta bantuan.
-- [ ] Acceptance checklist: tugas, hasil yang diharapkan, hasil aktual, evidence, pass/fail; bisa dijalankan sendiri tanpa merekrut demo tester.
-- [ ] Runbook operator: kegagalan umum, langkah diagnosis, pemulihan, eskalasi, backup/restore, serta rollback.
-- [ ] Release/evidence manifest: commit, data/model/config versions, tests, integrations yang benar-benar diuji, limitations yang relevan.
-- [ ] Demo singkat dan case study dengan hasil terukur yang benar; single-operator/synthetic tetap dinyatakan sesuai lingkup.
-- [ ] Handover: pemilik credentials/config, permissions, biaya operasi/asumsi, retention, support owner, dan jadwal pemeliharaan.
-- [ ] Cloud deployment appendix setelah Phase 10: environment, health, monitoring, recovery proof, teardown/ongoing ownership.
-
-## Ongoing support
-
-- Periksa failed jobs, unknown outcomes, stale sync, resource/cost alerts dan review queues pada cadence yang sesuai beban.
-- Review feedback/error clusters dan tambahkan regression cases setelah insiden.
-- Setiap perubahan prompt/model/skill/policy/platform API memicu pengujian yang relevan sebelum release.
-- Perbarui dokumen dan runbook agar sesuai aplikasi; simpan sejarah eksperimen lokal bila berguna, public narrative fokus hasil tervalidasi.
-
-## Definisi selesai
-
-Seorang operator dapat memahami manfaatnya, menjalankan tugas normal, mengenali kasus yang harus ditinjau, menemukan bukti hasil, dan mengikuti pemulihan menggunakan dokumentasi. Local-ready, connected-sandbox-validated, offline-delivered, dan cloud-validated adalah status berbeda; hanya gunakan yang sudah dibuktikan.
-
-## Delivery automation
-
-- [ ] Dokumentasikan worker/API/scheduler utama, recovery dan ownership; buktikan install dan workflow tanpa n8n.
-- [ ] Extension automation hanya memiliki export/demo tambahan jika dipilih; tidak menjadi syarat delivery utama.
+Phase 9 supplies a design and cost proposal, not provisioned infrastructure.
+Phase 10 requires approved account/region/budget/access, infrastructure as code,
+immutable registry images, distinct credentials, HTTPS, delivered human alerts,
+off-host restore/rollback and cloud-specific acceptance. No Azure cost was
+incurred by provisioning in this phase. See the deployment gates before creating
+any resources.

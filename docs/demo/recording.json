@@ -1,0 +1,280 @@
+{
+  "recorded_at": "2026-10-08T14:33:58.925502+00:00",
+  "application_revision": "e42441aee2b06483e7158f8ccc4ecc0e632a6041",
+  "scope": "Actual CLI recording; synthetic local data; separate test approver automated; no LLM call. Recovery is resume/replay, not injected network loss.",
+  "passed": true,
+  "operation_id": "efe480dd-846c-4462-8208-d3951a6f263b",
+  "ledger_count": 1,
+  "order_count": 1,
+  "events": [
+    {
+      "title": "Read scoped source records",
+      "role": "operator.a",
+      "command": "node client/dist/index.js customers",
+      "exit_code": 0,
+      "seconds": 0.361,
+      "output": {
+        "items": [
+          {
+            "id": 7,
+            "name": "Synthetic Nusantara Trading",
+            "reference": "OPS-A-001",
+            "company_id": 2,
+            "source": "odoo:res.partner",
+            "version": "2026-10-08 14:19:47.538166"
+          },
+          {
+            "id": 8,
+            "name": "Synthetic Nusantara Trading",
+            "reference": "OPS-A-002",
+            "company_id": 2,
+            "source": "odoo:res.partner",
+            "version": "2026-10-08 09:55:12.272407"
+          }
+        ],
+        "next_cursor": null,
+        "revision": "0cb10f52480baa5ff4ec9c79a7bab9adb8f2aa8438a14fe88b6eef67eb0c5a5e",
+        "ambiguous": true
+      }
+    },
+    {
+      "title": "Ambiguous name cannot select a customer",
+      "role": "operator.a",
+      "command": "node client/dist/index.js quote Synthetic Nusantara Trading OPS-A-P1:2",
+      "exit_code": 1,
+      "seconds": 0.273,
+      "output": "An exact, unique customer reference is required\n\n0 !== 1"
+    },
+    {
+      "title": "Prepare an exact quotation",
+      "role": "operator.a",
+      "command": "node client/dist/index.js quote OPS-A-001 OPS-A-P1:2,OPS-A-P2:1",
+      "exit_code": 0,
+      "seconds": 0.39,
+      "output": {
+        "id": "e1c529c8-f29f-4c30-9d75-17a9f7b74549",
+        "tenant_id": "00000000-0000-0000-0000-000000000001",
+        "actor_id": "00000000-0000-0000-0000-000000000065",
+        "kind": "quote",
+        "payload": {
+          "items": [
+            {
+              "quantity": 2,
+              "product_id": 1
+            },
+            {
+              "quantity": 1,
+              "product_id": 2
+            }
+          ],
+          "customer_id": 7
+        },
+        "preview": {
+          "kind": "quote",
+          "company_id": 2,
+          "customer_id": 7,
+          "customer_name": "Synthetic Nusantara Trading",
+          "currency": "IDR",
+          "pricelist_id": 3,
+          "pricing_policy": "list-price-no-tax-v1",
+          "items": [
+            {
+              "product_id": 1,
+              "name": "Synthetic Service 1",
+              "quantity": 2,
+              "unit_price": "100000.0",
+              "subtotal": "200000.0"
+            },
+            {
+              "product_id": 2,
+              "name": "Synthetic Service 2",
+              "quantity": 1,
+              "unit_price": "50000.0",
+              "subtotal": "50000.0"
+            }
+          ],
+          "total": "250000.0",
+          "source_version": "e51c40903c236f89e64a5086992df0b9bc0b46bcb502f138f7a33aacdb3a9771",
+          "contract_version": "1.0"
+        },
+        "payload_hash": "0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+        "contract_version": "1.0",
+        "created_at": "2026-10-08T14:34:00.410131Z",
+        "expires_at": "2026-10-08T15:04:00.409992Z"
+      }
+    },
+    {
+      "title": "Operator cannot approve their proposal",
+      "role": "operator.a",
+      "command": "node client/dist/index.js approve e1c529c8-f29f-4c30-9d75-17a9f7b74549 0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+      "exit_code": 1,
+      "seconds": 0.241,
+      "output": "API 403: role_not_permitted"
+    },
+    {
+      "title": "Separate approver reviews and approves",
+      "role": "approver.a",
+      "command": "node client/dist/index.js approve e1c529c8-f29f-4c30-9d75-17a9f7b74549 0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+      "exit_code": 0,
+      "seconds": 0.319,
+      "output": {
+        "id": "14f0d7cb-c12f-454e-a562-84f4cd549829",
+        "tenant_id": "00000000-0000-0000-0000-000000000001",
+        "proposal_id": "e1c529c8-f29f-4c30-9d75-17a9f7b74549",
+        "approver_id": "00000000-0000-0000-0000-000000000066",
+        "payload_hash": "0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+        "expires_at": "2026-10-08T15:04:00.409992Z",
+        "created_at": "2026-10-08T14:34:00.917234Z"
+      }
+    },
+    {
+      "title": "Create the draft and verify Odoo read-back",
+      "role": "operator.a",
+      "command": "node client/dist/index.js execute e1c529c8-f29f-4c30-9d75-17a9f7b74549 14f0d7cb-c12f-454e-a562-84f4cd549829 400231c6-a68f-4a9a-8bd2-fb00ed9d421e",
+      "exit_code": 0,
+      "seconds": 0.493,
+      "output": {
+        "id": "efe480dd-846c-4462-8208-d3951a6f263b",
+        "tenant_id": "00000000-0000-0000-0000-000000000001",
+        "proposal_id": "e1c529c8-f29f-4c30-9d75-17a9f7b74549",
+        "approval_id": "14f0d7cb-c12f-454e-a562-84f4cd549829",
+        "idempotency_key": "400231c6-a68f-4a9a-8bd2-fb00ed9d421e",
+        "status": "verified",
+        "result": {
+          "operation_id": "efe480dd-846c-4462-8208-d3951a6f263b",
+          "payload_hash": "0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+          "record": {
+            "kind": "quote",
+            "external_id": 132,
+            "name": "S00132",
+            "state": "draft",
+            "company_id": 2,
+            "customer_id": 7,
+            "currency": "IDR",
+            "total": "250000.0",
+            "items": [
+              {
+                "product_id": 1,
+                "quantity": 2,
+                "unit_price": "100000.0",
+                "subtotal": "200000.0"
+              },
+              {
+                "product_id": 2,
+                "quantity": 1,
+                "unit_price": "50000.0",
+                "subtotal": "50000.0"
+              }
+            ]
+          }
+        },
+        "error_code": null,
+        "attempts": 1,
+        "created_at": "2026-10-08T14:34:01.182173Z",
+        "updated_at": "2026-10-08T14:34:01.413105Z"
+      }
+    },
+    {
+      "title": "Resume from saved operation ID after a caller restart",
+      "role": "operator.a",
+      "command": "node client/dist/index.js status efe480dd-846c-4462-8208-d3951a6f263b",
+      "exit_code": 0,
+      "seconds": 0.328,
+      "output": {
+        "id": "efe480dd-846c-4462-8208-d3951a6f263b",
+        "tenant_id": "00000000-0000-0000-0000-000000000001",
+        "proposal_id": "e1c529c8-f29f-4c30-9d75-17a9f7b74549",
+        "approval_id": "14f0d7cb-c12f-454e-a562-84f4cd549829",
+        "idempotency_key": "400231c6-a68f-4a9a-8bd2-fb00ed9d421e",
+        "status": "verified",
+        "result": {
+          "operation_id": "efe480dd-846c-4462-8208-d3951a6f263b",
+          "payload_hash": "0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+          "record": {
+            "kind": "quote",
+            "external_id": 132,
+            "name": "S00132",
+            "state": "draft",
+            "company_id": 2,
+            "customer_id": 7,
+            "currency": "IDR",
+            "total": "250000.0",
+            "items": [
+              {
+                "product_id": 1,
+                "quantity": 2,
+                "unit_price": "100000.0",
+                "subtotal": "200000.0"
+              },
+              {
+                "product_id": 2,
+                "quantity": 1,
+                "unit_price": "50000.0",
+                "subtotal": "50000.0"
+              }
+            ]
+          }
+        },
+        "error_code": null,
+        "attempts": 1,
+        "created_at": "2026-10-08T14:34:01.182173Z",
+        "updated_at": "2026-10-08T14:34:01.747206Z"
+      }
+    },
+    {
+      "title": "Replay the original execution key safely",
+      "role": "operator.a",
+      "command": "node client/dist/index.js execute e1c529c8-f29f-4c30-9d75-17a9f7b74549 14f0d7cb-c12f-454e-a562-84f4cd549829 400231c6-a68f-4a9a-8bd2-fb00ed9d421e",
+      "exit_code": 0,
+      "seconds": 0.221,
+      "output": {
+        "id": "efe480dd-846c-4462-8208-d3951a6f263b",
+        "tenant_id": "00000000-0000-0000-0000-000000000001",
+        "proposal_id": "e1c529c8-f29f-4c30-9d75-17a9f7b74549",
+        "approval_id": "14f0d7cb-c12f-454e-a562-84f4cd549829",
+        "idempotency_key": "400231c6-a68f-4a9a-8bd2-fb00ed9d421e",
+        "status": "verified",
+        "result": {
+          "operation_id": "efe480dd-846c-4462-8208-d3951a6f263b",
+          "payload_hash": "0982e0879d863c438a246b1149ee4fd1246dca84cb3c5355660dc5f5abbbfa70",
+          "record": {
+            "kind": "quote",
+            "external_id": 132,
+            "name": "S00132",
+            "state": "draft",
+            "company_id": 2,
+            "customer_id": 7,
+            "currency": "IDR",
+            "total": "250000.0",
+            "items": [
+              {
+                "product_id": 1,
+                "quantity": 2,
+                "unit_price": "100000.0",
+                "subtotal": "200000.0"
+              },
+              {
+                "product_id": 2,
+                "quantity": 1,
+                "unit_price": "50000.0",
+                "subtotal": "50000.0"
+              }
+            ]
+          }
+        },
+        "error_code": null,
+        "attempts": 1,
+        "created_at": "2026-10-08T14:34:01.182173Z",
+        "updated_at": "2026-10-08T14:34:01.747206Z"
+      }
+    },
+    {
+      "title": "Another tenant cannot see this operation",
+      "role": "operator.b",
+      "command": "node client/dist/index.js status efe480dd-846c-4462-8208-d3951a6f263b",
+      "exit_code": 1,
+      "seconds": 0.222,
+      "output": "API 404: operation_not_found"
+    }
+  ]
+}

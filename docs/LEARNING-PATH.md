@@ -76,3 +76,5 @@ remains experimental; the tested OpenAI profile is the qualified option.
 
 Use `git diff phase-7-quality phase-8-reliability` to study this phase. Phase 7's frozen evaluation remains reproducible at its own tag; Phase 8 uses assistant
 contract `0.3.2` and its separately recorded control/canary evidence.
+
+Phase 9 memakai satu commit/tag `phase-9-delivery`: panduan penggunaan, recorded CLI demo, verifikasi manifest, handover dan rencana Azure. Gunakan `git diff phase-8-reliability phase-9-delivery` untuk mempelajari delivery tanpa perubahan perilaku aplikasi.

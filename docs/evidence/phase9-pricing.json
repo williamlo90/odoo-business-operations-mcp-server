@@ -1,0 +1,48 @@
+{
+  "retrieved_on": "2026-10-08",
+  "source": "https://prices.azure.com/api/retail/prices",
+  "filter": "serviceName eq 'Virtual Machines' and armRegionName eq 'southeastasia' and armSkuName eq 'Standard_B2ls_v2' and priceType eq 'Consumption'",
+  "currency": "USD",
+  "selection": "Virtual Machines Bsv2 Series, Linux non-Spot non-Low-Priority consumption",
+  "items": [
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0.0,
+      "retailPrice": 0.0528,
+      "unitPrice": 0.0528,
+      "armRegionName": "southeastasia",
+      "location": "AP Southeast",
+      "effectiveStartDate": "2023-09-01T00:00:00Z",
+      "meterId": "f0e6808e-3ae4-55fc-9e18-9b74f38da67f",
+      "meterName": "B2ls v2",
+      "productId": "DZH318Z0K9K9",
+      "skuId": "DZH318Z0K9K9/02J4",
+      "productName": "Virtual Machines Bsv2 Series",
+      "skuName": "B2ls v2",
+      "serviceName": "Virtual Machines",
+      "serviceId": "DZH313Z7MMC8",
+      "serviceFamily": "Compute",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": true,
+      "armSkuName": "Standard_B2ls_v2"
+    }
+  ],
+  "estimate": {
+    "compute_hourly": 0.0528,
+    "demo_50_hours": 2.64,
+    "always_on_730_hours": 38.544,
+    "other_services_monthly_allowance": [
+      15,
+      25
+    ],
+    "allowance_is_provider_quote": false,
+    "excludes": [
+      "tax",
+      "currency conversion",
+      "OpenAI charges",
+      "unexpected egress/log volume",
+      "account-specific discounts"
+    ]
+  }
+}

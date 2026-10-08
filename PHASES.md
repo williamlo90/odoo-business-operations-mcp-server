@@ -2,7 +2,7 @@
 
 Proyek 02: **Odoo Business Operations MCP Server**
 
-Tanggal rencana: 2026-10-08. Status: **Phase 0-8 selesai untuk scope lokal terpilih; Phase 9-10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
+Tanggal rencana: 2026-10-08. Status: **Phase 0-9 selesai untuk scope lokal terpilih; deployment cloud Phase 10 belum selesai**. Claude/Grok opsional dan belum live-validated. Evaluasi Phase 7 adalah regresi sintetis; bukan klaim generalisasi atau ROI manusia.
 
 Urutan wajib: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10**. Access control dan test dimulai saat feature dibuat; fase 8 merupakan verifikasi menyeluruh, bukan pertama kali security ditambahkan. Tidak ada deployment aplikasi ke cloud sebelum fase 10.
 
@@ -125,13 +125,15 @@ Evidence: [Phase 8](docs/PHASE-8.md), [runbook lokal](docs/LOCAL-RUNBOOK.md), da
 
 ## Phase 9 — Delivery pack dan release siap deploy
 
-- [ ] Selesaikan panduan manusia di PROJECT-DELIVERY.md: install, daily use, approval, failure handling, backup, upgrade, dan support.
-- [ ] Rekam demo dengan kasus normal, blocked/ambiguous, dan recovery; simpan acceptance checklist dan bukti hasil platform.
-- [ ] Bekukan release commit, dependency versions, migration plan, rollback, konfigurasi, model licenses, dan sanitized evidence manifest.
-- [ ] Siapkan rencana/IaC cloud, least-privilege access, resource/cost limits, alerts, secret management, backup dan teardown; jangan provision dahulu.
-- [ ] Tentukan owner operasional, jadwal review kualitas, incident response, dan backlog improvement. Dokumentasi untuk operator tersedia dalam English; developer notes boleh Indonesia.
+- [x] Selesaikan panduan manusia di PROJECT-DELIVERY.md: install, daily use, approval, failure handling, backup, upgrade, dan support.
+- [x] Rekam transcript CLI aktual dengan kasus normal, blocked/ambiguous, dan recovery; simpan acceptance checklist dan bukti hasil platform.
+- [x] Bekukan release commit, dependency versions, migration plan, rollback, konfigurasi, model licenses, dan sanitized evidence manifest.
+- [x] Siapkan rencana cloud (IaC diterapkan pada Phase 10), least-privilege access, resource/cost limits, alerts, secret management, backup dan teardown; jangan provision dahulu.
+- [x] Tentukan owner operasional, jadwal review kualitas, incident response, dan backlog improvement. Dokumentasi untuk operator tersedia dalam English; developer notes boleh Indonesia.
 
 **Gate:** aplikasi dapat dipakai dan dipulihkan lokal mengikuti dokumen; semua prerequisite deployment tercatat; bukti release cocok dengan snapshot kode yang akan dideploy.
+
+Evidence: [paket Phase 9](docs/PHASE-9.md), [demo CLI](docs/demo/index.html), [rencana Azure](docs/AZURE-PLAN.md). Belum ada resource Azure yang diprovision; budget masih usulan.
 
 ## Phase 10 — Deployment cloud TERAKHIR, validasi runtime, dan ongoing support
 
