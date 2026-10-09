@@ -34,6 +34,7 @@ async function fixture(extraEnv={}) {
     }
     if(path==='/v1/catalog')return send(200,{items:[{id:1,code:'OPS-A-P1',name:'Service 1',unit_price:'100000'},{id:2,code:'OPS-A-P2',name:'Service 2',unit_price:'50000'}],currency:'IDR',pricing_policy:'list-price-no-tax-v1'});
     if(path==='/v1/quotes/prepare')return send(201,proposal);
+    if(path===`/v1/workspace/proposals/${proposal.id}`)return send(200,state.foreign ? {error:'proposal_not_found'} : {proposal,approval:{id:operation.approval_id,expires_at:'2099-01-01T00:00:00Z'},operation:null});
     if(path===`/v1/proposals/${proposal.id}`)return send(200,state.foreign ? {...proposal,tenant_id:uuid}:proposal);
     if(path.endsWith('/execute')){
       if(state.stale)return send(409,{error:'stale_proposal'});
@@ -58,11 +59,13 @@ test('real MCP initialize, tool schemas, preparation and verified idempotent exe
   try{
     assert.equal(f.client.getNegotiatedProtocolVersion(),'2026-07-28');
     const listed=await f.client.listTools();
-    assert.equal(listed.tools.length,10);
+    assert.equal(listed.tools.length,11);
     assert.ok(!listed.tools.some(t=>t.name.includes('approve') && t.name!=='odoo.execute_approved'));
     for(const tool of listed.tools)assert.equal(tool.inputSchema.additionalProperties,false);
     const prepared=unwrap(await f.client.callTool({name:'odoo.quote_prepare',arguments:proposal.payload}));
     assert.equal(prepared.data.id,proposal.id);
+    const reviewed=unwrap(await f.client.callTool({name:'odoo.review_status',arguments:{proposal_id:proposal.id}}));
+    assert.equal(reviewed.data.approval_id,operation.approval_id);
     const args={proposal_id:proposal.id,approval_id:operation.approval_id,idempotency_key:operation.idempotency_key};
     const outputs=await Promise.all([f.client.callTool({name:'odoo.execute_approved',arguments:args}),f.client.callTool({name:'odoo.execute_approved',arguments:args})]);
     assert.ok(outputs.every(result=>unwrap(result).data.status==='verified'));

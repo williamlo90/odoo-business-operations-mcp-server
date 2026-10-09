@@ -17,12 +17,22 @@ stdio; no remote MCP HTTP endpoint is claimed.
 | `odoo.quote_prepare` | Build a validated quotation proposal |
 | `odoo.activity_prepare` | Build a CRM activity proposal |
 | `odoo.proposal_get` | Read an existing proposal |
+| `odoo.review_status` | Read approval ID and saved operation status after independent browser review; cannot approve |
 | `odoo.execute_approved` | Execute with proposal, approval and idempotency key |
 | `odoo.operation_status` | Reconcile/read a recorded operation |
 
 The model and worker cannot create approval through this surface. The separate
 approver uses the domain workflow. All routes enforce authenticated role,
 company/record scope and applicable payload/version checks.
+
+For a quotation, call `odoo.customer_search` and `odoo.catalog`, then
+`odoo.quote_prepare` with exact IDs and quantities. Share the returned proposal
+ID as `http://127.0.0.1:8020/#proposal/<proposal-id>` for human review.
+After approval, `odoo.review_status` returns the approval ID. The original
+operator calls `odoo.execute_approved` with a stable idempotency UUID and reads
+`odoo.operation_status` to verify or reconcile the Odoo result. The
+[connected synthetic transcript](docs/evidence/mcp-first-journey.md) records
+this complete path.
 
 Strict schemas, bounded output, stable error codes and correlation IDs are
 part of the contract. SDK/protocol versions are pinned in the implementation.

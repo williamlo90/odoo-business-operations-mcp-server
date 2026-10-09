@@ -4,8 +4,10 @@ Choose a path through the project.
 
 | Start with | What you will find |
 | --- | --- |
-| [Browser workspace](WEB-UI.md) | Login, quotation/CRM preparation, approval and verified receipts in the web UI |
-| [Web UI acceptance](PHASE-9A.md) | Browser and API checks for the pre-cloud workspace checkpoint |
+| [Connected MCP journey](evidence/mcp-first-journey.md) | Actual synthetic source lookup, approval, execution, Odoo quotation and replay evidence |
+| [Independent approval page](WEB-UI.md) | The current small human review surface; preparation and execution use MCP |
+| [Phase 9A workspace](PHASE-9A.md) | Historical full browser checkpoint preserved at its Git tag |
+| [Phase 9B checkpoint](PHASE-9B.md) | Why the current product boundary is MCP-first and the UI is approval-only |
 | [Product walkthrough](demo/README.md) | Four visual scenes from the actual recorded quotation workflow |
 | [Engineering case study](portfolio/CASE_STUDY.md) | Problem, design decisions, recovery and measured results |
 | [Operator guide](USER-GUIDE.md) | Installation, daily use, approval and outcome handling |

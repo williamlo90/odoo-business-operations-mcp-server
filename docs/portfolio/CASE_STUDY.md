@@ -17,7 +17,7 @@ Execution finishes only when the Odoo result has been checked.
 
 ## Architecture decisions
 
-**A narrow MCP contract.** Ten allowlisted tools expose useful business
+**A narrow MCP contract.** Eleven allowlisted tools expose useful business
 capabilities rather than arbitrary Odoo model methods or SQL. The TypeScript
 server authenticates the caller and forwards to a Python domain service;
 permissions are enforced again at the service boundary.
@@ -54,6 +54,7 @@ for both browser and MCP paths through the shared domain service.
 | What is latency under the bounded workload? | Write p95 0.3875 / 0.4362 / 0.5216 s for normal / peak / short soak | [Workload definition and results](../PHASE-8.md) |
 | Can the local system be recovered? | Isolated matching restore/read-back in 30.11 s; compatible rollback passed | [Recovery evidence](../evidence/phase8-recovery.json) |
 | Can someone inspect an end-to-end example? | Nine recorded CLI stages, one actual Odoo draft | [Walkthrough](../demo/README.md) |
+| Does the current MCP/browser handoff work? | Connected MCP preparation, browser approval, MCP execution/status/replay and one Odoo effect | [Phase 9B journey](../evidence/mcp-first-journey.md) |
 
 Load uses synthetic records and real local HTTP/PostgreSQL/Odoo paths, with
 model calls measured separately. The soak lasts about two minutes. Approval
@@ -65,10 +66,11 @@ not unrestricted production or cloud-performance claims.
 
 The release includes locked dependencies, versioned contracts, an operator
 guide, a recovery runbook, a reproducible recording and tagged learning
-checkpoints. A responsive browser workspace now supports quotation/CRM
-preparation, independent review, execution and saved receipts through the same
-domain API. The CLI retains the natural-language assistant and automation entry
-points. See [browser acceptance](../PHASE-9A.md).
+checkpoints. The current browser handles independent review only; the MCP
+client prepares and executes. A [connected synthetic journey](../evidence/mcp-first-journey.md)
+shows both boundaries and the resulting Odoo draft. The full browser workspace
+remains in the historical [Phase 9A checkpoint](../PHASE-9A.md). The CLI retains
+the natural-language assistant and automation entry points.
 
 Azure is a prepared deployment design. Its next gate includes infrastructure
 as code, distinct credentials, restricted HTTPS access, private backups,

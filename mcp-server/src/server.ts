@@ -14,7 +14,7 @@ const list = (items: any) => ({type:'array',items,maxItems:100});
 const reader = ['operator','approver','auditor'];
 const stable = (value:any):string => JSON.stringify(value,(_key,item)=>item && typeof item==='object' && !Array.isArray(item) ? Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))) : item);
 type Spec = {name:string; description:string; input:any; output:any; roles:string[]; method?:string;
-  path:(args:any)=>string; body?:(args:any)=>unknown};
+  path:(args:any)=>string; body?:(args:any)=>unknown; map?:(data:any)=>unknown};
 const specs: Spec[] = [
   {name:'odoo.identity',description:'Read authenticated identity; scope cannot be supplied by the caller.',input:obj({}),
     output:obj({id:uuid,tenant_id:uuid,role:{enum:reader}}),roles:reader,path:()=>'/me'},
@@ -34,6 +34,10 @@ const specs: Spec[] = [
     output:schemas.ProposalOut,roles:['operator'],method:'POST',path:()=>'/v1/activities/prepare',body:a=>a},
   {name:'odoo.proposal_get',description:'Read an immutable proposal for human preview.',input:obj({proposal_id:uuid}),
     output:schemas.ProposalOut,roles:reader,path:a=>'/v1/proposals/'+a.proposal_id},
+  {name:'odoo.review_status',description:'Read a scoped human approval handoff and saved operation status. Returns approval ID after independent browser review; never grants approval.',
+    input:obj({proposal_id:uuid}),output:obj({proposal_id:uuid,approval_id:{anyOf:[uuid,{type:'null'}]},approval_expires_at:{anyOf:[{type:'string',format:'date-time'},{type:'null'}]},operation_id:{anyOf:[uuid,{type:'null'}]},operation_status:{anyOf:[text,{type:'null'}]}}),roles:reader,
+    path:a=>'/v1/workspace/proposals/'+a.proposal_id,
+    map:d=>({proposal_id:d.proposal.id,approval_id:d.approval?.id??null,approval_expires_at:d.approval?.expires_at??null,operation_id:d.operation?.id??null,operation_status:d.operation?.status??null})},
   {name:'odoo.execute_approved',description:'Execute an existing human-approved proposal using its stable idempotency key. Never creates approval.',
     input:obj({proposal_id:uuid,approval_id:uuid,idempotency_key:uuid}),output:schemas.OperationOut,roles:['operator'],method:'POST',
     path:a=>'/v1/proposals/'+a.proposal_id+'/execute',body:a=>({approval_id:a.approval_id,idempotency_key:a.idempotency_key})},
@@ -106,6 +110,7 @@ export function buildServer() {
           }
           let data = spec.name === 'odoo.identity' ? {id:me.id,tenant_id:me.tenant_id,role:me.role} :
             await request(spec.path(args),spec.method ?? 'GET',spec.body?.(args),signal,correlation,domainIds);
+          if (spec.map) data=spec.map(data);
           const checked = await validator['~standard'].validate(data);
           if (checked.issues) throw new Failure(spec.method === 'POST' ? 'write_outcome_unknown' : 'domain_response_malformed');
           if (data.tenant_id && data.tenant_id !== me.tenant_id) throw new Failure('scope_mismatch');

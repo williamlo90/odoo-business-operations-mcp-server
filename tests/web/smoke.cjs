@@ -1,87 +1,44 @@
-/* Real browser acceptance against the synthetic local Odoo stack. Creates a
-   quotation and CRM activity through the normal UI; never contacts a model. */
+/* Connected synthetic acceptance: MCP preparation -> browser approval -> MCP execution. */
 const {chromium}=require('playwright');
+const {execFileSync}=require('node:child_process');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'../..');
-process.loadEnvFile(path.join(root,'.env'));
+process.loadEnvFile(process.env.ODOO_OPS_ENV_FILE||path.join(root,'.env'));
 const base='http://127.0.0.1:'+(process.env.API_PORT||'8020');
 const output=path.join(root,'local/web-acceptance');fs.mkdirSync(output,{recursive:true});
-const errors=[], checks=[];
-let browser;
-const ready=page=>page.waitForFunction(()=>!document.querySelector('#app').hasAttribute('aria-busy'));
-async function login(page,username){
-  await page.locator('#username').fill(username);await page.locator('#password').fill(process.env.DEMO_PASSWORD);
-  await page.getByRole('button',{name:'Sign in to workspace'}).click();
-  await page.locator('.sidebar').waitFor();await ready(page);
+const checks=[];let browser;
+function tool(name,args={},role='operator.a'){
+  const raw=execFileSync('node',['mcp-server/dist/cli.js',name,JSON.stringify(args)],{cwd:root,env:{...process.env,DEMO_USERNAME:role,API_URL:base},encoding:'utf8',timeout:45000});
+  const response=JSON.parse(raw);assert.ok(!response.isError,JSON.stringify(response).slice(0,350));
+  return response.structuredContent?.data||JSON.parse(response.content[0].text).data;
 }
-async function shot(page,name){await ready(page);await page.screenshot({path:path.join(output,name+'.png'),fullPage:true,animations:'disabled'});}
-async function approve(page,id){
-  await page.goto(base+'/#proposal/'+id);
-  if(await page.locator('#username').count())await login(page,'approver.a');
-  await ready(page);await page.locator('#review-check').check();
-  await page.getByRole('button',{name:'Approve proposal',exact:true}).click();await ready(page);
-  await page.getByText('Approval recorded. The original operator can now execute.').waitFor();
-}
+async function login(page,role){await page.locator('#username').fill(role);await page.locator('#password').fill(process.env.DEMO_PASSWORD);await page.getByRole('button',{name:'Sign in',exact:true}).click();await page.getByRole('heading',{name:'Quotation review'}).waitFor();}
 (async()=>{
-  browser=await chromium.launch({headless:true});
-  const ctx=await browser.newContext({viewport:{width:1440,height:1000}});
-  const page=await ctx.newPage();page.on('pageerror',err=>errors.push(err.message));
-  await page.goto(base);await shot(page,'login');await login(page,'operator.a');
-  await page.getByRole('heading',{name:'Work queue'}).waitFor();checks.push('authenticated queue');
-  await page.getByRole('button',{name:'New quotation',exact:true}).click();await ready(page);
-  await page.getByLabel('Customer name or reference').fill('OPS-A-001');
-  await page.getByRole('button',{name:'Search',exact:true}).click();await ready(page);
-  await page.locator('input[name=customer]').check();
-  await page.locator('.line select').selectOption({label:await page.locator('.line option').filter({hasText:'OPS-A-P1'}).textContent()});
-  await page.locator('.line input').fill('2');await page.getByRole('button',{name:'+ Add line',exact:true}).click();
-  await page.locator('.line select').nth(1).selectOption({label:await page.locator('.line').nth(1).locator('option').filter({hasText:'OPS-A-P2'}).textContent()});
-  await shot(page,'prepare');
-  await page.getByRole('button',{name:'Prepare quotation preview'}).click();await ready(page);
-  await page.getByRole('heading',{name:'Quotation review'}).waitFor();
-  const id=new URL(page.url()).hash.split('/')[1];assert.ok(id);
-  assert.equal(await page.locator('#approve').count(),0);checks.push('operator cannot approve in UI');
-  assert.ok((await page.locator('.summary.total').innerText()).includes('250,000'));
-  await shot(page,'proposal');checks.push('source-backed quotation preview');
-  const approverContext=await browser.newContext({viewport:{width:1440,height:1000}});
-  const ap=await approverContext.newPage();ap.on('pageerror',err=>errors.push(err.message));
-  await approve(ap,id);checks.push('separate approver');
-  await page.getByRole('button',{name:'Refresh',exact:true}).click();await ready(page);
-  // Let Odoo commit, then discard the HTTP response at the browser boundary.
-  await page.route('**/v1/proposals/'+id+'/execute',async route=>{await route.fetch();await route.abort('failed');},{times:1});
-  await page.locator('#execute-check').check();await page.getByRole('button',{name:'Create in Odoo',exact:true}).click();await ready(page);
-  await page.getByRole('heading',{name:'Verified in Odoo',exact:true}).waitFor();
-  const receipt=JSON.parse(await page.locator('.receipt pre').textContent());
-  assert.equal(receipt.status,'verified');assert.equal(Number(receipt.result.record.total),250000);
-  checks.push('lost execution response recovered from saved server operation');
-  await page.getByRole('button',{name:'Refresh',exact:true}).click();await ready(page);
-  await shot(page,'receipt');checks.push('real Odoo quotation verified');
-  await page.reload();await login(page,'operator.a');
-  await page.getByRole('heading',{name:'Verified in Odoo',exact:true}).waitFor();
-  const restored=JSON.parse(await page.locator('.receipt pre').textContent());assert.equal(restored.id,receipt.id);
-  assert.equal(await page.locator('#execute').count(),0);checks.push('reload and reauthentication preserve operation');
-  await page.getByRole('button',{name:'Check Odoo status',exact:true}).click();await ready(page);
-  assert.equal(JSON.parse(await page.locator('.receipt pre').textContent()).id,receipt.id);
-  checks.push('status reconciliation retains original operation');
-  const bctx=await browser.newContext();const bp=await bctx.newPage();await bp.goto(base+'/#proposal/'+id);await login(bp,'operator.b');
-  await bp.getByRole('alert').filter({hasText:'proposal not found'}).waitFor();assert.equal(await bp.locator('.receipt').count(),0);checks.push('cross-company proposal denied');
-  await page.getByRole('button',{name:'CRM follow-up',exact:true}).click();await ready(page);
-  const options=await page.locator('#opportunity option').allTextContents();assert.ok(options.length>1);
-  await page.locator('#opportunity').selectOption({index:1});await page.locator('#due').fill('2026-12-15');
-  await page.locator('#summary').fill('Review quotation after browser acceptance');
-  await page.getByRole('button',{name:'Prepare activity preview'}).click();await ready(page);
-  const activityId=new URL(page.url()).hash.split('/')[1];await approve(ap,activityId);
-  await page.getByRole('button',{name:'Refresh',exact:true}).click();await ready(page);await page.locator('#execute-check').check();
-  await page.getByRole('button',{name:'Create in Odoo',exact:true}).click();await ready(page);
-  await page.getByRole('heading',{name:'Verified in Odoo',exact:true}).waitFor();
-  const activity=JSON.parse(await page.locator('.receipt pre').textContent());assert.equal(activity.result.record.kind,'activity');checks.push('real CRM activity prepared, approved and verified');
-  await page.getByRole('button',{name:'Work queue',exact:true}).click();await ready(page);await shot(page,'queue');
-  await page.setViewportSize({width:390,height:844});await shot(page,'mobile');
-  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));checks.push('390px responsive layout');
-  await page.getByRole('button',{name:'Sign out',exact:true}).click();await ready(page);await page.locator('#username').waitFor();
-  assert.equal(await page.locator('.receipt').count(),0);checks.push('logout clears private workspace');
-  assert.deepEqual(errors,[]);checks.push('no browser JavaScript errors');
-  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({date:new Date().toISOString(),checks,quote_proposal:id,quote_operation:receipt.id,quote_record:receipt.result.record.name,activity_proposal:activityId,activity_operation:activity.id},null,2));
-  console.log(JSON.stringify({passed:checks.length,checks},null,2));
-})().catch(err=>{console.error(err.message);process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();});
+  const customer=tool('odoo.customer_search',{query:'OPS-A-001'}).items.find(x=>x.reference==='OPS-A-001');assert.ok(customer);
+  const catalog=tool('odoo.catalog').items;const one=catalog.find(x=>x.code==='OPS-A-P1'),two=catalog.find(x=>x.code==='OPS-A-P2');assert.ok(one&&two);
+  checks.push('MCP source lookup and catalog');
+  const proposal=tool('odoo.quote_prepare',{customer_id:customer.id,items:[{product_id:one.id,quantity:2},{product_id:two.id,quantity:1}]});
+  assert.equal(Number(proposal.preview.total),250000);checks.push('MCP quotation preparation');
+  browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1280,height:900}});
+  const errors=[];page.on('pageerror',err=>errors.push(err.message));await page.goto(base+'/#proposal/'+proposal.id);await login(page,'approver.a');
+  assert.equal(await page.locator('#execute').count(),0);assert.equal(await page.getByRole('button',{name:'Create in Odoo'}).count(),0);
+  await page.screenshot({path:path.join(output,'approval-before.png'),fullPage:true});
+  await page.locator('#review-check').check();await page.getByRole('button',{name:'Approve proposal'}).click();await page.locator('#approval-id').waitFor();
+  const review=tool('odoo.review_status',{proposal_id:proposal.id});assert.equal(review.approval_id,await page.locator('#approval-id').textContent());
+  checks.push('independent browser approval and MCP handoff');
+  const key=require('node:crypto').randomUUID();const args={proposal_id:proposal.id,approval_id:review.approval_id,idempotency_key:key};
+  const operation=tool('odoo.execute_approved',args);assert.equal(operation.status,'verified');
+  const replay=tool('odoo.execute_approved',args);assert.equal(replay.id,operation.id);
+  const status=tool('odoo.operation_status',{operation_id:operation.id});assert.equal(status.id,operation.id);assert.equal(status.status,'verified');
+  assert.match(operation.id,/^[a-f0-9-]{36}$/);
+  const sql=`SELECT (SELECT count(*) FROM ops_operation WHERE operation_id='${operation.id}'),(SELECT count(*) FROM sale_order WHERE client_order_ref='ops:${operation.id}');`;
+  const counts=execFileSync('docker',['compose','-f','compose.yaml','-f','compose.odoo.yaml','exec','-T','odoo-db','psql','-U','odoo','-d','odoo_ops_sandbox','-At','-c',sql],{cwd:root,encoding:'utf8',timeout:30000}).trim();
+  assert.equal(counts,'1|1');checks.push('MCP execution, status and replay preserve one ledger and Odoo order');
+  await page.getByRole('button',{name:'Refresh'}).click();await page.getByText('Odoo outcome').waitFor();await page.screenshot({path:path.join(output,'approval-after.png'),fullPage:true});
+  const foreign=await browser.newPage();await foreign.goto(base+'/#proposal/'+proposal.id);await foreign.locator('#username').fill('operator.b');await foreign.locator('#password').fill(process.env.DEMO_PASSWORD);await foreign.getByRole('button',{name:'Sign in',exact:true}).click();await foreign.getByRole('alert').filter({hasText:'proposal not found'}).waitFor();
+  checks.push('cross-company review denied');assert.deepEqual(errors,[]);
+  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({recorded_at:new Date().toISOString(),checks,proposal_id:proposal.id,approval_id:review.approval_id,operation_id:operation.id,ledger_count:1,order_count:1,odoo_record:status.result.record},null,2));
+  console.log(JSON.stringify({passed:checks.length,checks,operation_id:operation.id}));
+})().catch(err=>{console.error(err.stack);process.exitCode=1;}).finally(async()=>{await browser?.close();});

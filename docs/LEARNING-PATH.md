@@ -18,6 +18,7 @@ not rewrite earlier phase tags.
 | `phase-8-reliability` | Telemetry, bounded load, security, restore and rollback | [Phase 8](PHASE-8.md) |
 | `phase-9-delivery` | Operator pack, recorded demo, release verification and Azure design | [Phase 9](PHASE-9.md) |
 | `phase-9a-web-ui` | Browser workspace, scoped read models, role separation and browser recovery acceptance | [Phase 9A](PHASE-9A.md) |
+| `phase-9b-mcp-first` | MCP preparation and execution around a small independent approval page | [Phase 9B](PHASE-9B.md) |
 
 ## Study one stage
 

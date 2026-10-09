@@ -130,6 +130,20 @@ One implementation commit and the `phase-9a-web-ui` tag preserve this added
 learning checkpoint. See [Phase 9A](docs/PHASE-9A.md) and [web UI guide](docs/WEB-UI.md).
 The existing Phase 0–9 tags remain unchanged.
 
+## Phase 9B — MCP-first journey and independent approval
+
+- [x] Keep the browser focused on one version-bound human decision; remove
+  quotation/activity builders, work queue, metrics and Odoo execution controls.
+- [x] Add an MCP review-status handoff for the approval ID.
+- [x] Validate MCP source lookup → proposal → browser approval → MCP execution
+  and status against the synthetic local Odoo stack, including replay and
+  cross-company denial.
+- [x] Publish actual approval/Odoo screenshots and a sanitized connected
+  transcript; keep Phase 9A as an unchanged historical checkpoint.
+
+One implementation commit and the `phase-9b-mcp-first` tag preserve this
+checkpoint. See [Phase 9B](docs/PHASE-9B.md).
+
 ## Phase 10 — Azure deployment and runtime acceptance
 
 - [ ] Confirm subscription, budget, region, access method and alert recipient.
