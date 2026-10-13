@@ -145,6 +145,24 @@ def test_replay_and_conflicting_key(domain):
     assert c.post(route, headers=operator, json={**body, 'idempotency_key': str(uuid4())}).status_code == 409
 
 
+def test_verified_receipt_survives_later_platform_outage(domain):
+    c, operator, _, _, fake = domain
+    p, body = prepared(domain)
+    route = f"/v1/proposals/{p['id']}/execute"
+    verified = c.post(route, headers=operator, json=body).json()
+    assert verified['status'] == 'verified'
+    fake.fault = 'readback_down'
+    status = c.get('/v1/operations/' + verified['id'], headers=operator).json()
+    retry = c.post('/v1/operations/' + verified['id'] + '/retry', headers=operator).json()
+    replay = c.post(route, headers=operator, json=body).json()
+    assert all(row['status'] == 'verified' and row['result'] == verified['result']
+               for row in (status, retry, replay))
+    assert fake.calls == 1
+    with admin_connection() as conn:
+        saved = conn.execute('SELECT status,result FROM operations WHERE id=%s', (verified['id'],)).fetchone()
+    assert saved[0] == 'verified' and saved[1] == verified['result']
+
+
 def test_malformed_and_injection_input(domain):
     c, operator, _, _, fake = domain
     for payload in ({'customer_id': 7, 'items': [{'product_id': 1, 'quantity': 0}]},

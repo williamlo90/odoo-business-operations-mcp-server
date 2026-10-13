@@ -1,8 +1,9 @@
 # Release specification — Phase 9
 
-This specification describes the immutable CLI delivery checkpoint. The current
-browser workspace is a subsequent application revision documented in
-[Phase 9A](PHASE-9A.md); its evidence is separate from this frozen manifest.
+This specification describes the immutable CLI delivery checkpoint. The historical
+full browser workspace is documented in [Phase 9A](PHASE-9A.md); the current
+MCP-first, approval-only interface is documented in [Phase 9B](PHASE-9B.md).
+Their evidence is separate from this frozen manifest.
 
 Release checkpoint: `phase-9-delivery` on `learning-phases`. Resolve the exact
 commit with `git rev-parse phase-9-delivery^{commit}`. The accompanying manifest
@@ -30,8 +31,9 @@ Ollama 0.40.1 / Qwen2.5 0.5B Q4_K_M is optional, local and experimental. The mod
 artifact digest and captured license hash are preserved in
 `docs/evidence/phase6-local-runtime.json`; the recorded model license is
 Apache-2.0. Keep the runtime's bundled third-party notices if redistributing it.
-This private repository contains no general open-source license grant for the
-project itself. Cloud deployment does not bundle hosted OpenAI weights. Review
+This repository is now public for portfolio review and grants no general
+open-source reuse license for the project itself; see [usage rights](../LICENSE.md).
+Cloud deployment does not bundle hosted OpenAI weights. Review
 upstream notices/terms before distributing images or binaries to others.
 
 ## Configuration inventory
@@ -78,5 +80,5 @@ percentage. See `DELIVERY-ACCEPTANCE.md` and `phase9-manifest.json`.
 
 This release is local-ready with cloud design prepared. Azure IaC/runtime,
 HTTPS, restricted remote access, distinct real-user credentials and delivered
-human alerts must be implemented and tested in Phase 10. No production,
+human alerts would need implementation and testing if Phase 10 is pursued. No production,
 cloud-performance or high-availability claim is made.

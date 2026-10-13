@@ -19,7 +19,7 @@ stdio; no remote MCP HTTP endpoint is claimed.
 | `odoo.proposal_get` | Read an existing proposal |
 | `odoo.review_status` | Read approval ID and saved operation status after independent browser review; cannot approve |
 | `odoo.execute_approved` | Execute with proposal, approval and idempotency key |
-| `odoo.operation_status` | Reconcile/read a recorded operation |
+| `odoo.operation_status` | Recheck a recorded operation without dispatching; preserve verified evidence on temporary outage and flag a confirmed mismatch |
 
 The model and worker cannot create approval through this surface. The separate
 approver uses the domain workflow. All routes enforce authenticated role,

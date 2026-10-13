@@ -41,7 +41,7 @@ const specs: Spec[] = [
   {name:'odoo.execute_approved',description:'Execute an existing human-approved proposal using its stable idempotency key. Never creates approval.',
     input:obj({proposal_id:uuid,approval_id:uuid,idempotency_key:uuid}),output:schemas.OperationOut,roles:['operator'],method:'POST',
     path:a=>'/v1/proposals/'+a.proposal_id+'/execute',body:a=>({approval_id:a.approval_id,idempotency_key:a.idempotency_key})},
-  {name:'odoo.operation_status',description:'Reconcile an operation and return authoritative status; never retries an Odoo write.',
+  {name:'odoo.operation_status',description:'Recheck Odoo and return authoritative status; preserve a verified receipt during temporary outage and flag a conclusive mismatch. Never retries a write.',
     input:obj({operation_id:uuid}),output:schemas.OperationOut,roles:reader,path:a=>'/v1/operations/'+a.operation_id},
 ];
 

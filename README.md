@@ -50,11 +50,13 @@ The browser is solely the human decision surface. Odoo remains the source and re
 | Phase 8 workload | 124 tasks, including 31 verified drafts; 31/31 writes had one ledger and Odoo effect | [Reliability report](docs/PHASE-8.md) |
 | Phase 8 recovery | 30.11-second isolated matching restore and authenticated read-back | [Recovery record](docs/evidence/phase8-recovery.json) |
 
-These are distinct, partly overlapping suites and synthetic local data. They do not establish production or cloud performance. The historical Phase 9A tag retains its full workspace and evidence; this current version deliberately reduces the browser to approval.
+These are distinct, partly overlapping suites and synthetic local data. They do not establish production or cloud performance. The historical Phase 9A tag retains its full workspace and evidence; this current version deliberately reduces the browser to approval. Offline tests and TypeScript builds run automatically for pushes and pull requests; connected Odoo evidence remains a separate local check.
 
 ## Run locally
 
 Requirements: Docker with Linux containers, Python 3.13 and Node.js 22+. For credential-free checks:
+
+`learning-phases` is the default branch and current release. `main` is an archived early Phase 3 branch, with a notice in its README; use the phase tags to study earlier implementations.
 
 ```powershell
 python -m venv .venv
@@ -66,4 +68,4 @@ npm ci --prefix mcp-server
 
 For the synthetic Odoo stack and connected test, follow the [operator guide](docs/USER-GUIDE.md), then run `npm test --prefix tests/web`. The test prepares through MCP, approves in Chromium, executes through MCP, and saves private raw outputs under ignored `local/web-acceptance/`. It does not call a paid model.
 
-[Learning checkpoints](docs/LEARNING-PATH.md) · [All documentation](docs/README.md) · [Security](SECURITY.md) · [Optional Azure plan](docs/AZURE-PLAN.md)
+[Learning checkpoints](docs/LEARNING-PATH.md) · [All documentation](docs/README.md) · [Security](SECURITY.md) · [Usage rights](LICENSE.md) · [Optional Azure plan](docs/AZURE-PLAN.md)

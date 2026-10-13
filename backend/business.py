@@ -127,11 +127,21 @@ def reconcile(row, current, adapter):
                 state, error = 'review', 'readback_mismatch'
     except odoo_adapter.PlatformError as exc:
         state, error, receipt = 'unknown', exc.code, None
+    # A missing response is inconclusive after a verified read-back. Preserve
+    # that receipt, while still escalating a conclusive malformed/mismatched
+    # read-back to review if the Odoo record changes later.
+    if row['status'] == 'verified' and state == 'unknown':
+        with connection() as conn:
+            return public_operation(operation(conn, row['id'], current))
     with connection() as conn:
-        row = conn.execute('''UPDATE operations SET status=%s,error_code=%s,result=%s,updated_at=now()
-            WHERE id=%s AND tenant_id=%s RETURNING *''',
-            (state, error, Jsonb(receipt) if receipt else None, row['id'], current['tenant_id'])).fetchone()
-        audit(conn, current, 'operation.' + state, row['id'])
+        updated = conn.execute('''UPDATE operations SET status=%s,error_code=%s,result=%s,updated_at=now()
+            WHERE id=%s AND tenant_id=%s AND (status<>'verified' OR %s<>'unknown') RETURNING *''',
+            (state, error, Jsonb(receipt) if receipt else None, row['id'], current['tenant_id'], state)).fetchone()
+        if updated:
+            audit(conn, current, 'operation.' + state, row['id'])
+            row = updated
+        else:
+            row = operation(conn, row['id'], current)
     return public_operation(row)
 
 
@@ -332,7 +342,7 @@ def build_router(actor, reader, operator):
             p = proposal(conn, row['proposal_id'], current)
             if p['actor_id'] != current['id']:
                 fail('proposal_actor_mismatch', 403)
-            if row['status'] in {'failed', 'review'}:
+            if row['status'] in {'failed', 'review', 'verified'}:
                 return public_operation(row)
         outcome = reconcile(row, current, adapter)
         if outcome['status'] != 'unknown' or outcome['error_code'] != 'awaiting_platform_result':

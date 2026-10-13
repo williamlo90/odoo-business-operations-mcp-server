@@ -9,7 +9,7 @@ access does not block local operation. This document contains no secret values.
 | D02 | Windows/WSL2 and Linux containers | Startup verified without changing other project environments |
 | D03 | Odoo Community 19.0 / JSON-2 | Local sandbox with Contacts, CRM, Sales and `ops_bridge`; connected read/write/read-back passed |
 | D04 | Company-scoped connector keys | Private read-only API configuration; rotate according to the Odoo setup guide |
-| D05 | Git repository | Phase tags and source provenance preserved; `main` presents the current release |
+| D05 | Git repository | Phase tags and source provenance preserved; `learning-phases` is the default/current release and `main` is explicitly marked as an archived early Phase 3 branch |
 | D06 | Runtime/package versions | Locked Python/Node dependencies and Docker digests; Phase 1 recorded Python 3.13.16/Node 22.23.3; Phase 4 pinned MCP SDK 2.3.1/protocol 2026-07-28 |
 | D07 | PostgreSQL | 17.11 validated locally; application and Odoo have separate databases/roles |
 | D08 | Hosted provider access | OpenAI canary passed; Claude/Grok optional, not live-qualified |

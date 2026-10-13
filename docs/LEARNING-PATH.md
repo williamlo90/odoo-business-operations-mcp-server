@@ -2,7 +2,8 @@
 
 Each fixed tag preserves a reproducible learning snapshot. The default branch,
 `learning-phases`, presents the current product and its phase-oriented development
-history. The older `main` branch is retained. Portfolio documentation updates do
+history. `main` is retained as an explicitly marked early Phase 3 archive;
+the immutable phase tags retain the other earlier implementations. Portfolio documentation updates do
 not rewrite earlier phase tags.
 
 | Tag | Learning focus | Guide |

@@ -36,13 +36,16 @@ the write boundary, closing the race between a preview and execution.
 service keeps a durable operation ID and reconciles its ledger/result before
 any retry. The local worker fences old lease owners and routes uncertain
 preparation to review rather than replaying it automatically.
+Once a matching Odoo read-back has verified an operation, a later temporary
+status outage preserves that verified receipt and cannot make it retryable.
+A conclusive later mismatch still moves the operation to manual review.
 
 **Model flexibility without changing authority.** OpenAI and Ollama integration
 paths share typed schemas, source resolution and approval rules. The small local
 model remains experimental based on evaluation. Provider substitution does not
 change who may authorize a write.
 
-See the [current system architecture](../../README.md#architecture-and-authority)
+See the [current system architecture](../../README.md#why-the-boundaries-matter)
 for both browser and MCP paths through the shared domain service.
 
 ## What the evidence establishes
