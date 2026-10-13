@@ -1,5 +1,7 @@
 # Odoo Business Operations MCP Server
 
+> **Archived early Phase 3 branch.** This branch is retained as a learning snapshot and is not the current release. Open the [default `learning-phases` branch](https://github.com/williamlo90/odoo-business-operations-mcp-server/tree/learning-phases) for the current MCP-first system, approval page, tests, and portfolio evidence. The phase tags preserve the individual checkpoints.
+
 Proyek 02: **Odoo Business Operations MCP Server**
 
 Tanggal rencana: 2026-10-08. Status: **Phase 0–2 selesai; alur deterministik Odoo lokal terimplementasi dan diuji. Phase 3–9 belum selesai**. Checklist hanya dicentang setelah artefak dan verifikasinya tersedia.
